@@ -2,8 +2,18 @@
   text-align: center;
 }
 
+.container{
+  display: flex;
+  background-color: lightgrey;
+  justify-content: center;
+}
 
 .content{
   background-color: #eceeee;
-  height: 81vh;
+  width: 85%;
+  align-self: center;
+  justify-self: center;
+  margin: 1% 1% 1% 1%;
+  border-radius: 2%;
+  padding: 3%;
 }
