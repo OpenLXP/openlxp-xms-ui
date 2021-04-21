@@ -9,6 +9,20 @@
   background-repeat: no-repeat;
 }
 
+.text {
+  font-family: "Times New Roman", Times, serif;
+  color: #506a8e;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.subText {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  color: #506a8e;
+  font-size: 1.2em;
+}
+
 .icon {
   display: flex;
   min-width: fit-content;
@@ -24,6 +38,7 @@
   align-self: center;
 }
 .signIn {
+  font-family: "Times New Roman", Times, serif;
   align-self: flex-end;
   margin-bottom: 1%;
   margin-right: 10%;
