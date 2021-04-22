@@ -16,11 +16,18 @@
 }
 
 .catalog:hover {
-  box-shadow: 5px 5px 10px #29292931;
-  transition: box-shadow 0.05s linear 0s;
+  box-shadow: 2px 2px 20px #29292931;
+  transition: box-shadow 0.2s linear;
+}
+
+.catalog > img {
+  max-width: 200px;
+  height: auto;
+  padding: 0% 1%;
 }
 
 .contentWrapper {
+  min-width: 50vh;
   text-align: left;
   margin: 1% 2%;
 }
@@ -32,13 +39,11 @@
 }
 
 .contentWrapper > .content {
+  max-height: 150px;
   font-size: large;
   font-weight: 300;
-}
-
-.catalog > img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10%;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
