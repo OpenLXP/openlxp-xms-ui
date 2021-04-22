@@ -16,6 +16,7 @@ const Header = (props) => {
 
   const handleClick = () => {
     showLogin ? setShowLogin(Login) : setShowLogin(false);
+    alert("Login Clicked")
   };
 
   const makeNavButtons = buttons.map((button, index) => {
@@ -42,7 +43,7 @@ const Header = (props) => {
           </div>
         </div>
 
-        <div className={classes.signIn}>Sign In</div>
+        <div className={classes.signIn} onClick={handleClick}>Sign In</div>
       </div>
       <div className={classes.nav}>{makeNavButtons}</div>
     </header>
