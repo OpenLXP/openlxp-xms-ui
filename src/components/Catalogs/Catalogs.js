@@ -30,7 +30,7 @@ const Catalog = ({ history }) => {
   const makeCatalogs = data.map((catalog, index) => {
     return (
       <div className={classes.catalog} key={index} onClick={handleClick}>
-        <img src={icon} alt={'Alt img'}/>
+        <img src={icon} alt={"Alt img"} />
         <div className={classes.contentWrapper}>
           <div className={classes.catalogTitle}>{catalog.title}</div>
           <div className={classes.content}>{catalog.content}</div>
@@ -41,7 +41,7 @@ const Catalog = ({ history }) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.title}>Catalogs</div>
+      <div className={classes.title}>{`Catalog (${data.length}`})</div>
 
       {makeCatalogs}
     </div>
