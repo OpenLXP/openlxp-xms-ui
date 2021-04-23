@@ -4,6 +4,7 @@ import "./App.css";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import WelcomeScreen from "./components/Welcome Screen/WelcomeScreen"
 import Catalog from "./components/Catalogs/Catalogs";
+import Courses from "./components/Courses/Courses"
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={WelcomeScreen} />
               <Route path="/catalogs" component={Catalog} />
+              <Route path="/courses" component={Courses} />
             </Switch>
           </div>
         </div>

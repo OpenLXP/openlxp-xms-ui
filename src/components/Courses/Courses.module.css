@@ -1,0 +1,41 @@
+.title {
+    font-size: 3em;
+    font-weight: 500;
+    margin: 0% 1%;
+    padding-bottom: 1%;
+  }
+
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    margin: 5%;
+}
+
+tr{
+    font-size: 1.4em;
+    font-weight: 300;
+    border-bottom: 1em;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.heading{
+    font-size: 1.5em;
+    font-weight: 300;
+    border-bottom: 1em;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
