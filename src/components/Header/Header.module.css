@@ -2,83 +2,88 @@
   max-width: 100%;
   padding: 1% 2% 0.5% 10%;
 
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 
-  background-image: url("../../resources/internal/dodBanner.png");
-  background-repeat: no-repeat;
+    background-image: url("../../resources/internal/dodBanner.png");
+    background-repeat: no-repeat;
 }
 
 .text {
-  font-family: "Times New Roman", Times, serif;
-  color: #506a8e;
-  font-weight: 500;
-  font-size: 1.5em;
+    font-family: "Times New Roman", Times, serif;
+    color: #506a8e;
+    font-weight: 500;
+    font-size: 1.5em;
 }
 
 .subText {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 500;
-  color: #506a8e;
-  font-size: 1.2em;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 500;
+    color: #506a8e;
+    font-size: 1.2em;
 }
 
 .icon {
-  display: flex;
-  min-width: fit-content;
-  flex-direction: row;
-  justify-content: flex-start;
+    display: flex;
+    min-width: fit-content;
+    flex-direction: row;
+    justify-content: flex-start;
 }
+
 .logo {
-  align-self: center;
+    align-self: center;
 }
+
 .logoText {
-  width: 50vw;
-  padding-left: 2%;
-  align-self: center;
+    width: 50vw;
+    padding-left: 2%;
+    align-self: center;
 }
+
 .signIn {
-  font-family: "Times New Roman", Times, serif;
-  align-self: flex-end;
-  margin-bottom: 1%;
-  margin-right: 10%;
+    font-family: "Times New Roman", Times, serif;
+    align-self: flex-end;
+    margin-bottom: 1%;
+    margin-right: 10%;
 }
+
 .signIn:hover {
-  color: #09a3ce;
+    color: #09a3ce;
 }
 
 .iconWrapper {
-  display: inline-block;
+    display: inline-block;
 }
 
 .nav {
-  padding: 0% 10% 0% 10%;
-  background-color: #0888aa;
+    padding: 0 10% 0 10%;
+    background-color: #0888aa;
 }
+
 .navMain {
-  width: 100%;
-  display: inline-block;
-  padding-left: 10%;
+    width: 100%;
+    display: inline-block;
+    padding-left: 10%;
 }
 
 .navItemWrapper {
-  margin: 0px 1% 0px 1%;
-  display: inline-block;
+    margin: 0 1% 0 1%;
+    display: inline;
 }
 
 .navItemWrapper:hover {
-  background-color: #09a3ce;
-  transition: background-color 0.2s, color 0.2s;
+    background-color: #09a3ce;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .navItemWrapperActive {
-  background-color: #337ab7;
-  display: inline-block;
+    background-color: #337ab7;
+    display: inline-block;
 }
 
 .navItem {
-  padding: 10px 10px 10px 10px;
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
 }
