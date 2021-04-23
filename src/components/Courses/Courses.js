@@ -42,7 +42,7 @@ const Courses = (props) => {
             <h2 className={classes.text}>{rows.length} Courses in Catalog</h2>
             <table id="myTable">
                 <tr className={classes.heading}>
-                  <th>Course Id</th>
+                  <th>Course ID</th>
                   <th>Course Name</th>
                   <th>Course Manager</th>
                   <th>Date Updated</th>
@@ -51,7 +51,7 @@ const Courses = (props) => {
                   <th>Date Assigned</th>
                 </tr>
               {rows.map(row => (
-                <tr key={row.id}>
+                <tr key={row.CourseCode}>
                   <td>{row.CourseCode}</td>
                   <td>{row.CourseTitle}</td>
                   <td>{row.CourseManager}</td>
