@@ -43,11 +43,8 @@ const Header = (props) => {
         <div className={classes.icon}>
           <img className={classes.logo} src={dodLogo} alt={""} />
           <div className={classes.logoText}>
-            <div className={classes.text}>Experience Management Service</div>
-            {/* <div>Digital Learning Portal</div> */}
-            <div className={(classes.text, classes.subText)}>
-              U.S Department of Defense
-            </div>
+            <p className={classes.paraText}> <b className={classes.text}>Experience Management Service</b> </p>
+            <p className={classes.paraText}> <b className={classes.subText}>U.S Department of Defense</b> </p>
           </div>
         </div>
 

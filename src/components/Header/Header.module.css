@@ -9,18 +9,30 @@
     background-repeat: no-repeat;
 }
 
+.paraText{
+    margin: 0;
+    padding: 0;
+}
+
 .text {
-    font-family: "Times New Roman", Times, serif;
-    color: #506a8e;
-    font-weight: 500;
-    font-size: 1.5em;
+    padding-top: 1.5%;
+    height: 25px;
+    color: #506A8E;
+    font-family: "Times New Roman",Times, serif;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: uppercase;
+    display: flex;
 }
 
 .subText {
-    font-family: "Times New Roman", Times, serif;
-    font-weight: 500;
-    color: #506a8e;
-    font-size: 1.2em;
+     height: 25px;
+     width: 265px;
+     color: #90BEDC;
+     font-family: "Times New Roman",Times, serif;
+     font-size: 15px;
+     line-height: 20px;
+     display: flex;
 }
 
 .icon {
@@ -68,7 +80,9 @@
 
 .navItemWrapper {
     margin: 0 1% 0 1%;
+    padding: 10px 0;
     display: inline;
+    /* size: 125%; */
 }
 
 .navItemWrapper:hover {
@@ -83,7 +97,9 @@
 
 .navItem {
     padding: 10px 10px 10px 10px;
+    /* margin: 10px; */
     display: inline-block;
     text-decoration: none;
     color: #fff;
+    /* height: 50%; */
 }
