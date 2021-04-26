@@ -42,7 +42,6 @@
 }
 
 .contentWrapper > .content {
-<<<<<<< HEAD
     max-height: 150px;
     font-size: medium;
     font-weight: 300;
@@ -50,13 +49,4 @@
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
-=======
-  max-height: 150px;
-  font-size: large;
-  font-weight: 300;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
->>>>>>> 5871022 (Adds styling changes and line clamping)
 }
