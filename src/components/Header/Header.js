@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import classes from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import dodLogo from "../../resources/internal/dodLogo.png";
-import Login from "./Login/Login";
+import Login from "../Login/Login";
 
 const Header = (props) => {
   const [showLogin, setShowLogin] = useState(false);
 
   // DS for generating buttons
   const buttons = [
-    { name: "Catalogs", route: "/catalogs" },
-    { name: "Courses", route: "/courses" },
-    { name: "Tasks", route: "/tasks" },
+    {
+      name: "Catalogs",
+      route: "/catalogs",
+    },
+    {
+      name: "Courses",
+      route: "/courses",
+    },
+    {
+      name: "Tasks",
+      route: "/tasks",
+    },
   ];
-
-  const handleClick = () => {
-    showLogin ? setShowLogin(Login) : setShowLogin(false);
-    alert("Login Clicked")
-  };
 
   const makeNavButtons = buttons.map((button, index) => {
     return (
@@ -30,7 +34,7 @@ const Header = (props) => {
   });
 
   return (
-    <header className={classes.root}>
+    <header>
       <div className={classes.imgBar}>
         <div className={classes.icon}>
           <img className={classes.logo} src={dodLogo} alt={""} />
@@ -43,7 +47,9 @@ const Header = (props) => {
           </div>
         </div>
 
-        <div className={classes.signIn} onClick={handleClick}>Sign In</div>
+        <div className={classes.signIn}>
+          <NavLink to={"/login"}>Sign In</NavLink>
+        </div>
       </div>
       <div className={classes.nav}>{makeNavButtons}</div>
     </header>
