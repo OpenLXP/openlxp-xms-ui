@@ -5,6 +5,8 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import WelcomeScreen from "./components/Welcome Screen/WelcomeScreen";
 import Catalog from "./components/Catalogs/Catalogs";
 import Courses from "./components/Courses/Courses";
+import Course from "./components/Course/Course";
+import Login from "./components/Login/Login";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
               <Route path="/" exact component={WelcomeScreen} />
               <Route path="/catalogs" component={Catalog} />
               <Route path="/courses" component={Courses} />
+              <Route path="/login" component={Login} />
+              <Route path="/course" component={Course} />
             </Switch>
           </div>
         </div>

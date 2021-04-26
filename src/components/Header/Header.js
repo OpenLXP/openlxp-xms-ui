@@ -10,6 +10,10 @@ const Header = (props) => {
   // DS for generating buttons
   const buttons = [
     {
+      name: "Home",
+      route: "/",
+    },
+    {
       name: "Catalogs",
       route: "/catalogs",
     },
@@ -17,10 +21,10 @@ const Header = (props) => {
       name: "Courses",
       route: "/courses",
     },
-    {
-      name: "Tasks",
-      route: "/tasks",
-    },
+    // {
+    //   name: "Tasks",
+    //   route: "/tasks",
+    // },
   ];
 
   const makeNavButtons = buttons.map((button, index) => {

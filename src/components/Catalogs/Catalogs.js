@@ -24,12 +24,13 @@ const Catalog = (props) => {
   const handleClick = () => {
     alert("You have clicked!!!!!!");
     // history.push("/");
+    props.history.push("/courses");
   };
   const makeCatalogs = data.map((catalog, index) => {
     return (
       <div className={classes.catalog} key={index} onClick={handleClick}>
         <img src={icon} alt={"Alt img"} />
-        <div className={classes.contentWrapper}>
+        <div className={classes.contentWrapper} onClick={() => handleClick()}>
           <div className={classes.catalogTitle}>{catalog.title}</div>
           <div className={classes.content}>{catalog.content}</div>
         </div>
