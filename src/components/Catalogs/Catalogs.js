@@ -8,13 +8,11 @@ const data = [
     content:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam voluptates doloribus numquam enim repellat vero minima quod quo vitae veniam? Ducimus animi ipsa reiciendis laborum distinctio adipisci deserunt cupiditate in? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam voluptates doloribus numquam enim repellat vero minima quod quo vitae veniam? Ducimus animi ipsa reiciendis laborum distinctio adipisci deserunt cupiditate in? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam voluptates doloribus numquam enim repellat vero minima quod quo vitae veniam? Ducimus animi ipsa reiciendis laborum distinctio adipisci deserunt cupiditate in? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam voluptates doloribus numquam enim repellat vero minima quod quo vitae veniam? Ducimus animi ipsa reiciendis laborum distinctio adipisci deserunt cupiditate in? lorem",
   },
-
   {
     title: "Catalog Title 2",
     content:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam voluptates doloribus numquam enim repellat vero minima quod quo vitae veniam? Ducimus animi ipsa reiciendis laborum distinctio adipisci deserunt cupiditate in?",
   },
-
   {
     title: "Catalog Title 3",
     content:
@@ -22,7 +20,7 @@ const data = [
   },
 ];
 
-const Catalog = ({ history }) => {
+const Catalog = (props) => {
   const handleClick = () => {
     alert("You have clicked!!!!!!");
     // history.push("/");

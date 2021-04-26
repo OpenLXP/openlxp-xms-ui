@@ -18,9 +18,8 @@
 }
 
 .catalog:hover {
-  box-shadow: 2px 2px 20px #29292931;
-  transition: box-shadow 0.2s linear;
-  transition: border 0.01s linear;
+    box-shadow: 2px 2px 20px #29292931;
+    transition: box-shadow 0.2s linear;
 }
 
 .catalog > img {
