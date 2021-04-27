@@ -22,8 +22,6 @@ const data = [
 
 const Catalog = (props) => {
   const handleClick = () => {
-    alert("You have clicked!!!!!!");
-    // history.push("/");
     props.history.push("/courses");
   };
   const makeCatalogs = data.map((catalog, index) => {
