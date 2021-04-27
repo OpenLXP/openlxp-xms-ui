@@ -12,14 +12,17 @@ const Header = (props) => {
     {
       name: "Home",
       route: "/",
+      testId: "home-btn",
     },
     {
       name: "Catalogs",
       route: "/catalogs",
+      testId: "catalogs-btn",
     },
     {
       name: "Courses",
       route: "/courses",
+      testId: "courses-btn",
     },
     // {
     //   name: "Tasks",
@@ -29,7 +32,11 @@ const Header = (props) => {
 
   const makeNavButtons = buttons.map((button, index) => {
     return (
-      <div className={classes.navItemWrapper} key={index}>
+      <div
+        className={classes.navItemWrapper}
+        key={index}
+        data-testid={button.testId}
+      >
         <NavLink exact to={button.route} className={classes.navItem}>
           {button.name}
         </NavLink>
@@ -38,13 +45,22 @@ const Header = (props) => {
   });
 
   return (
-    <header>
+    <header data-testid={"header-nav"}>
       <div className={classes.imgBar}>
         <div className={classes.icon}>
-          <img className={classes.logo} src={dodLogo} alt={""} />
+          <img
+            className={classes.logo}
+            src={dodLogo}
+            alt={"dodLogo"}
+            data-testid={"dod-logo"}
+          />
           <div className={classes.logoText}>
-            <p className={classes.paraText}> <b className={classes.text}>Experience Management Service</b> </p>
-            <p className={classes.paraText}> <b className={classes.subText}>U.S Department of Defense</b> </p>
+            <p className={classes.paraText}>
+              <b className={classes.text}>Experience Management Service</b>
+            </p>
+            <p className={classes.paraText}>
+              <b className={classes.subText}>U.S. Department of Defense</b>
+            </p>
           </div>
         </div>
 
@@ -52,7 +68,9 @@ const Header = (props) => {
           <NavLink to={"/login"}>Sign In</NavLink>
         </div>
       </div>
-      <div className={classes.nav}>{makeNavButtons}</div>
+      <div className={classes.nav} data-testid={"button-group"}>
+        {makeNavButtons}
+      </div>
     </header>
   );
 };
