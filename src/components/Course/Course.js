@@ -18,7 +18,7 @@ const Course = (props) => {
 
   let { EndDate, StartDate, InLanguage } = courseData.metadata.CourseInstance;
   // Preparing the data to be displayed
-  CourseTitle = CourseTitle.split("|")[1].trim();
+  // CourseTitle = CourseTitle.split("|")[1].trim();
 
   return (
     <>
