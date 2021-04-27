@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 import classes from "./Courses.module.css";
-import testData from "../../resources/testData/test_one.json";
 
 const Courses = (props) => {
 
@@ -15,10 +14,12 @@ const Courses = (props) => {
 
   const catalog_courses_api_url = process.env
     .REACT_APP_XIS_COMPOSITELEDGER_API + "?provider=dau";
+  
+  let coursesLength = 0;
 
   let result = (
     <div>
-      Error Loading experiences. Please contact an administrator.
+      Error loading courses. Please contact an administrator.
     </div>
   )
 
@@ -53,7 +54,7 @@ const Courses = (props) => {
           }
         })
       });
-  }, []);
+  }, [catalog_courses_api_url]);
 
   const rows = [
     {
@@ -86,42 +87,65 @@ const Courses = (props) => {
     },
   ];
 
+  if (coursesState.isLoading) {
+    result = (
+      <div>
+        Loading...
+      </div>
+    )
+  } else if (coursesState.courses && coursesState.isLoading === false) {
+
+    coursesLength = coursesState.courses.length
+    let tableData = coursesState.courses.map((row) => (
+      <tr
+        key={row.unique_record_identifier}
+        onClick={() =>
+          props.history.push({
+            pathname: "/course",
+            state: row,
+          })
+        }
+      >
+        <td>{row.unique_record_identifier}</td>
+        <td>{row.metadata.Course.CourseTitle}</td>
+        <td></td>
+        <td></td>
+        <td>{row.record_status}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    ));
+
+    result = (
+      <table id="myTable">
+        <tr className={classes.heading}>
+          <th>Course ID</th>
+          <th>Course Name</th>
+          <th>Course Manager</th>
+          <th>Date Updated</th>
+          <th>Record Status</th>
+          <th>Assigned To</th>
+          <th>Date Assigned</th>
+        </tr>
+        {tableData}
+      </table>
+    )
+
+  } else {
+    result = (
+      <div>
+        Error Loading experiences. Please contact an administrator.
+      </div>
+    )
+  }
+
   return (
     <div>
       <div>
         <div className={classes.title}>Courses</div>
         <div>
-          <h2 className={classes.text}>{rows.length} Courses in Catalog</h2>
-          <table id="myTable">
-            <tr className={classes.heading}>
-              <th>Course ID</th>
-              <th>Course Name</th>
-              <th>Course Manager</th>
-              <th>Date Updated</th>
-              <th>Record Status</th>
-              <th>Assigned To</th>
-              <th>Date Assigned</th>
-            </tr>
-            {rows.map((row) => (
-              <tr
-                key={row.CourseCode}
-                onClick={() =>
-                  props.history.push({
-                    pathname: "/course",
-                    state: testData ,
-                  })
-                }
-              >
-                <td>{row.CourseCode}</td>
-                <td>{row.CourseTitle}</td>
-                <td>{row.CourseManager}</td>
-                <td>{row.date_updated}</td>
-                <td>{row.record_status}</td>
-                <td>{row.assigned_to}</td>
-                <td>{row.date_assigned}</td>
-              </tr>
-            ))}
-          </table>
+          <h2 className={classes.text}>{coursesLength} Courses in Catalog</h2>
+          {result}
         </div>
       </div>
     </div>

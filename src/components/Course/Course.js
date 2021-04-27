@@ -5,48 +5,56 @@ import classes from "./Course.module.css";
 const Course = (props) => {
   let location = useLocation();
   const courseData = location.state;
-  let {
-    CourseLevel,
-    CourseTitle,
-    CourseProviderName,
-    DepartmentName,
-    CourseSubjectMatter,
-    CourseFullDescription,
-    CourseCode,
-    EstimatedCompletionTime,
-  } = courseData.metadata.Course;
-
-  let { EndDate, StartDate, InLanguage } = courseData.metadata.CourseInstance;
+  const CourseTitle = courseData.metadata.CourseTitle;
+  
   // Preparing the data to be displayed
   // CourseTitle = CourseTitle.split("|")[1].trim();
+  console.log(courseData.metadata)
 
   return (
     <>
       <h2>{CourseTitle}</h2>
       <div>
-        <div className={classes.container}>
-          <h3>Course Info</h3>
-          <div className={classes.button}>Edit</div>
-        </div>
-        <div className={classes.grid}>
-          <label>Provider:&nbsp;</label>
-          <input placeholder={CourseProviderName} />
-          <label>Course Level:&nbsp;</label>
-          <input placeholder={CourseLevel} />
-          <label>Department Name: &nbsp;</label>
-          <input placeholder={DepartmentName} />
-          <label>Subject Matter: &nbsp;</label>
-          <input placeholder={CourseSubjectMatter} />
-          <label>Course Code&nbsp;</label>
-          <input placeholder={CourseCode} />
-          <label>Estimated Time:&nbsp;</label>
-          <input placeholder={EstimatedCompletionTime} />
-          <label>Start Date:&nbsp;</label>
-          <input placeholder={Date(StartDate).toString()} />
-          <label>End Date:&nbsp;</label>
-          <input placeholder={Date(EndDate).toString()} />
-        </div>
-        <div className={classes.courseDesc}>{CourseFullDescription}</div>
+        {Object.keys(courseData.metadata).map((key, index) => {
+          let currObj = courseData.metadata[key];
+          let fields = (
+            Object.keys(currObj).map((field, idx) => {
+              if (field.toLowerCase().includes('date')) {
+                return (
+                  <React.Fragment key={field}>
+                    <label>{field}:&nbsp;</label>
+                    <input placeholder={Date(currObj[field]).toString()} />
+                  </React.Fragment>
+                )
+              } else if (field.toLowerCase().includes('description')) {
+                return (
+                  <React.Fragment key={idx}>
+                    <label>{field}:&nbsp;</label>
+                    <textarea placeholder={currObj[field]}></textarea>
+                  </React.Fragment>
+                )
+              } else {
+                return (
+                  <React.Fragment key={idx}>
+                    <label>{field}:&nbsp;</label>
+                    <input placeholder={currObj[field]} />
+                  </React.Fragment>
+                )
+
+              }
+            })
+          );
+          return (
+            <React.Fragment key={index} >
+              <div className={classes.container}>
+                <h3>{key}</h3>
+              </div>
+              <div className={classes.grid}>
+                {fields}
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
     </>
   );

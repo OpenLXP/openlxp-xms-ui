@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./WelcomeScreen.module.css";
 
 const WelcomeScreen = (props) => {

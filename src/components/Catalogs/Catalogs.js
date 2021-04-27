@@ -22,10 +22,14 @@ const Catalog = (props) => {
     error: null,
   });
 
+  let resultLength = 0;
+
   const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
   let result = (
-    <div>Error Loading experiences. Please contact an administrator.</div>
-  );
+    <div>
+      Error loading catalogs. Please contact an administrator.
+    </div>
+  )
 
   /* Whenever the component first renders, make an API call to find providers
         using the keyword in the url */
@@ -53,7 +57,7 @@ const Catalog = (props) => {
       .catch((err) => {
         setCatalogsState((previousState) => {
           return {
-            providers: data, // replace with arr
+            providers: null, // replace with arr
             isLoading: false,
             error: err,
           };
@@ -68,6 +72,7 @@ const Catalog = (props) => {
   if (catalogsState.isLoading) {
     result = <div>Loading...</div>;
   } else if (catalogsState.providers && catalogsState.isLoading === false) {
+    resultLength = catalogsState.providers.length;
     result = catalogsState.providers.map((catalog, index) => {
       return (
         <div className={classes.catalog} key={index} onClick={handleClick}>
@@ -89,7 +94,7 @@ const Catalog = (props) => {
       <div className={classes.title}>
         {`Catalog (${
           /*Needs to count the number of results from the catalog call */
-          data.length
+          resultLength
         }`}
         )
       </div>
