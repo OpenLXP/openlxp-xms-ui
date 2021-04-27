@@ -64,7 +64,7 @@ const Header = (props) => {
           </div>
         </div>
 
-        <div className={classes.signIn}>
+        <div className={classes.signIn} data-testid={"login-btn"}>
           <NavLink to={"/login"}>Sign In</NavLink>
         </div>
       </div>
