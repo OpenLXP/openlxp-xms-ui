@@ -13,7 +13,7 @@ const Courses = (props) => {
   });
 
   const catalog_courses_api_url = process.env
-    .REACT_APP_XIS_COMPOSITELEDGER_API + "?provider=dau";
+    .REACT_APP_XIS_COMPOSITELEDGER_API + "?provider=DAU";
   
   let coursesLength = 0;
 
