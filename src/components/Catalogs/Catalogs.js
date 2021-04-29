@@ -76,7 +76,7 @@ const Catalog = (props) => {
     });
   } else {
     result = (
-      <div>Error Loading experiences. Please contact an administrator.</div>
+      <div>Error loading experiences. Please contact an administrator.</div>
     );
   }
 
