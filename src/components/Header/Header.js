@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import dodLogo from "../../resources/internal/dodLogo.png";
 
 const Header = (props) => {
-  // const [showLogin, setShowLogin] = useState(false);
 
   // DS for generating buttons
   const buttons = [
