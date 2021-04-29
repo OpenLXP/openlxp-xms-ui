@@ -12,6 +12,7 @@ const Courses = (props) => {
     error: null
   });
 
+  // TODO: Replace this DAU call with the selected in catalog name
   const catalog_courses_api_url = process.env
     .REACT_APP_XIS_COMPOSITELEDGER_API + "?provider=DAU";
   

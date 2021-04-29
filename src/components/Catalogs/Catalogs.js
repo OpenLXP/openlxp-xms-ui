@@ -4,15 +4,6 @@ import axios from "axios";
 import classes from "./Catalogs.module.css";
 import icon from "../../images/placeholder.jpg";
 
-const data = [
-  "Catalog Title 1",
-  "Catalog Title 2",
-  "Catalog Title 3",
-  "Catalog Title 4",
-  "Catalog Title 5",
-  "Catalog Title 6",
-  "Catalog Title 7",
-];
 
 const Catalog = (props) => {
   // Initial state for tracking catalogs
@@ -31,7 +22,7 @@ const Catalog = (props) => {
     </div>
   )
 
-  /* Whenever the component first renders, make an API call to find providers
+  /* Whenever the component first renders, make an API call to find catalogs
         using the keyword in the url */
   useEffect(() => {
     let url = catalogs_api_url;

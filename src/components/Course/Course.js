@@ -9,15 +9,16 @@ const Course = (props) => {
   
   // Preparing the data to be displayed
   // CourseTitle = CourseTitle.split("|")[1].trim();
-  console.log(courseData.metadata)
 
   return (
     <>
       <h2>{CourseTitle}</h2>
       <div>
+        {/* For each p2881 group render a header + section */}
         {Object.keys(courseData.metadata).map((key, index) => {
           let currObj = courseData.metadata[key];
           let fields = (
+            // for each element inside a group, render a input field
             Object.keys(currObj).map((field, idx) => {
               if (field.toLowerCase().includes('date')) {
                 return (
