@@ -18,7 +18,7 @@ const Catalog = (props) => {
   const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
   let result = (
     <div>
-      Error loading catalogs. Please contact an administrator.
+      Error loading catalogs. Please contact your administrator.
     </div>
   )
 
