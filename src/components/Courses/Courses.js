@@ -135,7 +135,7 @@ const Courses = (props) => {
   } else {
     result = (
       <div>
-        Error Loading experiences. Please contact an administrator.
+        Error loading courses. Please contact an administrator.
       </div>
     )
   }
