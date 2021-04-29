@@ -1,17 +1,17 @@
-.titleText{
-    font-weight: 500;
-    font-size: 3em;
-    margin-bottom: 2%;
+.titleText {
+  font-weight: 500;
+  font-size: 3em;
+  margin-bottom: 2%;
 }
 
-.subtitleText{
-    font-weight: 400;
-    font-size: 2em;
-    margin-bottom: 2%;
+.subtitleText {
+  font-weight: 400;
+  font-size: 2em;
+  margin-bottom: 2%;
 }
 
-.contentText{
-    margin-bottom: 1%;
-    font-size: 1.5em;
-    color: grey;
+.contentText {
+  margin-bottom: 1%;
+  font-size: 1.5em;
+  color: grey;
 }
