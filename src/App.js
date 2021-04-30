@@ -13,17 +13,13 @@ const App = () => {
     <div>
       <Router>
         <Header />
-        <div className={"container"}>
-          <div className={"content"}>
-            <Switch>
-              <Route path="/" exact component={WelcomeScreen} />
-              <Route path="/catalogs" component={Catalog} />
-              <Route path="/courses" component={Courses} />
-              <Route path="/login" component={Login} />
-              <Route path="/course" component={Course} />
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route path="/" exact component={WelcomeScreen} />
+          <Route path="/catalogs" component={Catalog} />
+          <Route path="/courses" component={Courses} />
+          <Route path="/login" component={Login} />
+          <Route path="/course" component={Course} />
+        </Switch>
       </Router>
       <Footer />
     </div>
