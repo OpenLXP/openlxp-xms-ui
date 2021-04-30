@@ -7,7 +7,7 @@ const NavBar = (props) => {
       {/* Creating the buttons */}
       {navButtons.map((button, index) => {
         return (
-          <div className="p-2 mt-2 mx-2 hover:bg-blue-light  lg:text-xl rounded-t-lg md:text-lg text-white">
+          <div className="p-2 mt-2 mx-2 hover:bg-blue-light  lg:text-xl rounded-t-lg md:text-lg">
             <NavLink to={button.route} key={index} data-testid={button.testId}>
               {button.name}
             </NavLink>
