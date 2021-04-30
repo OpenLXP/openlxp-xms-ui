@@ -1,12 +1,12 @@
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import "./App.css";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header/Header";
+import Login from "./components/Login/Login";
 import WelcomeScreen from "./components/WelcomeScreen/WelcomeScreen";
 import Catalog from "./components/Catalogs/Catalogs";
 import Courses from "./components/Courses/Courses";
 import Course from "./components/Course/Course";
-import Login from "./components/Login/Login";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
