@@ -48,11 +48,14 @@ const Footer = (props) => {
   });
 
   return (
-    <footer className={classes.footer}>
-      <div className={classes.container}>
-      <div className={classes.sectionWrapper}>
-        <div className={classes.links}>{makeExternalLinks}</div>
-      </div>
+    <footer className="footer bg-blue relative pt-1">
+      <div className="relative h-auto mx-auto">
+        <div className="flex flex-row justify-center">
+          <div className="p-5">
+            {/* grid library */}
+            <div className="grid grid-cols-6 row-gap-5 hover:bg-lightblue focus:outline-none">{makeExternalLinks}</div>
+          </div>
+        </div>
       </div>
     </footer>
   );
