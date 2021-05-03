@@ -9,7 +9,7 @@ const WelcomeScreen = () => {
   };
 
   return (
-    <div className="container w-10/12 mx-auto rounded-md my-5 p-7 ">
+    <>
       <div className="font-sans">
         <div className="text-5xl my-8">{welcome.title}</div>
         <div className="text-3xl mb-5">{welcome.subtitle}</div>
@@ -17,7 +17,7 @@ const WelcomeScreen = () => {
           return <div className="mb-5">{welcome.message}</div>;
         })}
       </div>
-    </div>
+    </>
   );
 };
 export default WelcomeScreen;

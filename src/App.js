@@ -10,16 +10,18 @@ import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Router>
         <Header />
-        <Switch>
-          <Route path="/" exact component={WelcomeScreen} />
-          <Route path="/catalogs" component={Catalog} />
-          <Route path="/courses" component={Courses} />
-          <Route path="/login" component={Login} />
-          <Route path="/course" component={Course} />
-        </Switch>
+        <div className="w-10/12 mx-auto bg-gray-100 p-8 my-10 rounded-md">
+          <Switch>
+            <Route path="/" exact component={WelcomeScreen} />
+            <Route path="/catalogs" component={Catalog} />
+            <Route path="/courses" component={Courses} />
+            <Route path="/login" component={Login} />
+            <Route path="/course" component={Course} />
+          </Switch>
+        </div>
       </Router>
       <Footer />
     </div>

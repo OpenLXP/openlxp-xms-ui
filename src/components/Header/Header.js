@@ -37,8 +37,8 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-blue flex flex-col text-white">
-      <div className="relative w-10/12 mx-auto h-auto pt-5">
+    <header className="bg-blue  text-white">
+      <div className="w-10/12 mx-auto h-auto pt-5">
         <HeaderLogo logo={logo} />
         <div className="flex flex-row justify-between">
           <NavBar navButtons={navButtons} />
