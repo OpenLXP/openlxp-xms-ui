@@ -56,8 +56,8 @@ const Catalog = (props) => {
       });
   }, []);
 
-  const handleClick = () => {
-    props.history.push("/courses");
+  const handleClick = (catalog) => {
+    props.history.push({pathname:"/courses",state:catalog});
   };
 
   if (catalogsState.isLoading) {
@@ -66,9 +66,9 @@ const Catalog = (props) => {
     resultLength = catalogsState.providers.length;
     result = catalogsState.providers.map((catalog, index) => {
       return (
-        <div className={classes.catalog} key={index} onClick={handleClick}>
+        <div className={classes.catalog} key={index} onClick={()=>handleClick(catalog)}>
           <img src={icon} alt={"Course Catalog Image"} />
-          <div className={classes.contentWrapper} onClick={() => handleClick()}>
+          <div className={classes.contentWrapper} >
             <div className={classes.catalogTitle}>{catalog}</div>
           </div>
         </div>

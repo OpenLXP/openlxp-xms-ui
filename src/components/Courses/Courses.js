@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import {useLocation} from "react-router-dom"
 
 import classes from "./Courses.module.css";
 
@@ -13,8 +14,9 @@ const Courses = (props) => {
   });
 
   // TODO: Replace this DAU call with the selected in catalog name
+  const location = useLocation();
   const catalog_courses_api_url = process.env
-    .REACT_APP_XIS_COMPOSITELEDGER_API + "?provider=DAU";
+    .REACT_APP_XIS_COMPOSITELEDGER_API + `?provider=${location.state}`;
   
   let coursesLength = 0;
 
