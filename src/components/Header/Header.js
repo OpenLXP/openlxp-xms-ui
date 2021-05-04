@@ -18,11 +18,11 @@ const Header = () => {
       route: "/catalogs",
       testId: "catalogs-btn",
     },
-    {
-      name: "Courses",
-      route: "/courses",
-      testId: "courses-btn",
-    },
+    // {
+    //   name: "Courses",
+    //   route: "/courses",
+    //   testId: "courses-btn",
+    // },
     // {
     //   name: "Tasks",
     //   route: "/tasks",
