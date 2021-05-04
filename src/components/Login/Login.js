@@ -11,7 +11,7 @@ const Login = (props) => {
     alert("Forgot Password!");
   };
   const handleLogin = () => {
-    props.history.push("/");
+    props.history.push("/dashboard");
   };
 
   return (

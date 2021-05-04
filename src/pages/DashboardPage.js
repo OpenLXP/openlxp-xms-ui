@@ -6,7 +6,7 @@ import dodLogo from "../resources/internal/dodLogo.png";
 
 const Dashboard = (props) => {
   const navigation = [
-    { title: "Catalogs", path: "/dashboard/catalogs" },
+    { title: "Catalogs", path: "/dashboard" },
   ];
 
   return (
