@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router";
-import Catalogs from "./Catalogs/Catalog";
+import Catalogs from "./Catalogs/Catalogs";
 
 const ContentContainer = (props) => {
   const pathToComponents = [
