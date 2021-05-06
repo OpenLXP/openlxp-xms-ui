@@ -48,7 +48,10 @@ const CourseRow = (props) => {
       </td>
 
       <td className="px-6 py-4  text-center text-sm font-medium">
-        <NavLink to="#" className="text-blue hover:text-blue-light">
+        <NavLink
+          to={{ pathname: "/dashboard/course", state: row }}
+          className="text-blue hover:text-blue-light"
+        >
           View
         </NavLink>
       </td>
