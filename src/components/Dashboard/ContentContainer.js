@@ -1,9 +1,14 @@
 import { Route, Switch } from "react-router";
 import Catalogs from "./Catalogs/Catalogs";
+import Courses from "./Courses/Courses";
+import CourseData from "./CourseData/CourseData";
 
 const ContentContainer = (props) => {
+  // Routes must be added in reverse order
   const pathToComponents = [
-    { path: "/dashboard/", component: Catalogs },
+    { path: "/dashboard/", component: Catalogs, isExact: true },
+    { path: "/dashboard/courses", component: Courses, isExact: false },
+    { path: "/dashboard/course", component: CourseData, isExact: true },
   ];
 
   return (
@@ -14,7 +19,11 @@ const ContentContainer = (props) => {
           <div className="py-4">
             <Switch>
               {pathToComponents.map((route) => (
-                <Route path={route.path} component={route.component} />
+                <Route
+                  path={route.path}
+                  component={route.component}
+                  exact={route.isExact}
+                />
               ))}
             </Switch>
           </div>

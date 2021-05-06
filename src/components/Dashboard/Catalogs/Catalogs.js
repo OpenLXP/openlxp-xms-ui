@@ -40,15 +40,21 @@ const Catalogs = (props) => {
       });
   }, []);
 
+  // Defualt state is to load nothing
   let content = null;
 
+  // Show a loading message
   if (catalogs.isLoading) {
     content = <div> Loading...</div>;
-  } else if (catalogs.providers && !catalogs.isLoading) {
+  }
+  // Show the contnet if there is any
+  else if (catalogs.providers && !catalogs.isLoading) {
     content = catalogs.providers.map((catalogName) => {
       return <CatalogCard title={catalogName} img={icon} key={catalogName} />;
     });
-  } else {
+  }
+  // Show the error message if there is an error
+  else {
     content = (
       <div>Error loading catalogs. Please contact an administrator</div>
     );
@@ -56,8 +62,8 @@ const Catalogs = (props) => {
 
   return (
     <div>
-      <div className="font-sans text-2xl py-8">Course Catalogs</div>
-      <div className="flex flex-wrap justify-evenly">{content}</div>
+      <div className="font-sans text-2xl py-8 px-14">Course Catalogs</div>
+      <div className="flex flex-wrap justify-around">{content}</div>
     </div>
   );
 };
