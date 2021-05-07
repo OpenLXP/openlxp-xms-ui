@@ -37,10 +37,10 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-blue  text-white">
+      <header className="bg-gradient-to-t from-blue-light to-blue text-white">
       <div className="w-10/12 mx-auto h-auto pt-5">
         <HeaderLogo logo={logo} />
-        <div className="flex flex-row justify-between">
+        <div className="bg-gradient-to-t from-blue-light to-blue flex flex-row justify-between m-4">
           <NavBar navButtons={navButtons} />
           <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
             <NavLink to={"/login"} className="hover:bg-blue-light p-0 mt-2">
