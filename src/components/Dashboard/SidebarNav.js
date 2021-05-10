@@ -12,7 +12,7 @@ const SidebarNav = (props) => {
         key={item.title}
         to={item.path}
         className="cursor-pointer pr-44 xl:pr-56 py-2 pl-3 rounded-lg"
-        activeClassName="cursor-pointer bg-blue-light pr-48"
+        activeClassName="cursor-pointer bg-blue-dark pr-48"
       >
         {item.title}
       </NavLink>

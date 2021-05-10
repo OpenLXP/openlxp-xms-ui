@@ -2,9 +2,6 @@ import { Switch, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Login from "../components/Login/Login";
 import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
-import Catalog from "../components/Catalogs/Catalogs";
-import Courses from "../components/Courses/Courses";
-import Course from "../components/Course/Course";
 import Footer from "../components/Footer/Footer";
 const MainPage = () => {
   return (

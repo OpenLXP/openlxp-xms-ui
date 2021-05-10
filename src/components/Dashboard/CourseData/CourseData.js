@@ -54,7 +54,7 @@ const CourseData = (props) => {
     if (alreadyRendered.includes(key)) return null;
     return (
       <div className="sm:col-span-1">
-        <dt className="text-sm font-medium text-gray-500">{key}</dt>
+        <h3 className="text-sm font-medium text-gray-500">{key}</h3>
         <input
           className="mt-1 text-sm text-gray-900"
           placeholder={flattendData[key] || "undefined"}
@@ -76,15 +76,15 @@ const CourseData = (props) => {
         </h3>
         <div className="grid lg:grid-cols-3 md:grid-cols-2  sm:grid-cols-1 gap-x-4 gap-y-8 ">
           <div className="sm:col-span-1">
-            <dt className="text-sm font-medium text-gray-500">Course Code</dt>
-            <dd className="mt-1 text-sm text-gray-900">{courseCode}</dd>
+            <h3 className="text-sm font-medium text-gray-500">Course Code</h3>
+            <p className="mt-1 text-sm text-gray-900">{courseCode}</p>
           </div>
 
           <div className="sm:col-span-1">
-            <dt className="text-sm font-medium text-gray-500">
+            <h3 className="text-sm font-medium text-gray-500">
               Course Provider
-            </dt>
-            <dd className="mt-1 text-sm text-gray-900">{courseProvider}</dd>
+            </h3>
+            <p className="mt-1 text-sm text-gray-900">{courseProvider}</p>
           </div>
         </div>
       </div>
@@ -94,14 +94,14 @@ const CourseData = (props) => {
           {dataFields}
         </div>
         <div className="mt-8">
-          <dt className="text-sm font-medium text-gray-500">About</dt>
-          <dd className="mt-1 text-sm text-gray-900">
+          <h3 className="text-sm font-medium text-gray-500">About</h3>
+          <p className="mt-1 text-sm text-gray-900">
             Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
             incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
             consequat sint. Sit id mollit nulla mollit nostrud in ea officia
             proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit
             deserunt qui eu.
-          </dd>
+          </p>
         </div>
       </div>
     </div>

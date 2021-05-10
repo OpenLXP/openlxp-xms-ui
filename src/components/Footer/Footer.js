@@ -41,7 +41,11 @@ const Footer = (props) => {
 
   const makeExternalLinks = links.map((link, index) => {
     return (
-      <a key={index} className={classes.item} href={link.url}>
+      <a
+        key={index}
+        className=" text-center text-white text-sm hover:bg-blue rounded-sm"
+        href={link.url}
+      >
         {link.name}
       </a>
     );
@@ -53,7 +57,9 @@ const Footer = (props) => {
         <div className="flex flex-row justify-center">
           <div className="p-5">
             {/* grid library */}
-            <div className="grid grid-cols-6 row-gap-5 hover:bg-lightblue focus:outline-none">{makeExternalLinks}</div>
+            <div className="grid grid-cols-6  hover:bg-lightblue gap-1 focus:outline-none">
+              {makeExternalLinks}
+            </div>
           </div>
         </div>
       </div>

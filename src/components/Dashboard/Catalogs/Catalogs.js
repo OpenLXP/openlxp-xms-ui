@@ -62,7 +62,7 @@ const Catalogs = (props) => {
 
   return (
     <div>
-      <div className="font-sans text-2xl py-8 px-14">Course Catalogs</div>
+      <h1 className="font-sans text-2xl py-8 px-2">Course Catalogs</h1>
       <div className="flex flex-wrap justify-around">{content}</div>
     </div>
   );

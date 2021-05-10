@@ -10,13 +10,15 @@ const WelcomeScreen = () => {
 
   return (
     <>
-      <div className="font-sans">
-        <div className="text-5xl my-8">{welcome.title}</div>
-        <div className="text-3xl mb-5">{welcome.subtitle}</div>
-        {welcome.message.map((message) => {
-          return <div className="mb-5">{welcome.message}</div>;
-        })}
-      </div>
+      <main>
+        <div className="font-sans">
+          <h1 className="text-5xl my-8">{welcome.title}</h1>
+          <h3 className="text-3xl mb-5">{welcome.subtitle}</h3>
+          {welcome.message.map((message) => {
+            return <div className="mb-5">{welcome.message}</div>;
+          })}
+        </div>
+      </main>
     </>
   );
 };

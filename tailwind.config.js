@@ -8,7 +8,7 @@ module.exports = {
           light: "#09a3ce",
           medium: "#077391",
           dark: "#05556B",
-          DEFAULT: "#0888aa",
+          DEFAULT: "#087796",
         },
       },
     },
