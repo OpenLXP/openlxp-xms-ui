@@ -5,9 +5,7 @@ import HeaderLogo from "../components/Header/Logo/Logo";
 import dodLogo from "../resources/internal/dodLogo.png";
 
 const Dashboard = (props) => {
-  const navigation = [
-    { title: "Catalogs", path: "/dashboard" },
-  ];
+  const navigation = [{ title: "Catalogs", path: "/dashboard" }];
 
   return (
     <>
