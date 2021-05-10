@@ -3,12 +3,17 @@ import dodImg from "../../resources/internal/dodLogo.png";
 import { NavLink } from "react-router-dom";
 
 const SidebarNav = (props) => {
-    // Passed in from the 
+  // Passed in from the
   const navigation = props.navButtons;
 
   const buttons = navigation.map((item) => (
-    <div>
-      <NavLink key={item.title} to={item.path} className="cursor-pointer">
+    <div className="w-10">
+      <NavLink
+        key={item.title}
+        to={item.path}
+        className="cursor-pointer pr-44 py-2 pl-3 rounded-lg"
+        activeClassName="cursor-pointer bg-blue-light pr-48"
+      >
         {item.title}
       </NavLink>
     </div>
@@ -19,8 +24,8 @@ const SidebarNav = (props) => {
       <div className="flex flex-col w-64">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-col h-0 flex-1">
-          <div className="flex-1 flex flex-col overflow-y-auto bg-blue">
-            <nav className="flex-0 px-2 py-4 space-y-1 text-white">
+          <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden bg-blue">
+            <nav className="flex-0 px-2 pt-20 space-y-1 text-white">
               {buttons}
             </nav>
           </div>
