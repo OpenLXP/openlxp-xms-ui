@@ -6,7 +6,7 @@ import img from "../Header/Logo/Logo";
 
 const DashboardHeader = (props) =>{
     return(
-    <div className="bg-blue  text-white py-5">
+    <div className="bg-blue  text-white pb-5">
       <div className="w-10/12 mx-auto h-auto">
       <NavLink className="flex flex-row items-center text-white" to="/">
         <img src={icon} alt="This is the dod Logo" className={"pl-3"} />
