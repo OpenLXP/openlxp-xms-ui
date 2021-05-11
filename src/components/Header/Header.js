@@ -26,7 +26,7 @@ const Header = () => {
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 mx-auto h-auto pt-5">
         <HeaderLogo logo={logo} />
-        <div className=" border-t flex flex-row justify-between m-4">
+        <div className=" border-t flex flex-row justify-between mt-4 mx-2">
           <NavBar navButtons={navButtons} />
           <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
             <NavLink to={"/dashboard"} className="hover:bg-blue-light p-0 mt-2">
@@ -40,3 +40,4 @@ const Header = () => {
 };
 
 export default Header;
+
