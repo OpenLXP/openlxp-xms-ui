@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import icon from "../../../images/placeholder.jpg";
-import CatalogCard from "./CatalogCard/CatalogCard";
+import CatalogList from "./CatalogList/CatalogList";
 
 const Catalogs = (props) => {
   const [catalogs, setCatalogs] = useState({
@@ -49,9 +48,7 @@ const Catalogs = (props) => {
   }
   // Show the contnet if there is any
   else if (catalogs.providers && !catalogs.isLoading) {
-    content = catalogs.providers.map((catalogName) => {
-      return <CatalogCard title={catalogName} img={icon} key={catalogName} />;
-    });
+    content = <CatalogList catalogs={catalogs.providers} />;
   }
   // Show the error message if there is an error
   else {
@@ -60,11 +57,6 @@ const Catalogs = (props) => {
     );
   }
 
-  return (
-    <div>
-      <h1 className="font-sans text-2xl py-8">Course Catalogs</h1>
-      <div className="flex flex-wrap justify-between">{content}</div>
-    </div>
-  );
+  return <div>{content}</div>;
 };
 export default Catalogs;
