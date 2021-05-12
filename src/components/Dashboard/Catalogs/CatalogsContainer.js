@@ -39,14 +39,14 @@ const Catalogs = (props) => {
       });
   }, []);
 
-  // Defualt state is to load nothing
+  // Default state is to load nothing
   let content = null;
 
   // Show a loading message
   if (catalogs.isLoading) {
     content = <div> Loading...</div>;
   }
-  // Show the contnet if there is any
+  // Show the content if there is any
   else if (catalogs.providers && !catalogs.isLoading) {
     content = <CatalogList catalogs={catalogs.providers} />;
   }
