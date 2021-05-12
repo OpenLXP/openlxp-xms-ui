@@ -1,13 +1,13 @@
 import { Route, Switch } from "react-router";
 import CatalogsContainer from "./Catalogs/CatalogsContainer";
-import Courses from "./Courses/Courses";
+import CoursesContainer from "./Courses/CoursesContainer";
 import CourseData from "./CourseData/CourseData";
 
 const ContentContainer = (props) => {
   // Routes must be added in reverse order
   const pathToComponents = [
     { path: "/dashboard/", component: CatalogsContainer, isExact: true },
-    { path: "/dashboard/courses", component: Courses, isExact: false },
+    { path: "/dashboard/courses", component: CoursesContainer, isExact: false },
     { path: "/dashboard/course", component: CourseData, isExact: true },
   ];
 

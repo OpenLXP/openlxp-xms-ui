@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useLocation, NavLink } from "react-router-dom";
-import CourseRow from "./CourseRow/CourseRow";
+import CourseList from "./CourseList/CourseList";
 
 const Courses = (props) => {
   // Default state of the course data.
@@ -47,7 +47,7 @@ const Courses = (props) => {
   if (courseData.isLoading) {
     content = <div>Loading...</div>;
   } else if (courseData.courses && !courseData.isLoading) {
-    content = <CourseRow data={courseData.courses} />;
+    content = <CourseList data={courseData.courses} />;
   } else {
     content = (
       <div>Error loading courses. Please contatc an administrator.</div>
