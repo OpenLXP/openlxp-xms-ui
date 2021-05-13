@@ -29,10 +29,22 @@ describe("Catalog List", () => {
       );
     });
 
-    expect(screen.getByTestId("catalog-list")).toBeInTheDocument();
+    screen.getByTestId("catalog-list");
   });
 
-  test("does render when empty data is passed", () => {
+  test("does render catalog header", () => {
+    act(() => {
+      render(
+        <BrowserRouter>
+          <CatalogList />
+        </BrowserRouter>,
+        container
+      );
+    });
+    screen.getByText("Course Catalogs");
+  });
+
+  test("does not render when empty data is passed", () => {
     act(() => {
       const data = [];
 
@@ -44,7 +56,7 @@ describe("Catalog List", () => {
       );
     });
 
-    expect(screen.getByTestId("catalog-list")).toBeInTheDocument();
+    screen.getByTestId("catalog-list");
   });
 
   test("does render catalog cards when passed data", () => {
@@ -58,8 +70,7 @@ describe("Catalog List", () => {
       );
     });
 
-    expect(screen.getByText("DAU").parentElement.childElementCount).toBe(2);
-    expect(screen.getByText("DAU")).toBeInTheDocument();
-    expect(screen.getByText("edX")).toBeInTheDocument();
+    screen.getByText("DAU");
+    screen.getByText("edX");
   });
 });
