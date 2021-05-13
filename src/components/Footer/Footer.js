@@ -14,8 +14,7 @@ const Footer = (props) => {
     { name: "Strategic Plans", url: "https://dodcio.defense.gov/Library/" },
     {
       name: "Information Quality",
-      url:
-        "https://www.defense.gov//Resources/DOD-Information-Quality-Guidelines/",
+      url: "https://www.defense.gov//Resources/DOD-Information-Quality-Guidelines/",
     },
     { name: "No FEAR Act", url: "https://prhome.defense.gov/NoFear/" },
     { name: "Open Government", url: "https://open.defense.gov/" },
@@ -45,7 +44,8 @@ const Footer = (props) => {
         key={index}
         className=" text-center text-white text-sm hover:bg-blue rounded-sm"
         href={link.url}
-      >
+        target="_blank"
+        rel="noreferrer">
         {link.name}
       </a>
     );
