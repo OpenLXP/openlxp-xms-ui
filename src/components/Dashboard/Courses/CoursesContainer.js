@@ -50,10 +50,16 @@ const Courses = (props) => {
     content = <CourseList data={courseData.courses} />;
   } else {
     content = (
-      <div>Error loading courses. Please contatc an administrator.</div>
+      <div>Error loading courses. Please contact an administrator.</div>
     );
   }
 
-  return <div>{content}</div>;
+  return (
+    <div className="p-2 rounded-lg align-middle min-w-full overflow-auto mx-auto">
+      <div className="shadow overflow-hidden border-b rounded-lg">
+        {content}
+      </div>
+    </div>
+  );
 };
 export default Courses;
