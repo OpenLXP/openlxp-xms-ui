@@ -20,18 +20,28 @@ afterEach(() => {
 describe("CourseHeader", () => {
   test("does render", () => {
     act(() => {
-      render(<CourseHeader />, container);
+      render(
+        <table>
+          <CourseHeader />
+        </table>,
+        container
+      );
     });
-    expect(screen.getByTestId("table-header")).toBeInTheDocument();
-    expect(screen.getByTestId("table-header")).toBeVisible();
+    screen.getByTestId("table-header");
   });
 
-  test('does contain "Title" header', () => {
+  test('does contain "Title, Course Code, Course Status" in header', () => {
     act(() => {
-      render(<CourseHeader />, container);
+      render(
+        <table>
+          <CourseHeader />
+        </table>,
+        container
+      );
     });
 
-    expect(screen.getByText("Title")).toBeInTheDocument();
-    expect(screen.getByText("Course Code")).toBeInTheDocument();
+    screen.getByText("Title");
+    screen.getByText("Course Code");
+    screen.getByText("Course Status");
   });
 });
