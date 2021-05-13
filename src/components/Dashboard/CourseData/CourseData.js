@@ -93,16 +93,7 @@ const CourseData = (props) => {
         <div className="grid lg:grid-cols-3 md:grid-cols-2  sm:grid-cols-1 gap-x-4 gap-y-8">
           {dataFields}
         </div>
-        <div className="mt-8">
-          <h3 className="text-sm font-medium text-gray-500">About</h3>
-          <p className="mt-1 text-sm text-gray-900">
-            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-            incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-            consequat sint. Sit id mollit nulla mollit nostrud in ea officia
-            proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit
-            deserunt qui eu.
-          </p>
-        </div>
+       
       </div>
     </div>
   );
