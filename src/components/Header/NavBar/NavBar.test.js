@@ -2,7 +2,7 @@ import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
-import Header from "./Header";
+import NavBar from "./NavBar";
 
 let container = null;
 
@@ -19,19 +19,28 @@ afterEach(() => {
   container = null;
 });
 
-describe("Header", () => {
+describe("NavBar", () => {
   test("does render", () => {
     act(() => {
       render(
         <BrowserRouter>
-          <Header />
+          <NavBar />
         </BrowserRouter>
       );
     });
+    expect(screen.getByTestId("navbar-menu")).toBeInTheDocument();
+  });
 
-    screen.getByText("Sign In");
-    screen.getByText("Home");
-    screen.getByText("Experience Management Service");
-    screen.getByText("Department of Defense");
+  test("does render buttons", () => {
+    act(() => {
+      const button = [{ name: "test", testId: "test-id", route: "/" }];
+      render(
+        <BrowserRouter>
+          <NavBar navButtons={button} />
+        </BrowserRouter>
+      );
+    });
+    screen.getByText("test");
+    screen.getByTestId("test-id");
   });
 });

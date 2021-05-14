@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 // Local imports
 import icon from "../../resources/internal/dodLogo.png";
-import HeaderLogo from "./Logo/Logo";
+import HeaderLogo from "./Logo/HeaderLogo";
 import NavBar from "./NavBar/NavBar";
 
 const Header = () => {
@@ -25,7 +25,11 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 mx-auto h-auto pt-5">
-        <HeaderLogo logo={logo} />
+        <HeaderLogo
+          title={logo.title}
+          subtitle={logo.subtitle}
+          img={logo.img}
+        />
         <div className=" border-t flex flex-row justify-between mt-4 mx-2">
           <NavBar navButtons={navButtons} />
           <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
@@ -40,4 +44,3 @@ const Header = () => {
 };
 
 export default Header;
-

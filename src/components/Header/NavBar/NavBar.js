@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 const NavBar = (props) => {
-  const navButtons = props.navButtons;
+  const navButtons = props.navButtons || [];
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row" data-testid="navbar-menu">
       {/* Creating the buttons */}
       {navButtons.map((button, index) => {
         return (
-          <div className="p-2 mt-2 mx-2 hover:bg-blue-light  lg:text-xl rounded-t-lg md:text-lg">
-            <NavLink to={button.route} key={index} data-testid={button.testId}>
+          <div
+            className="p-2 mt-2 mx-2 hover:bg-blue-light  lg:text-xl rounded-t-lg md:text-lg"
+            key={index}>
+            <NavLink to={button.route} data-testid={button.testId}>
               {button.name}
             </NavLink>
           </div>
