@@ -1,7 +1,6 @@
 import { NavLink, Switch, Route } from "react-router-dom";
 import ContentContainer from "../components/Dashboard/ContentContainer";
 import SidebarNav from "../components/Dashboard/SidebarNav";
-import HeaderLogo from "../components/Header/Logo/Logo";
 import dodLogo from "../resources/internal/dodLogo.png";
 
 const Dashboard = (props) => {
