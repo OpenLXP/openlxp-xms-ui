@@ -1,4 +1,4 @@
-import CourseHeader from "../CourseHeader/CourseHeader";
+import CourseListHeader from "../CourseHeader/CourseListHeader";
 import CourseRow from "../CourseRow/CourseRow";
 
 const CourseList = (props) => {
@@ -15,7 +15,7 @@ const CourseList = (props) => {
     <table
       className="min-w-full divide-y divide-black table-auto"
       data-testid="course-table">
-      <CourseHeader />
+      <CourseListHeader />
       <tbody data-testid="course-rows">{rows}</tbody>
     </table>
   );

@@ -1,7 +1,7 @@
 import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 
-import CourseHeader from "./CourseHeader";
+import CourseListHeader from "./CourseListHeader";
 
 let container = null;
 beforeEach(() => {
@@ -22,7 +22,7 @@ describe("CourseHeader", () => {
     act(() => {
       render(
         <table>
-          <CourseHeader />
+          <CourseListHeader />
         </table>,
         container
       );
@@ -34,7 +34,7 @@ describe("CourseHeader", () => {
     act(() => {
       render(
         <table>
-          <CourseHeader />
+          <CourseListHeader />
         </table>,
         container
       );
