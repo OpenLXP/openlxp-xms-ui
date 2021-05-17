@@ -8,7 +8,11 @@ const ContentContainer = (props) => {
   const pathToComponents = [
     { path: "/dashboard/", component: CatalogsContainer, isExact: true },
     { path: "/dashboard/courses", component: CoursesContainer, isExact: false },
-    { path: "/dashboard/course", component: CourseDataContainer, isExact: true },
+    {
+      path: "/dashboard/course",
+      component: CourseDataContainer,
+      isExact: true,
+    },
   ];
 
   return (
@@ -18,8 +22,9 @@ const ContentContainer = (props) => {
           {/* Replace with your content */}
           <div className="py-4">
             <Switch>
-              {pathToComponents.map((route) => (
+              {pathToComponents.map((route, index) => (
                 <Route
+                  key={index}
                   path={route.path}
                   component={route.component}
                   exact={route.isExact}
