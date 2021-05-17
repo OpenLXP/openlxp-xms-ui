@@ -1,4 +1,4 @@
-import DashboardHeader from "../Dashboard/DashboardHeader";
+import DashboardHeader from "../Dashboard/DashboardHeaderIcon";
 
 import { NavLink } from "react-router-dom";
 
