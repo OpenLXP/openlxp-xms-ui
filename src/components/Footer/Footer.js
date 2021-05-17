@@ -1,5 +1,5 @@
-import classes from "./Footer.module.css";
 import React from "react";
+import FooterLink from "./FooterLink/FooterLink";
 
 const Footer = (props) => {
   const links = [
@@ -39,28 +39,14 @@ const Footer = (props) => {
   ];
 
   const makeExternalLinks = links.map((link, index) => {
-    return (
-      <a
-        key={index}
-        className=" text-center text-white text-sm hover:bg-blue rounded-sm"
-        href={link.url}
-        target="_blank"
-        rel="noreferrer">
-        {link.name}
-      </a>
-    );
+    return <FooterLink link={link.url} name={link.name} key={index} />;
   });
 
   return (
     <footer className="footer bg-blue relative pt-1">
-      <div className="relative h-auto mx-auto">
-        <div className="flex flex-row justify-center">
-          <div className="p-5">
-            {/* grid library */}
-            <div className="grid grid-cols-6  hover:bg-lightblue gap-1 focus:outline-none">
-              {makeExternalLinks}
-            </div>
-          </div>
+      <div className="flex flex-row justify-center relative h-auto mx-auto">
+        <div className="grid grid-cols-6  p-5 hover:bg-lightblue gap-1 focus:outline-none">
+          {makeExternalLinks}
         </div>
       </div>
     </footer>
