@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const SidebarNav = (props) => {
   // Passed in from the
-  const navigation = props.navButtons;
+  const navigation = props.navButtons || [];
 
   const buttons = navigation.map((item) => (
     <div className="w-10">
@@ -12,8 +12,7 @@ const SidebarNav = (props) => {
         key={item.title}
         to={item.path}
         className="cursor-pointer pr-44 xl:pr-56 py-2 pl-3 rounded-lg"
-        activeClassName="cursor-pointer bg-blue-dark pr-48"
-      >
+        activeClassName="cursor-pointer bg-blue-dark pr-48">
         {item.title}
       </NavLink>
     </div>
