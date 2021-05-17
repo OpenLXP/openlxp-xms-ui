@@ -1,4 +1,4 @@
-import DashboardHeader from "../Dashboard/DashboardHeaderIcon";
+import DashboardHeader from "./Header/DashboardHeaderIcon";
 
 import { NavLink } from "react-router-dom";
 
@@ -6,10 +6,9 @@ const SidebarNav = (props) => {
   // Passed in from the
   const navigation = props.navButtons || [];
 
-  const buttons = navigation.map((item) => (
-    <div className="w-10">
+  const buttons = navigation.map((item, index) => (
+    <div className="w-10" key={index}>
       <NavLink
-        key={item.title}
         to={item.path}
         className="cursor-pointer pr-44 xl:pr-56 py-2 pl-3 rounded-lg"
         activeClassName="cursor-pointer bg-blue-dark pr-48">
