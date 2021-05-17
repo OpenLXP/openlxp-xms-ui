@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import icon from "../../resources/internal/dodLogo.png";
+import icon from "../../../resources/internal/dodLogo.png";
 
 const DashboardHeader = (props) =>{
     return(
