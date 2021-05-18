@@ -7,9 +7,9 @@ const ContentContainer = (props) => {
   // Routes must be added in reverse order
   const pathToComponents = [
     { path: "/dashboard/", component: CatalogsContainer, isExact: true },
-    { path: "/dashboard/courses", component: CoursesContainer, isExact: false },
+    { path: "/dashboard/:catalog/courses", component: CoursesContainer, isExact: false },
     {
-      path: "/dashboard/course",
+      path: "/dashboard/:catalog/course/:id",
       component: CourseDataContainer,
       isExact: true,
     },
