@@ -4,14 +4,14 @@ const CourseHeader = (props) => {
       <tr>
         <th
           scope="col"
-          className="px-6 py-3 text-left text-gray-500 uppercase tracking-wider">
+          className="px-6 py-3 text-left text-gray-600 uppercase tracking-wider">
           <div className="text-sm">Title</div>
           <div className="text-xs font-thin">Course Code</div>
         </th>
 
         <th
           scope="col"
-          className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+          className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider whitespace-nowrap">
           Course Status
         </th>
 
