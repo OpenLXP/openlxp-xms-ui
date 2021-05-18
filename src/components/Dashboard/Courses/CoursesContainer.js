@@ -55,7 +55,8 @@ const Courses = (props) => {
   }
 
   return (
-    <div className="p-2 rounded-lg align-middle min-w-full overflow-auto mx-auto">
+    <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
+      <h2 className="text-2xl my-8">Course List</h2>
       <div className="shadow overflow-hidden border-b rounded-lg">
         {content}
       </div>

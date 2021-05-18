@@ -18,21 +18,25 @@ const CourseRow = (props) => {
           <div className="font-light">CC: {data.unique_record_identifier}</div>
         </td>
 
-        <td className="px-6 py-4 text-sm text-gray-500 text-center">
+        <td
+          className="px-6 py-4 text-sm text-gray-500 text-center"
+          aria-label="Course Status">
           <span className="px-2 inline-flex text-xs  leading-5 font-semibold rounded-full bg-green-100 text-green-800">
             {data.record_status}
           </span>
         </td>
 
-        <td className="px-6 py-4  text-center text-sm font-medium">
+        <td
+          className="px-6 py-4  text-center text-sm font-medium"
+          aria-label={`View more about this course ${data.unique_record_identifier}`}>
           <NavLink
-            to={{
-              pathname:
-                `/dashboard/${data.provider_name}/course/${data.unique_record_identifier}`,
+            aria-label={`View more about this course ${data.unique_record_identifier}`}
+            to=
+            {{
+              pathname: `/dashboard/${data.provider_name}/course/${data.unique_record_identifier}`,
               state: data,
             }}
-            className="text-blue hover:text-blue-light">
-            View
+            className="text-blue hover:text-blue-light"> View
           </NavLink>
         </td>
       </tr>

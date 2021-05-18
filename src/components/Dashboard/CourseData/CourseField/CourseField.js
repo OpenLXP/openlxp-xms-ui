@@ -11,9 +11,10 @@ const CourseField = (props) => {
   };
 
   return (
-    <div className="sm:col-span-1">
-      <h3 className="text-sm font-medium text-gray-500">{label}</h3>
+    <div className="col-span-1 grid">
+      <label className="text-sm font-medium text-gray-500">{label}</label>
       <input
+        aria-label={label}
         className="mt-1 text-sm text-gray-900"
         value={displayData}
         onChange={handleChange}
