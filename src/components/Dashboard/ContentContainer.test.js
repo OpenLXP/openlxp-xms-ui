@@ -100,8 +100,8 @@ describe("ContentContainer", () => {
       axios.get.mockResolvedValue(response);
 
       render(
-        <MemoryRouter initialEntries={["/dashboard/courses"]}>
-          <Route path="/dashboard/courses" component={ContentContainer} />
+        <MemoryRouter initialEntries={["/dashboard/:catalog/courses"]}>
+          <Route path="/dashboard/:catalog/courses" component={ContentContainer} />
         </MemoryRouter>
       );
     });
@@ -165,10 +165,10 @@ describe("ContentContainer", () => {
       render(
         <BrowserRouter>
           <NavLink
-            to={{ pathname: "/dashboard/course", state: data }}
+            to={{ pathname: "/dashboard/:catalog/course/:id", state: data }}
             data-testid="btn"
           />
-          <Route path="/dashboard/course" component={ContentContainer} />
+          <Route path="/dashboard/:catalog/course/:id" component={ContentContainer} />
         </BrowserRouter>
       );
       const button = screen.getByTestId("btn");
