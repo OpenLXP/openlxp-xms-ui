@@ -35,7 +35,7 @@ describe("Header", () => {
     screen.getByText("Department of Defense");
   });
 
-  test("dose take user to home when clicking home", () => {
+  test("does take user to home when clicking home", () => {
     let testHistory, testLocation;
     act(() => {
       render(
