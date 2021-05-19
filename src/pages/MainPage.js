@@ -10,7 +10,6 @@ const MainPage = () => {
         <div className="bg-gray-100 p-8 my-10 rounded-md">
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
-            <Route path="/login" component={Login} />
           </Switch>
         </div>
       </div>
