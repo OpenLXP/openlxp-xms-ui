@@ -22,7 +22,9 @@ describe("CourseHeader", () => {
     act(() => {
       render(
         <table>
-          <CourseListHeader />
+          <thead data-testid='table-header'>
+            <CourseListHeader />
+          </thead>
         </table>,
         container
       );
@@ -34,7 +36,9 @@ describe("CourseHeader", () => {
     act(() => {
       render(
         <table>
-          <CourseListHeader />
+          <thead>
+            <CourseListHeader />
+          </thead>
         </table>,
         container
       );
