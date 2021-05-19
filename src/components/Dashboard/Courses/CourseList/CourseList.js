@@ -15,7 +15,9 @@ const CourseList = (props) => {
     <table
       className="min-w-full divide-y divide-black table-auto"
       data-testid="course-table">
-      <CourseListHeader />
+      <thead>
+        <CourseListHeader />
+      </thead>
       <tbody data-testid="course-rows">{rows}</tbody>
     </table>
   );
