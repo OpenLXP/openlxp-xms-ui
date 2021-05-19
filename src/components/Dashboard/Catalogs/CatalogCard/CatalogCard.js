@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const CatalogCard = (props) => {
   const title = props.title;
