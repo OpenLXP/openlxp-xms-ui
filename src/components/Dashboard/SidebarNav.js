@@ -1,6 +1,6 @@
+import { NavLink } from "react-router-dom";
 import DashboardHeader from "./Header/DashboardHeaderIcon";
 
-import { NavLink } from "react-router-dom";
 
 const SidebarNav = (props) => {
   // Passed in from the
