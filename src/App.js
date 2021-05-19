@@ -1,32 +1,36 @@
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import WelcomeScreen from "./components/WelcomeScreen/WelcomeScreen";
-import Catalog from "./components/Catalogs/Catalogs";
-import Courses from "./components/Courses/Courses";
-import Course from "./components/Course/Course";
-import Login from "./components/Login/Login";
+import MainPage from "./pages/MainPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
+  // Conditionally renders either the main website or the dashboard without
+  // the header or footer.
+  const loadContent = () => {
+    const location = useLocation();
+
+    const dashboard = () => (
+      <Route path="/dashboard" component={DashboardPage} />
+    );
+
+    const mainContent = () => <Route path="/" component={MainPage} />;
+
+    return location.pathname.includes("dashboard")
+      ? dashboard()
+      : mainContent();
+  };
+
   return (
-    <div>
-      <Router>
-        <Header />
-        <div className={"container"}>
-          <div className={"content"}>
-            <Switch>
-              <Route path="/" exact component={WelcomeScreen} />
-              <Route path="/catalogs" component={Catalog} />
-              <Route path="/courses" component={Courses} />
-              <Route path="/login" component={Login} />
-              <Route path="/course" component={Course} />
-            </Switch>
-          </div>
-        </div>
-      </Router>
-      <Footer />
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Route to="/" component={loadContent} />
+      </div>
+    </Router>
   );
 };
 

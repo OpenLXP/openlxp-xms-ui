@@ -1,23 +1,27 @@
-import React from "react";
-import classes from "./WelcomeScreen.module.css";
+const WelcomeScreen = () => {
+  // custom text from the admin panel
+  let welcome = {
+    title: "Welcome!",
+    subtitle: "DOD - Experience Management Service",
+    message: [
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsum molestiae illum cumque aliquid dolorem veniam iusto facere dolorum architecto maiores recusandae ipsa nihil sapiente eius nostrum, mollitia voluptatum error quis quos deleniti molestias enim. Provident laborum, inventore unde error quas, praesentium excepturi ipsa molestiae quasi eos voluptatem omnis eaque!",
+    ],
+  };
 
-const WelcomeScreen = (props) => {
-  
   return (
-    <div>
-      <div className={classes.imgBar}>
-          <div>
-            <div className={classes.titleText}>Welcome!</div>
-            <div className={classes.subtitleText}>About DOD - Experience Management Service</div>
-            <div className={classes.contentText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-            <div className={classes.contentText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-            <div className={classes.contentText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
-          </div>
-        
-      </div>
-
-    </div>
+    <>
+      <main className="font-sans">
+        <h1 className="text-5xl my-8">{welcome.title}</h1>
+        <h3 className="text-3xl mb-5">{welcome.subtitle}</h3>
+        {welcome.message.map((message, index) => {
+          return (
+            <div className="mb-5" key={index}>
+              {message}
+            </div>
+          );
+        })}
+      </main>
+    </>
   );
 };
-
 export default WelcomeScreen;

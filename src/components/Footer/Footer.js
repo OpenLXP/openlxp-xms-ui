@@ -1,5 +1,5 @@
-import classes from "./Footer.module.css";
 import React from "react";
+import FooterLink from "./FooterLink/FooterLink";
 
 const Footer = (props) => {
   const links = [
@@ -14,8 +14,7 @@ const Footer = (props) => {
     { name: "Strategic Plans", url: "https://dodcio.defense.gov/Library/" },
     {
       name: "Information Quality",
-      url:
-        "https://www.defense.gov//Resources/DOD-Information-Quality-Guidelines/",
+      url: "https://www.defense.gov//Resources/DOD-Information-Quality-Guidelines/",
     },
     { name: "No FEAR Act", url: "https://prhome.defense.gov/NoFear/" },
     { name: "Open Government", url: "https://open.defense.gov/" },
@@ -40,19 +39,15 @@ const Footer = (props) => {
   ];
 
   const makeExternalLinks = links.map((link, index) => {
-    return (
-      <a key={index} className={classes.item} href={link.url}>
-        {link.name}
-      </a>
-    );
+    return <FooterLink link={link.url} name={link.name} key={index} />;
   });
 
   return (
-    <footer className={classes.footer}>
-      <div className={classes.container}>
-      <div className={classes.sectionWrapper}>
-        <div className={classes.links}>{makeExternalLinks}</div>
-      </div>
+    <footer className="footer bg-blue relative pt-1">
+      <div className="flex flex-row justify-center relative h-auto mx-auto">
+        <div className="grid grid-cols-6  p-5 hover:bg-lightblue gap-1 focus:outline-none">
+          {makeExternalLinks}
+        </div>
       </div>
     </footer>
   );

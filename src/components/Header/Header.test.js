@@ -1,80 +1,106 @@
-import Header from "./Header";
-import Courses from "../Courses/Courses";
+import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
-import { render, act } from "@testing-library/react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
-let container = HTMLElement;
-let testComponent = (
-  <BrowserRouter>
-    <Header />
-  </BrowserRouter>
-);
+import Header from "./Header";
+
+let container = null;
 
 beforeEach(() => {
+  // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
+  // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
   container = null;
 });
 
-describe("Testing Logo rendering", () => {
-  test("Renders navbar without crashing", () => {
-    const { getByTestId } = render(testComponent);
-    const elm = getByTestId("header-nav");
-    expect(elm).toBeInTheDocument();
+describe("Header", () => {
+  test("does render", () => {
+    act(() => {
+      render(
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      );
+    });
+
+    screen.getByText("Sign In");
+    screen.getByText("Home");
+    screen.getByText("Experience Management Service");
+    screen.getByText("Department of Defense");
   });
 
-  test("Renders the icon text", () => {
-    const { getByText } = render(testComponent);
-    expect(getByText("Experience Management Service")).toBeInTheDocument();
-    expect(getByText("U.S. Department of Defense")).toBeInTheDocument();
+  test("does take user to home when clicking home", () => {
+    let testHistory, testLocation;
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
+
+      const button = screen.getByText("Home");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(testLocation.pathname).toBe("/");
   });
 
-  test("Renders the img", () => {
-    const { getByTestId } = render(testComponent);
+  test("does take user to home when clicking Header Logo", () => {
+    let testHistory, testLocation;
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
 
-    const elm = getByTestId("dod-logo");
-    expect(elm).toBeInTheDocument();
-    expect(elm).toBeVisible();
-  });
-});
+      const button = screen.getByTestId("logo-button");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
 
-describe("Testing button renders", () => {
-  test("Renders Home button", () => {
-    const { getByTestId } = render(testComponent);
-
-    const elm = getByTestId("home-btn");
-    expect(elm).toBeInTheDocument();
-    expect(elm).toBeVisible();
-  });
-
-  test("Renders Catalogs button", () => {
-    const { getByTestId } = render(testComponent);
-
-    const elm = getByTestId("catalogs-btn");
-    expect(elm).toBeInTheDocument();
-    expect(elm).toBeVisible();
+    expect(testLocation.pathname).toBe("/");
   });
 
-  test("Renders Courses button", () => {
-    const { getByTestId } = render(testComponent);
+  test("dose take user to Dashboard when clicking Sign In", () => {
+    let testHistory, testLocation;
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
 
-    const elm = getByTestId("courses-btn");
-    expect(elm).toBeInTheDocument();
-    expect(elm).toBeVisible();
-  });
+      const button = screen.getByText("Sign In");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
 
-  test("Renders sign-in button", () => {
-    const { getByTestId } = render(testComponent);
-
-    const elm = getByTestId("login-btn");
-    expect(elm).toBeInTheDocument();
-    expect(elm).toBeVisible();
+    expect(testLocation.pathname).toBe("/dashboard");
   });
 });
