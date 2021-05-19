@@ -1,6 +1,5 @@
 import { Switch, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
-import Login from "../components/Login/Login";
 import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
 const MainPage = () => {
