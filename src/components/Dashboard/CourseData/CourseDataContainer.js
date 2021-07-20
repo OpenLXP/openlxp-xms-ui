@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams, useHistory } from "react-router";
+import axios from "axios";
 
 import CourseField from "./CourseField/CourseField";
 import CourseHeader from "./CourseHeader/CourseHeader";
@@ -7,14 +8,59 @@ import CourseHeader from "./CourseHeader/CourseHeader";
 const CourseData = (props) => {
   // Gets the location data for state
   const location = useLocation();
-  const [courseData, setCourseData] = useState(location.state);
+  let { id } = useParams();
+  const history = useHistory();
+
+  const [courseState, setCourseState] = useState({
+    course: null,
+    isLoading: false,
+    error: null,
+  });
   const [isEditing, setEditing] = useState(false);
 
   // state of the prepared data.
   const [preparedData, setPreparedData] = useState({});
 
   // Main Title information
-  const courseTitle = courseData.metadata.Course.CourseTitle;
+  let courseTitle = null;
+  let courseContent = null;
+
+  /* Whenever the component first renders, we make an API call to find courses
+        using the keyword in the url */
+  useEffect(() => {
+    let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id;
+
+    setCourseState((previousState) => {
+      const resultState = {
+        course: null,
+        isLoading: true,
+        error: null,
+      };
+      return resultState;
+    });
+    axios
+      .get(url)
+      .then((response) => {
+        setCourseState((previousState) => {
+          return {
+            course: response.data,
+            isLoading: false,
+            error: null,
+          };
+        });
+        setPreparedData(prepareDataForDisplay(response.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        setCourseState((previousState) => {
+          return {
+            course: null,
+            isLoading: false,
+            error: err,
+          };
+        });
+      });
+  }, [id]);
 
   // updates the data for submission
   function updateData(data, keys, value) {
@@ -32,15 +78,15 @@ const CourseData = (props) => {
   }
 
   // prepares the data for display
-  function prepareDataForDisplay() {
+  function prepareDataForDisplay(data) {
     // the initial starting point
-    let path = ["metadata"];
+    let path = ["metadata", "Metadata_Ledger"];
 
     // list of sections
     let sections = {};
 
     // initial starting point
-    let metadata = courseData.metadata;
+    let metadata = data.metadata.Metadata_Ledger;
     Object.keys(metadata).forEach((key) => {
       // the current object.
       const obj = metadata[key];
@@ -70,15 +116,16 @@ const CourseData = (props) => {
       sections[key] = section;
 
       // reset the path
-      path = ["metadata"];
+      path = ["metadata", "Metadata_Ledger"];
     });
+    console.log(sections);
 
     // return the populated sections
     return sections;
   }
 
   function prepareDataForSubmit() {
-    let data = { ...courseData };
+    let data = { ...courseState.course };
     let toRestore = [];
     // Turning the data into a 1D Array
     Object.keys(preparedData).forEach((sectionKey) => {
@@ -99,7 +146,7 @@ const CourseData = (props) => {
   // update the value of the data
   function updatePreparedDataValue(value, strKeyPath) {
     // grabs the section key
-    const sectionName = strKeyPath.split(".")[1];
+    const sectionName = strKeyPath.split(".")[2];
 
     // grabs the section data
     let section = preparedData[sectionName];
@@ -120,11 +167,23 @@ const CourseData = (props) => {
 
   const handleSubmit = (event) => {
     if (isEditing) {
-      setCourseData(prepareDataForSubmit());
+      let data = prepareDataForSubmit();
+      let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
+      // setCourseState({
+      //   course: data,
+      //   isLoading: false,
+      //   error: null,
+      // });
+      // API call
+      axios.patch(url, data)
+        .then((response) => {
+          history.go(0)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     setEditing(!isEditing);
-
-    // API call
   };
 
   // creates the html to render
@@ -132,14 +191,14 @@ const CourseData = (props) => {
     // Each sections data
     const sectionData = preparedData[sectionKey].data;
     return (
-      <div className="px-4 ">
+      <div className="px-4 " key={sectionKey}>
         <div className="font-semibold text-2xl">{sectionKey}</div>
         <div className="">
           {Object.keys(sectionData).map((key) => {
             return (
-              <div className="flex flex-col my-3">
-                <label className="relative inline-flex max-w-max items-center space-x-2 px-4 py-2 border-t border-l border-r border-gray-300 text-sm font-medium rounded-t-md text-gray-700 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 select-none">
-                  {sectionData[key].pathToData.split(".")[2]}
+              <div className="flex flex-col my-3" key={sectionKey + '_' + key}>
+                <label className="relative inline-flex max-w-max items-center space-x-2 px-4 py-2 border-gray-300 text-sm font-medium rounded-t-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 select-none">
+                  {sectionData[key].pathToData.split(".")[3]}
                 </label>
                 <textarea
                   disabled={!isEditing}
@@ -167,26 +226,42 @@ const CourseData = (props) => {
     );
   });
 
-  const prepareDataForAPI = () => {};
-
-  // on mount
-  useEffect(() => {
-    setPreparedData(prepareDataForDisplay());
-  }, [courseData]);
-
-  return (
-    <div className="bg-white shadow overflow-hidden rounded-md pb-8">
-      <CourseHeader title={courseTitle} status={courseData.record_status} />
-      <div className="flex flex-row justify-end px-4">
-        <div
-          className="px-3 py-1 border rounded-md hover:bg-blue-light hover:text-white cursor-pointer select-none"
-          onClick={(event) => handleSubmit()}
-        >
-          {isEditing ? "Update" : "Edit"}
+  if (courseState.course && !courseState.isLoading) {
+    courseTitle = courseState.course.metadata.Metadata_Ledger.Course.CourseTitle;
+    courseContent = (
+      <>
+        <CourseHeader title={courseTitle} status={courseState.course.record_status} />
+        <div className="flex flex-row justify-end px-4">
+          <div
+            className="px-3 py-1 border rounded-md hover:bg-blue-light hover:text-white cursor-pointer select-none"
+            onClick={(event) => handleSubmit()}
+          >
+            {isEditing ? "Update" : "Edit"}
+          </div>
         </div>
+        <div>{renderSections}</div>
+      </>
+    )
+  } else if (courseState.isLoading) {
+    courseContent = (
+      <div>
+        Loading...
       </div>
-      <div>{renderSections}</div>
-    </div>
-  );
+    )
+  } else if (!courseState.isLoading && courseState.error) {
+    courseContent = (
+      <div>
+        Error Loading course. Please Contact an administrator.
+      </div>
+    )
+  }
+
+const prepareDataForAPI = () => { };
+
+return (
+  <div className="bg-white shadow overflow-hidden rounded-md pb-8">
+    {courseContent}
+  </div>
+);
 };
 export default CourseData;
