@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useLocation, useParams, useHistory } from "react-router";
+import { Dialog, Transition } from '@headlessui/react'
 import axios from "axios";
 
 import CourseField from "./CourseField/CourseField";
@@ -16,6 +17,19 @@ const CourseData = (props) => {
     isLoading: false,
     error: null,
   });
+
+  // to track state of the modal
+  const [modalState, setModalState] = useState({
+    isOpen: false
+  });
+
+  // to track state of the PATCH call when submitting course data
+  const [postCourseState, setPostCourseState] = useState({
+    success: false,
+    isLoading: false,
+    error: null
+  })
+
   const [isEditing, setEditing] = useState(false);
 
   // state of the prepared data.
@@ -24,6 +38,8 @@ const CourseData = (props) => {
   // Main Title information
   let courseTitle = null;
   let courseContent = null;
+  let modalContent = null;
+  let modalContentClass = 'text-black';
 
   /* Whenever the component first renders, we make an API call to find courses
         using the keyword in the url */
@@ -169,6 +185,12 @@ const CourseData = (props) => {
     if (isEditing) {
       let data = prepareDataForSubmit();
       let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
+      openModal();
+      setPostCourseState({
+        success: false,
+        isLoading: true,
+        error: null
+      });
       // setCourseState({
       //   course: data,
       //   isLoading: false,
@@ -177,14 +199,33 @@ const CourseData = (props) => {
       // API call
       axios.patch(url, data)
         .then((response) => {
-          history.go(0)
+          setPostCourseState({
+            success: true,
+            isLoading: false,
+            error: null
+          });
         })
         .catch((err) => {
           console.log(err);
+          setPostCourseState({
+            success: false,
+            isLoading: false,
+            error: err
+          });
         });
     }
     setEditing(!isEditing);
   };
+
+  // handles closing the modal
+  const closeModal = () => {
+    setModalState({ isOpen: false });
+  }
+
+  // handles opening the modal
+  const openModal = () => {
+    setModalState({ isOpen: true });
+  }
 
   // creates the html to render
   const renderSections = Object.keys(preparedData).map((sectionKey) => {
@@ -226,6 +267,7 @@ const CourseData = (props) => {
     );
   });
 
+  // handles page display depending on courseState
   if (courseState.course && !courseState.isLoading) {
     courseTitle = courseState.course.metadata.Metadata_Ledger.Course.CourseTitle;
     courseContent = (
@@ -251,17 +293,91 @@ const CourseData = (props) => {
   } else if (!courseState.isLoading && courseState.error) {
     courseContent = (
       <div>
-        Error Loading course. Please Contact an administrator.
+        Error Loading course. Please contact an administrator.
       </div>
     )
   }
 
-const prepareDataForAPI = () => { };
+  // handles modal content depending on POST call
+  if (postCourseState.success && !postCourseState.isLoading) {
+    modalContent = "Course metadata successfully updated";
+    modalContentClass = 'text-green-600'
+  } else if (postCourseState.isLoading && !postCourseState.success) {
+    modalContent = "Loading..."
+    modalContentClass = 'text-black'
+  } else if (postCourseState.error && !postCourseState.isLoading) {
+    modalContent = "Error Submitting metadata edits. Please contact an administrator";
+    modalContentClass = 'text-red-600'
+  }
 
-return (
-  <div className="bg-white shadow overflow-hidden rounded-md pb-8">
-    {courseContent}
-  </div>
-);
+  const prepareDataForAPI = () => { };
+
+  return (
+    <div className="bg-white shadow overflow-hidden rounded-md pb-8">
+      {courseContent}
+      <Transition appear show={modalState.isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto"
+          onClose={closeModal}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0" />
+            </Transition.Child>
+
+            {/* This element is to trick the browser into centering the modal contents. */}
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900"
+                >
+                  Edit Metadata
+                </Dialog.Title>
+                <div className="mt-2">
+                  <p className={"text-sm" + " " + modalContentClass}>
+                    {modalContent}
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={closeModal}
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
+    </div>
+  );
 };
 export default CourseData;
