@@ -1,34 +1,33 @@
 import { Fragment, useState, useEffect } from "react";
-import { useLocation, useParams, useHistory } from "react-router";
-import { Dialog, Transition } from '@headlessui/react'
+import { useParams, useHistory } from "react-router";
+import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 
 import CourseField from "./CourseField/CourseField";
 import CourseHeader from "./CourseHeader/CourseHeader";
 
 const CourseData = (props) => {
-  // Gets the location data for state
-  const location = useLocation();
-  let { id } = useParams();
   const history = useHistory();
+  const { id } = useParams();
 
   const [courseState, setCourseState] = useState({
     course: null,
     isLoading: false,
     error: null,
   });
+  const [modalContent, setModalContent] = useState(<div></div>);
 
   // to track state of the modal
   const [modalState, setModalState] = useState({
-    isOpen: false
+    isOpen: false,
   });
 
   // to track state of the PATCH call when submitting course data
   const [postCourseState, setPostCourseState] = useState({
     success: false,
     isLoading: false,
-    error: null
-  })
+    error: null,
+  });
 
   const [isEditing, setEditing] = useState(false);
 
@@ -38,44 +37,48 @@ const CourseData = (props) => {
   // Main Title information
   let courseTitle = null;
   let courseContent = null;
-  let modalContent = null;
-  let modalContentClass = 'text-black';
 
   /* Whenever the component first renders, we make an API call to find courses
         using the keyword in the url */
   useEffect(() => {
+    let isSubscribed = true;
+
     let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id;
 
-    setCourseState((previousState) => {
-      const resultState = {
-        course: null,
-        isLoading: true,
-        error: null,
-      };
-      return resultState;
-    });
-    axios
-      .get(url)
-      .then((response) => {
-        setCourseState((previousState) => {
-          return {
-            course: response.data,
-            isLoading: false,
-            error: null,
-          };
-        });
-        setPreparedData(prepareDataForDisplay(response.data));
-      })
-      .catch((err) => {
-        console.log(err);
-        setCourseState((previousState) => {
-          return {
-            course: null,
-            isLoading: false,
-            error: err,
-          };
-        });
+    if (isSubscribed) {
+      setCourseState((previousState) => {
+        const resultState = {
+          course: null,
+          isLoading: true,
+          error: null,
+        };
+        return resultState;
       });
+      axios
+        .get(url)
+        .then((response) => {
+          setCourseState((previousState) => {
+            return {
+              course: response.data,
+              isLoading: false,
+              error: null,
+            };
+          });
+          setPreparedData(prepareDataForDisplay(response.data));
+        })
+        .catch((err) => {
+          setCourseState((previousState) => {
+            return {
+              course: null,
+              isLoading: false,
+              error: err,
+            };
+          });
+        });
+    }
+    return () => {
+      isSubscribed = false;
+    };
   }, [id]);
 
   // updates the data for submission
@@ -134,7 +137,6 @@ const CourseData = (props) => {
       // reset the path
       path = ["metadata", "Metadata_Ledger"];
     });
-    console.log(sections);
 
     // return the populated sections
     return sections;
@@ -155,7 +157,6 @@ const CourseData = (props) => {
     });
 
     // TODO: Remove this and add action
-    console.log(data);
     return data;
   }
 
@@ -186,32 +187,22 @@ const CourseData = (props) => {
       let data = prepareDataForSubmit();
       let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
       openModal();
-      setPostCourseState({
-        success: false,
-        isLoading: true,
-        error: null
-      });
-      // setCourseState({
-      //   course: data,
-      //   isLoading: false,
-      //   error: null,
-      // });
-      // API call
-      axios.patch(url, data)
+      setModalContent(<div>...Loading</div>);
+      axios
+        .patch(url, data)
         .then((response) => {
-          setPostCourseState({
-            success: true,
-            isLoading: false,
-            error: null
-          });
+          setModalContent(
+            <div className="text-green-600">
+              Course metadata successfully updated
+            </div>
+          );
         })
         .catch((err) => {
-          console.log(err);
-          setPostCourseState({
-            success: false,
-            isLoading: false,
-            error: err
-          });
+          setModalContent(
+            <div className="text-red-600">
+              Error Submitting metadata edits. Please contact an administrator
+            </div>
+          );
         });
     }
     setEditing(!isEditing);
@@ -220,12 +211,12 @@ const CourseData = (props) => {
   // handles closing the modal
   const closeModal = () => {
     setModalState({ isOpen: false });
-  }
+  };
 
   // handles opening the modal
   const openModal = () => {
     setModalState({ isOpen: true });
-  }
+  };
 
   // creates the html to render
   const renderSections = Object.keys(preparedData).map((sectionKey) => {
@@ -237,7 +228,7 @@ const CourseData = (props) => {
         <div className="">
           {Object.keys(sectionData).map((key) => {
             return (
-              <div className="flex flex-col my-3" key={sectionKey + '_' + key}>
+              <div className="flex flex-col my-3" key={sectionKey + "_" + key}>
                 <label className="relative inline-flex max-w-max items-center space-x-2 px-4 py-2 border-gray-300 text-sm font-medium rounded-t-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 select-none">
                   {sectionData[key].pathToData.split(".")[3]}
                 </label>
@@ -246,12 +237,9 @@ const CourseData = (props) => {
                   onChange={(event) =>
                     handleEdit(event, sectionData[key].pathToData)
                   }
-                  rows={Math.max(
-                    Math.floor(sectionData[key].value.length / 50) - 1,
-                    1
-                  )}
+                  rows={Math.floor(sectionData[key].value.length / 50) - 1 || 1}
                   type="text"
-                  placeholder={sectionData[key].value.toString().trim()}
+                  placeholder={sectionData[key].value}
                   className="w-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-b-md rounded-tr-md hover:bg-blue-light hover:bg-opacity-5 focus:outline-none focus:ring-1 focus:ring--blue-light focus:border-blue-light focus:shadow-md text-gray-400 focus:text-gray-700"
                   onFocus={(event) => {
                     event.target.value = sectionData[key].value
@@ -269,10 +257,14 @@ const CourseData = (props) => {
 
   // handles page display depending on courseState
   if (courseState.course && !courseState.isLoading) {
-    courseTitle = courseState.course.metadata.Metadata_Ledger.Course.CourseTitle;
+    courseTitle =
+      courseState.course.metadata.Metadata_Ledger.Course.CourseTitle;
     courseContent = (
       <>
-        <CourseHeader title={courseTitle} status={courseState.course.record_status} />
+        <CourseHeader
+          title={courseTitle}
+          status={courseState.course.record_status}
+        />
         <div className="flex flex-row justify-end px-4">
           <div
             className="px-3 py-1 border rounded-md hover:bg-blue-light hover:text-white cursor-pointer select-none"
@@ -283,34 +275,14 @@ const CourseData = (props) => {
         </div>
         <div>{renderSections}</div>
       </>
-    )
+    );
   } else if (courseState.isLoading) {
-    courseContent = (
-      <div>
-        Loading...
-      </div>
-    )
+    courseContent = <div>Loading...</div>;
   } else if (!courseState.isLoading && courseState.error) {
     courseContent = (
-      <div>
-        Error Loading course. Please contact an administrator.
-      </div>
-    )
+      <div>Error Loading course. Please contact an administrator.</div>
+    );
   }
-
-  // handles modal content depending on POST call
-  if (postCourseState.success && !postCourseState.isLoading) {
-    modalContent = "Course metadata successfully updated";
-    modalContentClass = 'text-green-600'
-  } else if (postCourseState.isLoading && !postCourseState.success) {
-    modalContent = "Loading..."
-    modalContentClass = 'text-black'
-  } else if (postCourseState.error && !postCourseState.isLoading) {
-    modalContent = "Error Submitting metadata edits. Please contact an administrator";
-    modalContentClass = 'text-red-600'
-  }
-
-  const prepareDataForAPI = () => { };
 
   return (
     <div className="bg-white shadow overflow-hidden rounded-md pb-8">
@@ -358,9 +330,7 @@ const CourseData = (props) => {
                   Edit Metadata
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className={"text-sm" + " " + modalContentClass}>
-                    {modalContent}
-                  </p>
+                  <div className="text-sm">{modalContent}</div>
                 </div>
 
                 <div className="mt-4">
