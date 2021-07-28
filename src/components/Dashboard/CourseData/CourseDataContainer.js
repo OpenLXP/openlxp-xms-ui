@@ -15,7 +15,13 @@ const CourseData = (props) => {
     isLoading: false,
     error: null,
   });
-  const [modalContent, setModalContent] = useState(<div></div>);
+
+  const [modalContent, setModalContent] = useState({
+    success: false,
+    isLoading: false,
+    error: null,
+    content: null,
+  });
 
   // to track state of the modal
   const [modalState, setModalState] = useState({
@@ -28,7 +34,6 @@ const CourseData = (props) => {
     isLoading: false,
     error: null,
   });
-
   const [isEditing, setEditing] = useState(false);
 
   // state of the prepared data.
@@ -115,6 +120,8 @@ const CourseData = (props) => {
         title: key,
         data: {},
       };
+      
+
 
       // add the key to the path
       path.push(key);
@@ -187,22 +194,37 @@ const CourseData = (props) => {
       let data = prepareDataForSubmit();
       let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
       openModal();
-      setModalContent(<div>...Loading</div>);
+      setModalContent({
+        success: null,
+        isLoading: true,
+        error: null,
+        content: <div>...Loading</div>,
+      });
       axios
         .patch(url, data)
         .then((response) => {
-          setModalContent(
-            <div className="text-green-600">
-              Course metadata successfully updated
-            </div>
-          );
+          setModalContent({
+            success: true,
+            isLoading: false,
+            error: null,
+            content: (
+              <div className="text-green-600">
+                Course metadata successfully updated
+              </div>
+            ),
+          });
         })
         .catch((err) => {
-          setModalContent(
-            <div className="text-red-600">
-              Error Submitting metadata edits. Please contact an administrator
-            </div>
-          );
+          setModalContent({
+            success: null,
+            isLoading: true,
+            error: true,
+            content: (
+              <div className="text-red-600">
+                Error Submitting metadata edits. Please contact an administrator
+              </div>
+            ),
+          });
         });
     }
     setEditing(!isEditing);
@@ -330,7 +352,7 @@ const CourseData = (props) => {
                   Edit Metadata
                 </Dialog.Title>
                 <div className="mt-2">
-                  <div className="text-sm">{modalContent}</div>
+                  <div className="text-sm">{modalContent.content}</div>
                 </div>
 
                 <div className="mt-4">
