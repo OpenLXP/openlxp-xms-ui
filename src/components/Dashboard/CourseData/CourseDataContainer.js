@@ -3,11 +3,9 @@ import { useParams, useHistory } from "react-router";
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 
-import CourseField from "./CourseField/CourseField";
 import CourseHeader from "./CourseHeader/CourseHeader";
 
 const CourseData = (props) => {
-  const history = useHistory();
   const { id } = useParams();
 
   const [courseState, setCourseState] = useState({
@@ -28,12 +26,6 @@ const CourseData = (props) => {
     isOpen: false,
   });
 
-  // to track state of the PATCH call when submitting course data
-  const [postCourseState, setPostCourseState] = useState({
-    success: false,
-    isLoading: false,
-    error: null,
-  });
   const [isEditing, setEditing] = useState(false);
 
   // state of the prepared data.
@@ -51,33 +43,26 @@ const CourseData = (props) => {
     let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id;
 
     if (isSubscribed) {
-      setCourseState((previousState) => {
-        const resultState = {
-          course: null,
-          isLoading: true,
-          error: null,
-        };
-        return resultState;
+      setCourseState({
+        course: null,
+        isLoading: true,
+        error: null,
       });
       axios
         .get(url)
         .then((response) => {
-          setCourseState((previousState) => {
-            return {
-              course: response.data,
-              isLoading: false,
-              error: null,
-            };
+          setCourseState({
+            course: response.data,
+            isLoading: false,
+            error: null,
           });
           setPreparedData(prepareDataForDisplay(response.data));
         })
         .catch((err) => {
-          setCourseState((previousState) => {
-            return {
-              course: null,
-              isLoading: false,
-              error: err,
-            };
+          setCourseState({
+            course: null,
+            isLoading: false,
+            error: err,
           });
         });
     }
@@ -120,8 +105,6 @@ const CourseData = (props) => {
         title: key,
         data: {},
       };
-      
-
 
       // add the key to the path
       path.push(key);
@@ -189,7 +172,7 @@ const CourseData = (props) => {
     updatePreparedDataValue(event.target.value, pathToData);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     if (isEditing) {
       let data = prepareDataForSubmit();
       let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
@@ -217,7 +200,7 @@ const CourseData = (props) => {
         .catch((err) => {
           setModalContent({
             success: null,
-            isLoading: true,
+            isLoading: false,
             error: true,
             content: (
               <div className="text-red-600">
@@ -290,7 +273,7 @@ const CourseData = (props) => {
         <div className="flex flex-row justify-end px-4">
           <div
             className="px-3 py-1 border rounded-md hover:bg-blue-light hover:text-white cursor-pointer select-none"
-            onClick={(event) => handleSubmit()}
+            onClick={() => handleSubmit()}
           >
             {isEditing ? "Update" : "Edit"}
           </div>
