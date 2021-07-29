@@ -108,19 +108,21 @@ const Courses = (props) => {
   return (
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl my-8">Course List</h2>
-      <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
-        <div className="flex flex-row bg-white justify-between px-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
-          <input
-            type={"text"}
-            className={"w-full bg-transparent px-2 py-1 outline-none"}
-            placeholder={"Search"}
-            onChange={(event) => sortCourses(event)}
-          />
-          <div className={"flex justify-center items-center"}>
-            <ion-icon name="search-outline" />
+      {!courseData.isLoading && !courseData.error && (
+        <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
+          <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
+            <input
+              type={"text"}
+              className={"w-full bg-transparent px-2 py-1 outline-none"}
+              placeholder={"Search"}
+              onChange={(event) => sortCourses(event)}
+            />
+            <div className={"flex justify-center items-center"}>
+              <ion-icon name="search-outline" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="shadow overflow-hidden border-b rounded-lg">{table}</div>
     </div>
   );
