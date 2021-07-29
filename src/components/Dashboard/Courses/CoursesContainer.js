@@ -18,7 +18,7 @@ const Courses = (props) => {
   const catalogTitle = location.state;
 
   // helper method for comparing length
-  const isTooShort = (length, data) => {
+  const isTooLong = (length, data) => {
     return length <= data.length;
   };
 
@@ -38,22 +38,22 @@ const Courses = (props) => {
       const newCourseList = courseData.courses.filter((course) => {
         const { Course } = { ...course.metadata.Metadata_Ledger };
         if (
-          isTooShort(queryLen, Course.CourseTitle) &&
+          isTooLong(queryLen, Course.CourseTitle) &&
           isMatch(query, Course.CourseTitle)
         ) {
           return course;
         } else if (
-          isTooShort(queryLen, Course.CourseShortDescription) &&
+          isTooLong(queryLen, Course.CourseShortDescription) &&
           isMatch(query, Course.CourseShortDescription)
         ) {
           return course;
         } else if (
-          isTooShort(queryLen, Course.CourseType) &&
+          isTooLong(queryLen, Course.CourseType) &&
           isMatch(query, Course.CourseType)
         ) {
           return course;
         } else if (
-          isTooShort(queryLen, Course.CourseCode) &&
+          isTooLong(queryLen, Course.CourseCode) &&
           isMatch(query, Course.CourseCode)
         ) {
           return course;
