@@ -84,7 +84,6 @@ const Courses = (props) => {
           error: null,
         });
         setCoursesToShow(resp.data);
-        console.log(resp.data[1]);
       })
       .catch((err) => {
         setCourseData({
@@ -110,7 +109,7 @@ const Courses = (props) => {
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl my-8">Course List</h2>
       <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
-        <div className="flex flex-row justify-between px-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
+        <div className="flex flex-row bg-white justify-between px-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
           <input
             type={"text"}
             className={"w-full bg-transparent px-2 py-1 outline-none"}
