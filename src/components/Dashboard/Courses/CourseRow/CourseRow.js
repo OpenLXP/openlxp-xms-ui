@@ -14,7 +14,7 @@ const CourseRow = (props) => {
             : "bg-white hover:shadow-lg"
         }>
         <td className="px-6 py-4 text-sm text-gray-900">
-          <div className="font-medium">{data.metadata.Course.CourseTitle}</div>
+          <div className="font-medium">{data.metadata.Metadata_Ledger.Course.CourseTitle}</div>
           <div className="font-light">CC: {data.unique_record_identifier}</div>
         </td>
 
