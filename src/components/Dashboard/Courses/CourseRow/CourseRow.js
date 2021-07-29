@@ -16,6 +16,9 @@ const CourseRow = (props) => {
         <td className="px-6 py-4 text-sm text-gray-900">
           <div className="font-medium">{data.metadata.Metadata_Ledger.Course.CourseTitle}</div>
           <div className="font-light">CC: {data.unique_record_identifier}</div>
+          <div className="font-light">
+            CC: {data.metadata.Metadata_Ledger.Course.CourseCode}
+          </div>
         </td>
 
         <td
