@@ -113,7 +113,7 @@ describe("ContentContainer", () => {
       );
     });
     screen.getByText("Test Title");
-    screen.getByText("CC: Record Identifer");
+    screen.getByText("CC: TestCode123");
   });
 
   test("does render CourseData", async () => {
