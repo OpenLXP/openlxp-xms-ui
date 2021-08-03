@@ -102,7 +102,7 @@ describe("CourseRow", () => {
     });
 
     screen.getByText("Test Title");
-    screen.getByText("CC: Record Identifer");
+    screen.getByText("CC: TestCode123");
     screen.getByText("Active");
   });
 });
