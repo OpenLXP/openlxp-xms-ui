@@ -173,9 +173,7 @@ describe("ContentContainer", () => {
       };
       axios.get.mockImplementationOnce(() => Promise.resolve({ data: data }));
       render(
-        <MemoryRouter initialEntries={ [
-          '/dashboard/JKO/course/:id'
-        ]}>
+        <MemoryRouter initialEntries={["/dashboard/JKO/course/:id"]}>
           <Route
             path="/dashboard/:catalog/course/:id"
             component={ContentContainer}
@@ -183,6 +181,6 @@ describe("ContentContainer", () => {
         </MemoryRouter>
       );
     });
-    screen.getByText("Test Title");
+    screen.getByTitle("Test Title");
   });
 });
