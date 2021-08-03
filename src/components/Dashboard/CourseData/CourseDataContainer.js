@@ -1,302 +1,331 @@
-import { Fragment, useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import { updateDeeplyNestedJson } from "../../../utils/utils";
 
-import CourseHeader from "./CourseHeader/CourseHeader";
-
-const CourseData = (props) => {
+export default function CourseDataContainerV2({}) {
   const { id } = useParams();
 
-  const [courseState, setCourseState] = useState({
-    course: null,
+  // the state manager of the data
+  const [course, setCourse] = useState({
+    data: {},
     isLoading: false,
     error: null,
   });
 
-  const [modalContent, setModalContent] = useState({
-    success: false,
-    isLoading: false,
-    error: null,
-    content: null,
-  });
-
-  // to track state of the modal
-  const [modalState, setModalState] = useState({
+  // the state manager for the modal component
+  const [modal, setModal] = useState({
+    message: null,
     isOpen: false,
+    isLoading: false,
+    isError: false,
   });
 
+  // handles the editing state of the component
   const [isEditing, setEditing] = useState(false);
 
-  // state of the prepared data.
-  const [preparedData, setPreparedData] = useState({});
+  // manages updating the value of the object
+  function handleUpdateData(arr = [], value) {
+    let newData = updateDeeplyNestedJson(course.data.metadata, arr, value);
+    setCourse({ ...course, data: { ...course.data, metadata: newData } });
+  }
 
-  // Main Title information
-  let courseTitle = null;
-  let courseContent = null;
+  // manages the adding of new key value pairs
+  function handleAddNewData() {
+    let key = document.querySelector("#new-key").value;
+    let value = document.querySelector("#new-value").value;
+    // prepare the data for loading
+    key = key.split(" ").join("_");
+    // remove white space at start and end
+    key.trim();
+    value.trim();
 
-  /* Whenever the component first renders, we make an API call to find courses
-        using the keyword in the url */
+    // if the data is not empty
+    if (key !== "" && value !== "") {
+      let newData = updateDeeplyNestedJson(
+        course.data.metadata.Supplemental_Ledger,
+        [key],
+        value
+      );
+      setCourse({
+        ...course,
+        data: {
+          ...course.data,
+          metadata: { ...course.data.metadata, Supplemental_Ledger: newData },
+        },
+      });
+      document.querySelector("#new-key").value = "";
+      document.querySelector("#new-value").value = "";
+    }
+  }
+
+  // the main driver for adding new values and updating the data
+  function handleSubmit() {
+    setEditing(false);
+    let url = `${process.env.REACT_APP_XIS_COMPOSITELEDGER_API}${id}/`;
+    setModal({
+      isLoading: true,
+      isOpen: true,
+      isError: false,
+      message: "...Loading",
+    });
+    axios
+      .patch(url, course.data)
+      .then((response) => {
+        setModal({
+          isLoading: false,
+          isOpen: true,
+          isError: false,
+          message: "Course metadata successfully updated",
+        });
+      })
+      .catch((error, resp) => {
+        setModal({
+          isLoading: false,
+          isError: true,
+          isOpen: true,
+          message:
+            "Error updating the metadata. Please contact your administrator.",
+        });
+      });
+  }
+
+  // title and basic info
+  function courseHeader() {
+    const title = course.data?.metadata?.Metadata_Ledger.Course.CourseTitle;
+    return (
+      <div
+        title={title}
+        className={
+          "w-full flex flex-row my-2 py-2 px-2 space-x-1 justify-start border-b "
+        }
+      >
+        <div className={"text-xl font-bold w-full"}>{title}</div>
+        <div
+          className={
+            "px-2 mt-1 text-xs leading-5 self-center font-semibold rounded-full bg-green-100 text-green-800"
+          }
+        >
+          {course.data.record_status}
+        </div>
+      </div>
+    );
+  }
+  // editing rows
+  function editControls() {
+    return (
+      <div className={"flex flex-row-reverse pt-4 px-2"}>
+        {isEditing && (
+          <>
+            <div
+              className="mx-1 px-2 px-1 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
+              onClick={() => {
+                getCourseData();
+                setEditing(false);
+              }}
+            >
+              Cancel
+            </div>
+            <div
+              className="mx-1 px-2 px-1 rounded-md bg-green-200 text-green-800 cursor-pointer"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Update
+            </div>
+          </>
+        )}
+        {!isEditing && (
+          <div
+            className="px-2 px-1 rounded-md bg-blue-light bg-opacity-20 text-blue-dark cursor-pointer"
+            onClick={(event) => {
+              setEditing(true);
+            }}
+          >
+            Edit
+          </div>
+        )}
+      </div>
+    );
+  }
+  // creates the components for rendering
+  function dataFields(data, pathToField = []) {
+    let path = [...pathToField];
+
+    // if no data is passed
+    if (!data) return null;
+
+    return (
+      <div className={"px-2"}>
+        {Object.keys(data).map((key) => {
+          // if the data[key] is an obj go deeper
+          if (typeof data[key] === "object" && data[key] !== null) {
+            path.push(key);
+            // group area
+            const groupArea = (
+              <div className={"ml-4 mt-2 mb-8"} key={path}>
+                <div className={"font-bold text-lg select-none"}>
+                  {key}
+                  <div className="px-2 border-l-2 rounded-bl-md hover:border-blue-light">
+                    {dataFields(data[key], path)}
+                  </div>
+                </div>
+              </div>
+            );
+            path.pop();
+            return groupArea;
+          }
+
+          // if the data[key] is a value
+
+          let tempPath = [...path];
+          tempPath.push(key);
+          const inputArea = (
+            <div
+              key={tempPath}
+              className={
+                "w-full focus-within:text-blue-medium font-semibold my-2 space-y-1"
+              }
+            >
+              <label className={"select-none text-md"}>{key}</label>
+              <textarea
+                disabled={!isEditing}
+                placeholder={data[key]}
+                value={data[key]}
+                name={`${tempPath.join(".")}`}
+                className={`${
+                  isEditing && "shadow-sm"
+                } w-full text-sm rounded-md border px-2 py-1 outline-none ring-offset-1 focus:ring-2 focus:shadow-md focus:ring-blue-light focus:text-gray-800`}
+                rows={Math.floor(data[key]?.length / 82) || 1}
+                onChange={(event) => {
+                  handleUpdateData(
+                    event.target.name.split("."),
+                    event.target.value
+                  );
+                }}
+              />
+            </div>
+          );
+
+          // returning the generated text
+          return inputArea;
+        })}
+      </div>
+    );
+  }
+  //
+  function addToSupplemental() {
+    return (
+      <div
+        className={"w-full pl-6 pr-4"}
+        onKeyPress={(event) => {
+          if (event.key === "Enter" || event.key === 13) {
+            handleAddNewData();
+          }
+        }}
+      >
+        <div className="flex flex-row rounded-md p-2 space-x-2">
+          <div className={"w-1/3"}>
+            <label>Key Name</label>
+            <textarea
+              placeholder="Key Name"
+              id={"new-key"}
+              disabled={!isEditing}
+              className={"w-full border rounded-md px-2"}
+              rows={1}
+            />
+          </div>
+          <div className={"w-2/3"}>
+            <label>Value</label>
+            <textarea
+              placeholder="Value"
+              id={"new-value"}
+              disabled={!isEditing}
+              className={"w-full border rounded-md px-2"}
+              rows={1}
+            />
+          </div>
+        </div>
+        <div className={"flex justify-center"}>
+          <div
+            className={
+              "px-2 bg-gray-200 text-gray-700 rounded-md shadow-md cursor-pointer"
+            }
+            onClick={handleAddNewData}
+          >
+            Add Supplemental Data
+          </div>
+        </div>
+      </div>
+    );
+  }
+  // api call to get the course data
+  function getCourseData() {
+    const url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id;
+    // init the state to loading
+    setCourse({
+      data: null,
+      isLoading: true,
+      error: null,
+    });
+
+    axios
+      .get(url)
+      .then((response) => {
+        setCourse({
+          data: response.data,
+          isLoading: false,
+          error: null,
+        });
+
+        // render the components
+      })
+      .catch((error) => {
+        setCourse({
+          data: null,
+          isLoading: false,
+          error: error,
+        });
+      });
+  }
+
+  // on mount get the data of the course
   useEffect(() => {
     let isSubscribed = true;
 
-    let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id;
-
     if (isSubscribed) {
-      setCourseState({
-        course: null,
-        isLoading: true,
-        error: null,
-      });
-      axios
-        .get(url)
-        .then((response) => {
-          setCourseState({
-            course: response.data,
-            isLoading: false,
-            error: null,
-          });
-          setPreparedData(prepareDataForDisplay(response.data));
-        })
-        .catch((err) => {
-          setCourseState({
-            course: null,
-            isLoading: false,
-            error: err,
-          });
-        });
+      getCourseData();
     }
+
     return () => {
       isSubscribed = false;
     };
   }, [id]);
 
-  // updates the data for submission
-  function updateData(data, keys, value) {
-    // copy the list of keys
-    const keyList = [...keys];
-    // grab the first key in the array
-    const current = keyList.shift();
-
-    // if there are no more keys
-    if (!current) return value;
-
-    // update the key with the reuturned value
-    data[current] = updateData(data[current], keyList, value);
-    return data;
-  }
-
-  // prepares the data for display
-  function prepareDataForDisplay(data) {
-    // the initial starting point
-    let path = ["metadata", "Metadata_Ledger"];
-
-    // list of sections
-    let sections = {};
-
-    // initial starting point
-    let metadata = data.metadata.Metadata_Ledger;
-    Object.keys(metadata).forEach((key) => {
-      // the current object.
-      const obj = metadata[key];
-
-      // the initial object to represent the data.
-      let section = {
-        title: key,
-        data: {},
-      };
-
-      // add the key to the path
-      path.push(key);
-
-      Object.keys(obj).forEach((attribute) => {
-        const attributeValue = obj[attribute];
-
-        const strKeyPath = `${path.join(".")}.${attribute}`;
-
-        // populate the data
-        section.data[strKeyPath] = {
-          pathToData: strKeyPath,
-          value: attributeValue,
-        };
-      });
-
-      // add the section to the list of of sections
-      sections[key] = section;
-
-      // reset the path
-      path = ["metadata", "Metadata_Ledger"];
-    });
-
-    // return the populated sections
-    return sections;
-  }
-
-  function prepareDataForSubmit() {
-    let data = { ...courseState.course };
-    let toRestore = [];
-    // Turning the data into a 1D Array
-    Object.keys(preparedData).forEach((sectionKey) => {
-      Object.keys(preparedData[sectionKey].data).forEach((attributeKey) => {
-        toRestore.push(preparedData[sectionKey].data[attributeKey]);
-      });
-    });
-
-    toRestore.forEach((obj) => {
-      data = updateData(data, obj.pathToData.split("."), obj.value);
-    });
-
-    // TODO: Remove this and add action
-    return data;
-  }
-
-  // update the value of the data
-  function updatePreparedDataValue(value, strKeyPath) {
-    // grabs the section key
-    const sectionName = strKeyPath.split(".")[2];
-
-    // grabs the section data
-    let section = preparedData[sectionName];
-
-    // updates the key value pair to be the new value
-    section.data[strKeyPath].value = value;
-
-    let currentData = { ...preparedData };
-    currentData[sectionName] = section;
-
-    setPreparedData(currentData);
-  }
-
-  // Updates the specific value being edited
-  const handleEdit = (event, pathToData) => {
-    updatePreparedDataValue(event.target.value, pathToData);
-  };
-
-  const handleSubmit = () => {
-    if (isEditing) {
-      let data = prepareDataForSubmit();
-      let url = process.env.REACT_APP_XIS_COMPOSITELEDGER_API + id + "/";
-      openModal();
-      setModalContent({
-        success: null,
-        isLoading: true,
-        error: null,
-        content: <div>...Loading</div>,
-      });
-      axios
-        .patch(url, data)
-        .then((response) => {
-          setModalContent({
-            success: true,
-            isLoading: false,
-            error: null,
-            content: (
-              <div className="text-green-600">
-                Course metadata successfully updated
-              </div>
-            ),
-          });
-        })
-        .catch((err) => {
-          setModalContent({
-            success: null,
-            isLoading: false,
-            error: true,
-            content: (
-              <div className="text-red-600">
-                Error Submitting metadata edits. Please contact an administrator
-              </div>
-            ),
-          });
-        });
-    }
-    setEditing(!isEditing);
-  };
-
-  // handles closing the modal
-  const closeModal = () => {
-    setModalState({ isOpen: false });
-  };
-
-  // handles opening the modal
-  const openModal = () => {
-    setModalState({ isOpen: true });
-  };
-
-  // creates the html to render
-  const renderSections = Object.keys(preparedData).map((sectionKey) => {
-    // Each sections data
-    const sectionData = preparedData[sectionKey].data;
-    return (
-      <div className="px-4 " key={sectionKey}>
-        <div className="font-semibold text-2xl">{sectionKey}</div>
-        <div className="">
-          {Object.keys(sectionData).map((key) => {
-            return (
-              <div className="flex flex-col my-3" key={sectionKey + "_" + key}>
-                <label className="relative inline-flex max-w-max items-center space-x-2 px-4 py-2 border-gray-300 text-sm font-medium rounded-t-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 select-none">
-                  {sectionData[key].pathToData.split(".")[3]}
-                </label>
-                <textarea
-                  disabled={!isEditing}
-                  onChange={(event) =>
-                    handleEdit(event, sectionData[key].pathToData)
-                  }
-                  rows={Math.floor(sectionData[key].value.length / 50) - 1 || 1}
-                  type="text"
-                  placeholder={sectionData[key].value}
-                  className="w-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-b-md rounded-tr-md hover:bg-blue-light hover:bg-opacity-5 focus:outline-none focus:ring-1 focus:ring--blue-light focus:border-blue-light focus:shadow-md text-gray-400 focus:text-gray-700"
-                  onFocus={(event) => {
-                    event.target.value = sectionData[key].value
-                      .toString()
-                      .trim();
-                  }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  });
-
-  // handles page display depending on courseState
-  if (courseState.course && !courseState.isLoading) {
-    courseTitle =
-      courseState.course.metadata.Metadata_Ledger.Course.CourseTitle;
-    courseContent = (
-      <>
-        <CourseHeader
-          title={courseTitle}
-          status={courseState.course.record_status}
-        />
-        <div className="flex flex-row justify-end px-4">
-          <div
-            className="px-3 py-1 border rounded-md hover:bg-blue-light hover:text-white cursor-pointer select-none"
-            onClick={() => handleSubmit()}
-          >
-            {isEditing ? "Update" : "Edit"}
-          </div>
-        </div>
-        <div>{renderSections}</div>
-      </>
-    );
-  } else if (courseState.isLoading) {
-    courseContent = <div>Loading...</div>;
-  } else if (!courseState.isLoading && courseState.error) {
-    courseContent = (
-      <div>Error Loading course. Please contact an administrator.</div>
-    );
-  }
-
   return (
-    <div className="bg-white shadow overflow-hidden rounded-md pb-8">
-      {courseContent}
-      <Transition appear show={modalState.isOpen} as={Fragment}>
+    <div className="bg-white shadow overflow-hidden rounded-md pb-8 px-4">
+      {course.isLoading && "Loading ..."}
+      {course?.error && "Error"}
+      {course?.data && !course?.error && !course.isLoading && courseHeader()}
+      {course?.data && !course?.error && !course.isLoading && editControls()}
+      {course?.data &&
+        !course?.error &&
+        !course.isLoading &&
+        dataFields(course.data.metadata)}
+      {course?.data &&
+        !course?.error &&
+        !course.isLoading &&
+        isEditing &&
+        addToSupplemental()}
+      <Transition appear show={modal.isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={() => {
+            setModal({ ...modal, isOpen: false });
+          }}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -335,14 +364,20 @@ const CourseData = (props) => {
                   Edit Metadata
                 </Dialog.Title>
                 <div className="mt-2">
-                  <div className="text-sm">{modalContent.content}</div>
+                  <div
+                    className={`text-sm ${modal.isError && "text-red-800"} ${
+                      !modal.isError && !modal.isLoading && "text-green-800"
+                    }`}
+                  >
+                    {modal.message}
+                  </div>
                 </div>
 
                 <div className="mt-4">
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    onClick={() => setModal({ ...modal, isOpen: false })}
                   >
                     Done
                   </button>
@@ -354,5 +389,4 @@ const CourseData = (props) => {
       </Transition>
     </div>
   );
-};
-export default CourseData;
+}
