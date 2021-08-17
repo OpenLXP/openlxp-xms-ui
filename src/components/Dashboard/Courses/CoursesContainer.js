@@ -68,7 +68,7 @@ const Courses = (props) => {
 
   // Building the api call based on the catalog clicked
   const catalog_courses_api_url =
-    process.env.REACT_APP_XIS_COMPOSITELEDGER_API + `?provider=${catalogTitle}`;
+    process.env.REACT_APP_XMS_EXPERIENCES_API + `?provider=${catalogTitle}`;
 
   useEffect(() => {
     // Sets the state to loading

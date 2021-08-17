@@ -11,7 +11,7 @@ const Catalogs = (props) => {
   });
 
   // API Endpoint for XIS Catalogs.
-  const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
+  const catalogs_api_url = process.env.REACT_APP_XMS_CATALOGS_API;
 
   useEffect(() => {
     // Setting the catalogs to loading
