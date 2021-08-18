@@ -6,7 +6,7 @@ const CourseList = (props) => {
 
   // Creates the individual rows of the table.
   const rows = courses.map((row, index) => {
-    if (Object.keys(row).length > 0)
+    if (Object.keys(row)?.length > 0)
       return <CourseRow data={row} rowIndex={index} key={index} />;
     return null;
   });

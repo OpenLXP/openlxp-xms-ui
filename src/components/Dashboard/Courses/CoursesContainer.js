@@ -19,7 +19,7 @@ const Courses = (props) => {
 
   // helper method for comparing length
   const isTooLong = (length, data) => {
-    return length <= data.length;
+    return length <= data?.length;
   };
 
   // helper method for matching strings
@@ -33,7 +33,7 @@ const Courses = (props) => {
     // if there is something to search
     if (query !== "" && coursesToShow) {
       // prepare the data to be found
-      const queryLen = query.length;
+      const queryLen = query?.length || 0;
 
       const newCourseList = courseData.courses.filter((course) => {
         const { Course } = { ...course.metadata.Metadata_Ledger };

@@ -119,7 +119,7 @@ export default function CourseDataContainerV2({}) {
         {isEditing && (
           <>
             <div
-              className="mx-1 px-2 px-1 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
+              className="mx-1 px-1 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
               onClick={() => {
                 getCourseData();
                 setEditing(false);
