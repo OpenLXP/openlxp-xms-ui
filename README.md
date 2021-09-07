@@ -1,10 +1,187 @@
-# Getting Started with Create React App
+# Open LXP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Version](https://img.shields.io/badge/version-prototype-yellow)](https://github.com/OpenLXP/openlxp-xms-ui)
+[![yarn](https://img.shields.io/badge/yarn-1.22.1-blue)](https://yarnpkg.com/)
+[![license](https://img.shields.io/badge/license-Apache_2.0-green)](https://github.com/OpenLXP/openlxp-xms-ui/blob/main/LICENSE)
+
+[![react](https://img.shields.io/badge/react-17.0.1-61dafb)](https://reactjs.org/)
+[![redux](https://img.shields.io/badge/redux-4.0.5-764abc)](https://redux-toolkit.js.org/)
+[![router](https://img.shields.io/badge/router-5.2.0-red)](https://reactrouter.com/web/guides/quick-start)
+[![tailwind](https://img.shields.io/badge/tailwind-2.2.2-22d3ee)](https://redux-toolkit.js.org/)
+
+## Table of content
+
+- [**Installation**](#installation)
+  - [Clone Project](#clone-project)
+- [**Getting started**](#getting-started)
+  - [Installation](#installation)
+    - [_Clone Project_](#clone-project)
+    - [_Install Project Dependencies_](#install-project-dependencies)
+  - [Environment Variables](#environment-variables)
+    - [_REACT_APP_BACKEND_HOST_](#react-app-backend-host)
+    - [_REACT_APP_ES_API_](#react-app-es-api)
+    - [_REACT_APP_ES_MULT_API_](#react-app-es-mult_api)
+    - [_REACT_APP_AUTH_](#react-app-auth)
+    - [_REACT_APP_CONFIGURATION_API_](#react-app-configuration-api)
+    - [_REACT_APP_EXPERIENCES_](#react-app-experiences)
+    - [_REACT_APP_ADD_COURSE_TO_LISTS_](#react-app-add-course-to-lists)
+    - [_REACT_APP_INTEREST_LISTS_ALL_](#react-app-interest-lists-all)
+    - [_REACT_APP_USER_SUBSCRIPTION_LISTS_](#react-app-user-subscription-lists)
+    - [_REACT_APP_USER_INTEREST_LISTS_](#react-app-user-interest-lists)
+  - [Creating a local env](#creating-a-local-environment-file)
+    - [_Walk through_](#walk-through)
+    - [_Template_](#env-template)
+  - [Important Notes](#important-notes)
+- [**Available Scripts**](#available-scripts)
+  - [yarn start](#yarn-start)
+  - [yarn test](#yarn-test)
+  - [yarn build](#yarn-build)
+  - [yarn coverage](#yarn-coverage)
+
+---
+
+## Installation
+
+### Clone Project
+
+```bash
+git clone git@github.com:OpenLXP/openlxp-xms-ui.git
+```
+
+### Install Project Dependencies
+
+Start off by verifying that you have `yarn` installed.
+
+```ps1
+yarn -version
+```
+
+If `yarn` is not installed use the following command to install it. This will install the `yarn` package manager globally on your system.
+
+_**global install**_
+
+```ps1
+npm install yarn -g
+```
+
+_**local install**_
+
+```ps1
+npm install yarn
+```
+
+Once yarn has been installed you will need to install the project dependencies. Using the following command we will manually set your yarn version for this project.
+
+```ps1
+yarn set version 1.22.1
+```
+
+After the version has been installed and set we will install the dependencies. Using the following command we will install all the project dependencies.
+
+```bash
+yarn install package.json
+```
+
+---
+
+## Getting started
+
+### Environment Variables
+
+This project makes use of globally available environment variables. Below are the required environment variables required for this project.
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+#### **Endpoint Name**
+
+Description of the endpoint
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/
+```
+
+### Creating a local environment file
+
+#### **Walk through**
+
+Let's create a local `.env.local` file. If you are in a code editor you can right click and create new file.
+
+![vscode create new file](./readme-assets/vscode-create-new-file.png)
+
+If you are using the terminal use the following command to create a new file.
+
+_**bash command**_
+
+```bash
+touch <PATH_TO_YOUR_PROJECT_ROOT>/.env.local
+```
+
+_**powershell**_
+
+```ps1
+New-Item -Path <PATH_TO_YOUR_PROJECT_ROOT>\.env.local -ItemType File
+```
+
+Navigate to the newly created file and paste the template (_below_) into the file. Replace `<YOUR_BACKEND_ENDPOINT>` with your localhost setup **or** your live endpoint.
+
+#### **.env Template**
+
+```text
+REACT_APP_XIS_CATALOGS_API=<YOUR_BACKEND_ENDPOINT>/api/catalogs/
+REACT_APP_XIS_COMPOSITELEDGER_API=<YOUR_BACKEND_ENDPOINT>/api/metadata/
+```
+
+### Important Notes
+
+To use this piece of code without any issues you will need the XDS component to accompany it.
+
+[OpenLXP XMS](https://github.com/OpenLXP/openlxp-xms)
+
+### **You're all set! Explore the commands below to run, build, or test the app.**
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run the following.
 
 ### `yarn start`
 
@@ -29,15 +206,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `yarn coverage`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Launches the test runner with coverage mode enabled.
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## Learn More
 
@@ -68,3 +240,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+---
+
+### Core Configurations in Django admin console
+
+Basic Configurations
+
+Optional Configurations
+
+Other Configurations - usually not to be edited
+
+---
