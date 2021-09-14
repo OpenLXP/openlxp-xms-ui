@@ -5,7 +5,6 @@
 [![license](https://img.shields.io/badge/license-Apache_2.0-green)](https://github.com/OpenLXP/openlxp-xms-ui/blob/main/LICENSE)
 
 [![react](https://img.shields.io/badge/react-17.0.1-61dafb)](https://reactjs.org/)
-[![redux](https://img.shields.io/badge/redux-4.0.5-764abc)](https://redux-toolkit.js.org/)
 [![router](https://img.shields.io/badge/router-5.2.0-red)](https://reactrouter.com/web/guides/quick-start)
 [![tailwind](https://img.shields.io/badge/tailwind-2.2.2-22d3ee)](https://redux-toolkit.js.org/)
 
@@ -15,19 +14,10 @@
   - [Clone Project](#clone-project)
 - [**Getting started**](#getting-started)
   - [Installation](#installation)
-    - [_Clone Project_](#clone-project)
     - [_Install Project Dependencies_](#install-project-dependencies)
   - [Environment Variables](#environment-variables)
-    - [_REACT_APP_BACKEND_HOST_](#react-app-backend-host)
-    - [_REACT_APP_ES_API_](#react-app-es-api)
-    - [_REACT_APP_ES_MULT_API_](#react-app-es-mult_api)
-    - [_REACT_APP_AUTH_](#react-app-auth)
-    - [_REACT_APP_CONFIGURATION_API_](#react-app-configuration-api)
-    - [_REACT_APP_EXPERIENCES_](#react-app-experiences)
-    - [_REACT_APP_ADD_COURSE_TO_LISTS_](#react-app-add-course-to-lists)
-    - [_REACT_APP_INTEREST_LISTS_ALL_](#react-app-interest-lists-all)
-    - [_REACT_APP_USER_SUBSCRIPTION_LISTS_](#react-app-user-subscription-lists)
-    - [_REACT_APP_USER_INTEREST_LISTS_](#react-app-user-interest-lists)
+    - [_REACT_APP_XIS_CATALOGS_API_](#react-app-xis-catalogs-api)
+    - [_REACT_APP_XIS_COMPOSITELEDGER_API_](#react-app-xis-compositeledger-api)
   - [Creating a local env](#creating-a-local-environment-file)
     - [_Walk through_](#walk-through)
     - [_Template_](#env-template)
@@ -90,52 +80,20 @@ yarn install package.json
 
 This project makes use of globally available environment variables. Below are the required environment variables required for this project.
 
-#### **Endpoint Name**
+#### **REACT_APP_XIS_CATALOGS_API**
 
-Description of the endpoint
-
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
-```
-
-#### **Endpoint Name**
-
-Description of the endpoint
+This is the root API endpoint used by the application to access XIS catalogs.
 
 ```yaml
 http://<YOUR_BACKEND_ENDPOINT>/
 ```
 
-#### **Endpoint Name**
+#### **REACT_APP_XIS_COMPOSITELEDGER_API**
 
-Description of the endpoint
-
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
-```
-
-#### **Endpoint Name**
-
-Description of the endpoint
+This is the endpoint for accessing the XIS comositeledger.
 
 ```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
-```
-
-#### **Endpoint Name**
-
-Description of the endpoint
-
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
-```
-
-#### **Endpoint Name**
-
-Description of the endpoint
-
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
+http://<YOUR_BACKEND_ENDPOINT>/es-api/
 ```
 
 ### Creating a local environment file
