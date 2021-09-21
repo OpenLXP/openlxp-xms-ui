@@ -129,7 +129,7 @@ REACT_APP_XIS_COMPOSITELEDGER_API=<YOUR_BACKEND_ENDPOINT>/api/metadata/
 
 ### Important Notes
 
-To use this piece of code without any issues you will need the XDS component to accompany it.
+To use this piece of code without any issues you will need the XMS component to accompany it.
 
 [OpenLXP XMS](https://github.com/OpenLXP/openlxp-xms)
 
