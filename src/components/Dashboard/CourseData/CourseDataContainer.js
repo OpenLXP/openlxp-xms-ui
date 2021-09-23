@@ -63,7 +63,7 @@ export default function CourseDataContainerV2({}) {
   // the main driver for adding new values and updating the data
   function handleSubmit() {
     setEditing(false);
-    let url = `${process.env.REACT_APP_XMS_EXPERIENCES_API}${id}/`;
+    let url = `${process.env.REACT_APP_XIS_EXPERIENCES_API}${id}/`;
     setModal({
       isLoading: true,
       isOpen: true,
@@ -263,7 +263,7 @@ export default function CourseDataContainerV2({}) {
   }
   // api call to get the course data
   function getCourseData() {
-    const url = process.env.REACT_APP_XMS_EXPERIENCES_API + id;
+    const url = process.env.REACT_APP_XIS_EXPERIENCES_API + id;
     // init the state to loading
     setCourse({
       data: null,
