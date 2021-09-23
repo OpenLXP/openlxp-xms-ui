@@ -85,15 +85,23 @@ This project makes use of globally available environment variables. Below are th
 This is the root API endpoint used by the application to access XIS catalogs.
 
 ```yaml
-http://<YOUR_BACKEND_ENDPOINT>/
+http://<YOUR_BACKEND_ENDPOINT>/api/catalogs/
 ```
 
 #### **REACT_APP_XIS_COMPOSITELEDGER_API**
 
-This is the endpoint for accessing the XIS comositeledger.
+This is the endpoint for accessing the XIS compositeledger.
 
 ```yaml
 http://<YOUR_BACKEND_ENDPOINT>/es-api/
+```
+
+#### **REACT_APP_XIS_EXPERIENCES_API**
+
+This is the root API endpoint used by the application to access XIS experiences. 
+
+```yaml
+http://<YOUR_BACKEND_ENDPOINT>/api/experiences/
 ```
 
 ### Creating a local environment file
@@ -125,6 +133,7 @@ Navigate to the newly created file and paste the template (_below_) into the fil
 ```text
 REACT_APP_XIS_CATALOGS_API=<YOUR_BACKEND_ENDPOINT>/api/catalogs/
 REACT_APP_XIS_COMPOSITELEDGER_API=<YOUR_BACKEND_ENDPOINT>/api/metadata/
+REACT_APP_XIS_EXPERIENCES_API=<YOUR_BACKEND_ENDPOINT>/api/experiences/
 ```
 
 ### Important Notes
