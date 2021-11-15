@@ -4,9 +4,11 @@ on:
   push:
     branches: 
       - feature/gh-actions
+      - dev
   pull_request:
     branches: 
       - feature/gh-actions
+      - dev
 
 jobs:
   code-test:
