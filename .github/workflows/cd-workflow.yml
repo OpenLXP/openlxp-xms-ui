@@ -25,7 +25,7 @@ jobs:
 
     - name: Run coverage
       run: |
-        yarn coverage	
+        yarn test	
   build:
     name: Build Docker Image
     runs-on: ubuntu-latest
