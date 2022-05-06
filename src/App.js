@@ -7,6 +7,7 @@ import {
 import "./App.css";
 import MainPage from "./pages/MainPage";
 import DashboardPage from "./pages/DashboardPage";
+import { AuthProvider } from "../src/context/authContext";
 
 const App = () => {
   // Conditionally renders either the main website or the dashboard without
@@ -26,11 +27,13 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Route to="/" component={loadContent} />
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Route to="/" component={loadContent} />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 

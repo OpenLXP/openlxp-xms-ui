@@ -32,10 +32,17 @@ const Header = () => {
         />
         <div className=" border-t flex flex-row justify-between mt-4 mx-2">
           <NavBar navButtons={navButtons} />
-          <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
-            <NavLink to={"/dashboard"} className="hover:bg-blue-light p-0 mt-2">
-              Sign In
-            </NavLink>
+          <div className="flex flex-row justify-end">
+            <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
+              <NavLink to={"/login"} className="hover:bg-blue-light p-0 mt-2">
+                Sign In
+              </NavLink>
+            </div>
+            <div className=" hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
+              <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
+                Register
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
 import icon from "../../../resources/internal/dodLogo.png";
 
 const DashboardHeader = (props) =>{
@@ -16,6 +15,7 @@ const DashboardHeader = (props) =>{
       </NavLink>
       </div>
     </div>
+
     );
 };
 export default DashboardHeader;

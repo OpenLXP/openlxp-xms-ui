@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 import DashboardHeader from "./Header/DashboardHeaderIcon";
-
+import {useEffect} from "react";
+import {useHistory} from "react-router-dom";
 
 const SidebarNav = (props) => {
   // Passed in from the
@@ -16,6 +18,14 @@ const SidebarNav = (props) => {
       </NavLink>
     </div>
   ));
+  
+  const history = useHistory();
+  const {user, logout} = useAuth();
+  useEffect(() => {
+    if(!user){
+      history.push("/login");
+    }
+  });
 
   return (
     <>
@@ -24,6 +34,10 @@ const SidebarNav = (props) => {
           <DashboardHeader />
           <div className="flex flex-col h-0 flex-1 border-t">
             <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden bg-blue">
+              <div className="flex flex-col">
+                <span>{user?.user?.first_name}&nbsp;{user?.user?.last_name}</span>
+                <button className="text-left" onClick={()=>{logout()}}>Logout</button>
+              </div>
               <nav className="flex-0 px-2 pt-10 space-y-1 text-white">
                 {buttons}
               </nav>

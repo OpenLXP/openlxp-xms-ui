@@ -2,6 +2,7 @@ import { NavLink, Switch, Route } from "react-router-dom";
 import ContentContainer from "../components/Dashboard/ContentContainer";
 import SidebarNav from "../components/Dashboard/SidebarNav";
 
+
 const Dashboard = (props) => {
   const navigation = [{ title: "Catalogs", path: "/dashboard" }];
 
