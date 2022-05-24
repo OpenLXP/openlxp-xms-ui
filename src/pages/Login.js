@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Router } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 
