@@ -40,8 +40,8 @@ const Courses = (props) => {
       
       const newCourseList = courseData.courses.filter((course) => {
         console.log("query", query);
-        const { Course } = { ...course.metadata };
-        console.log("text",Course);
+        const { Course } = { ...course.metadata.Metadata_Ledger };
+        console.log("text", Course);
         if (
           isTooLong(queryLen, Course?.CourseTitle) &&
           isMatch(query, Course?.CourseTitle)
