@@ -37,9 +37,6 @@ const CourseList = (props) => {
       </tr>)
 
     // return <CourseRow data={row} rowIndex={index} key={index} />;
-    // return <div>
-    //   <pre>{JSON.stringify(row,null,2)}</pre>
-    //   </div>;
   });
 
   return (

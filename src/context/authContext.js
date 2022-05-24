@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
             setLocal(res.data);
             setError(null);
         })
-        .catch (err=>   {
+        .catch (err => {
             console.error(err );
             removeLocal();  
             setError(err)
@@ -58,7 +58,7 @@ export function AuthProvider({ children }) {
     .then( () => {
         console.log("success");
     })
-    .catch((error) => {
+    .catch((err) => {
         removeLocal();
         logout();
     });

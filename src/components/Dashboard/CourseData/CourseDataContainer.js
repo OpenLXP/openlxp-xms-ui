@@ -1,16 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { updateDeeplyNestedJson } from "../../../utils/utils";
 import { catalog_courses_url } from "../../../config/endpoints";
-import { useAuth } from "../../../context/authContext";
 import { axiosInstance } from "../../../config/axiosInstance";
 
 
 export default function CourseDataContainerV2({}) {
   const { catalog, id } = useParams();
-  const { user } = useAuth();
 
   // the state manager of the data
   const [course, setCourse] = useState({
