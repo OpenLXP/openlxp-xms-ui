@@ -3,9 +3,14 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { updateDeeplyNestedJson } from "../../../utils/utils";
+import { catalog_courses_url } from "../../../config/endpoints";
+import { useAuth } from "../../../context/authContext";
+import { axiosInstance } from "../../../config/axiosInstance";
+
 
 export default function CourseDataContainerV2({}) {
-  const { id } = useParams();
+  const { catalog, id } = useParams();
+  const { user } = useAuth();
 
   // the state manager of the data
   const [course, setCourse] = useState({
@@ -63,15 +68,15 @@ export default function CourseDataContainerV2({}) {
   // the main driver for adding new values and updating the data
   function handleSubmit() {
     setEditing(false);
-    let url = `${process.env.REACT_APP_XIS_EXPERIENCES_API}${id}/`;
+    let url = catalog_courses_url + catalog + "/" + id;
     setModal({
       isLoading: true,
       isOpen: true,
       isError: false,
       message: "...Loading",
     });
-    axios
-      .patch(url, course.data)
+    axiosInstance
+      .post(url, course.data)
       .then((response) => {
         setModal({
           isLoading: false,
@@ -263,7 +268,7 @@ export default function CourseDataContainerV2({}) {
   }
   // api call to get the course data
   function getCourseData() {
-    const url = process.env.REACT_APP_XIS_EXPERIENCES_API + id;
+    const url = catalog_courses_url + catalog + "/" + id;
     // init the state to loading
     setCourse({
       data: null,
@@ -271,7 +276,7 @@ export default function CourseDataContainerV2({}) {
       error: null,
     });
 
-    axios
+    axiosInstance
       .get(url)
       .then((response) => {
         setCourse({
