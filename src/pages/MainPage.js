@@ -2,6 +2,8 @@ import { Switch, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
 import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
+import Login from "./Login";
+import Register from "./Register";
 const MainPage = () => {
   return (
     <div className="relative flex flex-col min-h-screen">
@@ -10,6 +12,8 @@ const MainPage = () => {
         <div className="bg-gray-100 p-8 my-10 rounded-md">
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
           </Switch>
         </div>
       </div>

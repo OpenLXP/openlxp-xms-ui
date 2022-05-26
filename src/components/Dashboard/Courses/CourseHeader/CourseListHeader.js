@@ -8,11 +8,11 @@ const CourseHeader = (props) => {
         <div className="text-xs font-thin">Course Code</div>
       </th>
 
-      <th
+      {/* <th
         scope="col"
         className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider whitespace-nowrap">
         Course Status
-      </th>
+      </th> */}
 
       <th
         scope="col"

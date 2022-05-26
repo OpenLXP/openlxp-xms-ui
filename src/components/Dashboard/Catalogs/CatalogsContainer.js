@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import CatalogList from "./CatalogList/CatalogList";
+import { catalogs_url } from "../../../config/endpoints";
 
 const Catalogs = (props) => {
   const [catalogs, setCatalogs] = useState({
@@ -11,7 +12,7 @@ const Catalogs = (props) => {
   });
 
   // API Endpoint for XIS Catalogs.
-  const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
+  // const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
 
   useEffect(() => {
     // Setting the catalogs to loading
@@ -21,16 +22,18 @@ const Catalogs = (props) => {
 
     // Requesting data from the API endpoint
     axios
-      .get(catalogs_api_url)
+      .get(catalogs_url)
       .then((resp) => {
         setCatalogs({
-          providers: resp.data,
+          providers: JSON.parse(resp.data),
           isLoading: false,
           error: null,
         });
       })
+
       // If there is an error.
       .catch((err) => {
+        console.log(err);
         setCatalogs({
           providers: null,
           isLoading: false,

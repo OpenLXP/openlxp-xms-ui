@@ -1,10 +1,9 @@
 import CatalogCard from "../CatalogCard/CatalogCard";
 import icon from "../../../../images/placeholder.jpg";
 
-const CatalogsList = (props) => {
-  const catalogs = props.catalogs || [];
+const CatalogsList = ({catalogs}) => {
 
-  const content = catalogs.map((catalog) => {
+  const content = catalogs?.map((catalog) => {
     return <CatalogCard title={catalog} img={icon} key={catalog} />;
   });
 
