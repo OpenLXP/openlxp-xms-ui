@@ -39,9 +39,7 @@ const Courses = (props) => {
       const queryLen = query.length;
       
       const newCourseList = courseData.courses.filter((course) => {
-        console.log("query", query);
         const { Course } = { ...course.metadata.Metadata_Ledger };
-        console.log("text", Course);
         if (
           isTooLong(queryLen, Course?.CourseTitle) &&
           isMatch(query, Course?.CourseTitle)
@@ -81,7 +79,6 @@ const Courses = (props) => {
     setCourseData({ courses: null, isLoading: true, error: null });
     axiosInstance.get(catalog_courses_api_url)
       .then((response) => {
-        console.log(response.data);
         setCourseData({
           courses: response.data.experiences,
           isLoading: false,

@@ -4,10 +4,8 @@ import { NavLink } from "react-router-dom";
 
 const CourseList = (props) => {
   const courses = props.data?.experiences || [];
-  console.log("course",courses);
   // Creates the individual rows of the table.
   const rows = courses?.map((data, index) => {
-    console.log(data.metadata_key_hash);
     if (Object.keys(data).length > 0)
       return  (
       <tr key={data.metadata_key_hash}>
