@@ -46,7 +46,7 @@ export default function CourseDataContainerV2({}) {
     // if the data is not empty
     if (key !== "" && value !== "") {
       let newData = updateDeeplyNestedJson(
-        course.data.metadata.Supplemental_Ledger,
+        course.data.metadata.Supplemental_Ledger || {},
         [key],
         value
       );
@@ -121,7 +121,7 @@ export default function CourseDataContainerV2({}) {
         {isEditing && (
           <>
             <div
-              className="mx-1 px-2 px-1 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
+              className="mx-1 px-2 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
               onClick={() => {
                 getCourseData();
                 setEditing(false);
@@ -130,7 +130,7 @@ export default function CourseDataContainerV2({}) {
               Cancel
             </div>
             <div
-              className="mx-1 px-2 px-1 rounded-md bg-green-200 text-green-800 cursor-pointer"
+              className="mx-1 px-2 rounded-md bg-green-200 text-green-800 cursor-pointer"
               onClick={() => {
                 handleSubmit();
               }}
@@ -141,7 +141,7 @@ export default function CourseDataContainerV2({}) {
         )}
         {!isEditing && (
           <div
-            className="px-2 px-1 rounded-md bg-blue-light bg-opacity-20 text-blue-dark cursor-pointer"
+            className="px-2 rounded-md bg-blue-light bg-opacity-20 text-blue-dark cursor-pointer"
             onClick={(event) => {
               setEditing(true);
             }}
@@ -155,7 +155,6 @@ export default function CourseDataContainerV2({}) {
   // creates the components for rendering
   function dataFields(data, pathToField = []) {
     let path = [...pathToField];
-
     // if no data is passed
     if (!data) return null;
 
@@ -172,6 +171,20 @@ export default function CourseDataContainerV2({}) {
                   {key}
                   <div className="px-2 border-l-2 rounded-bl-md hover:border-blue-light">
                     {dataFields(data[key], path)}
+                  </div>
+                </div>
+              </div>
+            );
+            path.pop();
+            return groupArea;
+          }
+          else if( typeof data[key] === "object" && data[key] === null ){
+            const groupArea = (
+              <div className={"ml-4 mt-2 mb-8"} key={path}>
+                <div className={"font-bold text-lg select-none"}>
+                  {key}
+                  <div className="px-2 border-l-2 rounded-bl-md hover:border-blue-light font-normal">
+                    None
                   </div>
                 </div>
               </div>
