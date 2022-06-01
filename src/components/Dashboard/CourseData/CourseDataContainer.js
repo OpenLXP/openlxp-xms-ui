@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { updateDeeplyNestedJson } from "../../../utils/utils";
 import { catalog_courses_url } from "../../../config/endpoints";
 import { axiosInstance } from "../../../config/axiosInstance";
+import { TrashIcon } from '@heroicons/react/outline';
 
 
 export default function CourseDataContainerV2({}) {
@@ -60,6 +61,19 @@ export default function CourseDataContainerV2({}) {
       document.querySelector("#new-key").value = "";
       document.querySelector("#new-value").value = "";
     }
+  }
+
+  //removes supplemental data values
+  function handleRemoveSupplementalData(key) {
+    let newData  = course.data.metadata.Supplemental_Ledger;
+    delete newData[key];
+    setCourse({
+      ...course,
+      data: {
+        ...course.data,
+        metadata: { ...course.data.metadata, Supplemental_Ledger: newData },
+      },
+    });
   }
 
   // the main driver for adding new values and updating the data
@@ -197,6 +211,7 @@ export default function CourseDataContainerV2({}) {
 
           let tempPath = [...path];
           tempPath.push(key);
+          let suppData = tempPath.includes("Supplemental_Ledger")
           const inputArea = (
             <div
               key={tempPath}
@@ -204,7 +219,22 @@ export default function CourseDataContainerV2({}) {
                 "w-full focus-within:text-blue-medium font-semibold my-2 space-y-1"
               }
             >
-              <label className={"select-none text-md"}>{key}</label>
+              <div className="flex">
+                <label className={"select-none text-md"}>{key}</label>
+                {suppData && 
+                  <div className="w-full ml-6 right-0 ">
+                  <button
+                    onClick={() => handleRemoveSupplementalData(key)}
+                    id='delete'
+                    title='delete'
+                    className='flex items-center justify-center gap-2 text-sm bg-red-50 border border-red-500 text-red-500 py-1 px-1 hover:bg-red-600 hover:text-white transform transition-all duration-150'
+                  >
+                    <TrashIcon className='h-4 w-4' />
+                    Delete
+                  </button>
+                  </div>
+                  }
+                </div>
               <textarea
                 disabled={!isEditing}
                 placeholder={data[key]}
@@ -230,7 +260,7 @@ export default function CourseDataContainerV2({}) {
       </div>
     );
   }
-  //
+  //to add supplemental data values
   function addToSupplemental() {
     return (
       <div
@@ -276,6 +306,7 @@ export default function CourseDataContainerV2({}) {
       </div>
     );
   }
+
   // api call to get the course data
   function getCourseData() {
     const url = catalog_courses_url + catalog + "/" + id;
