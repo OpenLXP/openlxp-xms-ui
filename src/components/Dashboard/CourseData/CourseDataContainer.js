@@ -221,7 +221,7 @@ export default function CourseDataContainerV2({}) {
             >
               <div className="flex">
                 <label className={"select-none text-md"}>{key}</label>
-                {suppData && 
+                {suppData && isEditing &&
                   <div className="w-full ml-6 right-0 ">
                   <button
                     onClick={() => handleRemoveSupplementalData(key)}
@@ -234,7 +234,7 @@ export default function CourseDataContainerV2({}) {
                   </button>
                   </div>
                   }
-                </div>
+              </div>
               <textarea
                 disabled={!isEditing}
                 placeholder={data[key]}

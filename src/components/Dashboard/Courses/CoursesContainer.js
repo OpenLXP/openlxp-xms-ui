@@ -4,6 +4,12 @@ import axios from "axios";
 import CourseList from "./CourseList/CourseList";
 import { catalog_courses_url } from "../../../config/endpoints";
 import { axiosInstance } from "../../../config/axiosInstance";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/solid';
 
 
 const Courses = (props) => {
@@ -15,6 +21,12 @@ const Courses = (props) => {
   });
 
   const [coursesToShow, setCoursesToShow] = useState(null);
+
+  // Keeps the state of page and total pages
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Gets the data passed from the catalog click event
   const location = useLocation();
@@ -32,49 +44,17 @@ const Courses = (props) => {
 
   const sortCourses = (event) => {
     let query = event.target.value;
-
-    // if there is something to search
-    if (query !== "" && coursesToShow) {
-      // prepare the data to be found
-      const queryLen = query.length;
-      
-      const newCourseList = courseData.courses.filter((course) => {
-        const { Course } = { ...course.metadata.Metadata_Ledger };
-        if (
-          isTooLong(queryLen, Course?.CourseTitle) &&
-          isMatch(query, Course?.CourseTitle)
-        ) {
-          return course;
-        } else if (
-          isTooLong(queryLen, Course?.CourseShortDescription) &&
-          isMatch(query, Course?.CourseShortDescription)
-        ) {
-          return course;
-        } else if (
-          isTooLong(queryLen, Course?.CourseType) &&
-          isMatch(query, Course?.CourseType)
-        ) {
-          return course;
-        } else if (
-          isTooLong(queryLen, Course?.CourseCode) &&
-          isMatch(query, Course?.CourseCode)
-        ) {
-          return course;
-        }
-      });
-
-      // setting the new data to show
-      return setCoursesToShow(newCourseList);
+    if(event.key === 'Enter'){
+      setSearchQuery(query);
     }
-    return setCoursesToShow(courseData.courses);
   };
 
-  useEffect(() => {
-    console.log(coursesToShow)
-  }, [coursesToShow]);
+  // useEffect(() => {
+  //   console.log(coursesToShow)
+  // }, [coursesToShow]);
 
   // Building the api call based on the catalog clicked
-  const catalog_courses_api_url = catalog_courses_url + `${catalogTitle}`;
+  const catalog_courses_api_url = catalog_courses_url + `${catalogTitle}` + "?page=" + page + "&search=" + searchQuery ;
   useEffect(() => {
     setCourseData({ courses: null, isLoading: true, error: null });
     axiosInstance.get(catalog_courses_api_url)
@@ -85,6 +65,7 @@ const Courses = (props) => {
           error: null,
         });
         setCoursesToShow(response.data);
+        setTotalPages(Math.ceil(response.data.experiences.count / 10));
       })
       .catch((error) => {
         setCourseData({
@@ -94,7 +75,7 @@ const Courses = (props) => {
         });
         console.log(error);
       });
-  }, []);
+  }, [page, searchQuery]);
 
   const table = useMemo(() => {
     if (courseData.isLoading) {
@@ -109,19 +90,66 @@ const Courses = (props) => {
   return (
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl my-8">Course List</h2>
-      {!courseData.isLoading && !courseData.error && (
-        <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
-          <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
-            <input
-              type={"text"}
-              className={"w-full bg-transparent px-2 py-1 outline-none"}
-              placeholder={"Search"}
-              onChange={(event) => sortCourses(event)}
-            />
-            <div className={"flex justify-center items-center"}>
-              <ion-icon name="search-outline" />
+      {!courseData.error && (
+        <div className="flex flex-row">
+          <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
+            <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
+              <input
+                type={"text"}
+                className={"w-full bg-transparent px-2 py-1 outline-none"}
+                placeholder={"Search"}
+                onKeyPress={(event) => sortCourses(event)}
+                defaultValue = {searchQuery}
+              />
+              <div className={"flex justify-center items-center"}>
+                <ion-icon name="search-outline" />
+              </div>
             </div>
           </div>
+          <button
+            onClick={() => setPage(1)}
+            title='First'
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 ml-4 mr-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white px-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+            disabled={page === 1 ? true : false}
+          >
+            <ChevronDoubleLeftIcon className='h-6 w-6' />
+          </button>
+          <button
+            onClick={() => setPage(page - 1)}
+            className="flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-2 pr-4 py-2 mt-6 h-10 w-30 align-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300 disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit"
+            disabled={page === 1 ? true : false}
+          >
+            <ChevronLeftIcon className='h-6 w-6' />
+            Previous
+          </button>
+          <button
+            key={page}
+            disabled
+            // onClick={() => setPage(page)}
+            className={`${
+              page === page
+                ? 'bg-blue-400 text-white'
+                : 'bg-blue-50 text-blue-400'
+            } flex justify-center items-center gap-2 h-10 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white px-2 py-2 mt-6 ml-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+          >
+            {page}
+          </button>
+          <button
+            onClick={() => setPage(page + 1)}
+            className="disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-4 pr-2 py-2 m-2 mt-6 h-10 w-30 align-items-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300"
+            disabled={totalPages <= page ? true : false}
+          >
+            Next
+            <ChevronRightIcon className='h-6 w-6' />
+          </button>
+          <button
+            title='Last'
+            onClick={() => setPage(totalPages)}
+            disabled={totalPages <= page ? true : false}
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white p-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+          >
+            <ChevronDoubleRightIcon className='h-6 w-6' />
+          </button>
         </div>
       )}
       <div className="shadow overflow-hidden border-b rounded-lg">{table}

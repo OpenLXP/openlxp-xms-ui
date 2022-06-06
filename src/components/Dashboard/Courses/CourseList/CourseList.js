@@ -3,7 +3,7 @@ import CourseRow from "../CourseRow/CourseRow";
 import { NavLink } from "react-router-dom";
 
 const CourseList = (props) => {
-  const courses = props.data?.experiences || [];
+  const courses = props.data?.experiences.results || [];
   // Creates the individual rows of the table.
   const rows = courses?.map((data, index) => {
     if (Object.keys(data).length > 0)
@@ -11,10 +11,10 @@ const CourseList = (props) => {
       <tr key={data.metadata_key_hash}>
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
-             {data.metadata?.Metadata_Ledger?.Course?.CourseTitle}
+             {data.metadata?.Course?.CourseTitle}
            </div>
            <div className="font-light">
-             {data.metadata?.Metadata_Ledger?.Course?.CourseCode}
+             {data.metadata?.Course?.CourseCode}
            </div>
          </td>
 
