@@ -90,7 +90,7 @@ const Courses = (props) => {
   return (
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl my-8">Course List</h2>
-      {!courseData.isLoading && !courseData.error && (
+      {!courseData.error && (
         <div className="flex flex-row">
           <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
             <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
