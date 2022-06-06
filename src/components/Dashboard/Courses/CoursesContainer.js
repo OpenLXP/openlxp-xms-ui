@@ -5,8 +5,8 @@ import CourseList from "./CourseList/CourseList";
 import { catalog_courses_url } from "../../../config/endpoints";
 import { axiosInstance } from "../../../config/axiosInstance";
 import {
-  // ChevronDoubleLeftIcon,
-  // ChevronDoubleRightIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/solid';
@@ -107,8 +107,16 @@ const Courses = (props) => {
             </div>
           </div>
           <button
+            onClick={() => setPage(1)}
+            title='First'
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 ml-4 mr-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white px-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+            disabled={page === 1 ? true : false}
+          >
+            <ChevronDoubleLeftIcon className='h-6 w-6' />
+          </button>
+          <button
             onClick={() => setPage(page - 1)}
-            className="flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-2 pr-4 py-2 ml-4 mt-6 h-10 w-30 align-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300 disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit"
+            className="flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-2 pr-4 py-2 mt-6 h-10 w-30 align-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300 disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit"
             disabled={page === 1 ? true : false}
           >
             <ChevronLeftIcon className='h-6 w-6' />
@@ -116,7 +124,8 @@ const Courses = (props) => {
           </button>
           <button
             key={page}
-            onClick={() => handleSpecificPage(page)}
+            disabled
+            // onClick={() => setPage(page)}
             className={`${
               page === page
                 ? 'bg-blue-400 text-white'
@@ -132,6 +141,14 @@ const Courses = (props) => {
           >
             Next
             <ChevronRightIcon className='h-6 w-6' />
+          </button>
+          <button
+            title='Last'
+            onClick={() => setPage(totalPages)}
+            disabled={totalPages <= page ? true : false}
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white p-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+          >
+            <ChevronDoubleRightIcon className='h-6 w-6' />
           </button>
         </div>
       )}
