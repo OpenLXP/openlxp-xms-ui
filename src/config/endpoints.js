@@ -2,7 +2,7 @@ export const host = process.env.REACT_APP_XMS_BACKEND
 const api = 'api/';
 
 //catalogs
-export const catalogs_url = `${host}${api}catalogs`;
+export const catalogs_url = `${host}${api}catalogs/`;
 
 export const catalog_courses_url = `${host}${api}catalogs/`
 
