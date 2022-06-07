@@ -10,7 +10,6 @@ const CatalogsList = ({catalogs}) => {
   useEffect(() => {
     axiosInstance.get(configUrl)
       .then((response) => {
-        console.log(response);
         setConfig({
           config: response.data,
         });
@@ -19,14 +18,10 @@ const CatalogsList = ({catalogs}) => {
         console.log(error);
       });
   }, []);
-  console.log(catalogs);
-
 
   const content = catalogs?.map((catalog) => {
-    console.log(config?.config?.find(data => data.name === catalog));
     let configData = config?.config?.find(data => data.name === catalog);
     if(configData){
-      console.log("here");
       return <CatalogCard title={catalog} img={`${host}${configData.image}`} key={catalog} />;
     }
     return <CatalogCard title={catalog} img={icon} key={catalog} />;
