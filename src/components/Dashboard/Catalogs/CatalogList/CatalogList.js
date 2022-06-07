@@ -27,7 +27,7 @@ const CatalogsList = ({catalogs}) => {
     let configData = config?.config?.find(data => data.name === catalog);
     if(configData){
       console.log("here");
-      return <CatalogCard title={catalog} img={`${host}${configData.image.substring(1, configData.image.length)}`} key={catalog} />;
+      return <CatalogCard title={catalog} img={`${host}${configData.image}`} key={catalog} />;
     }
     return <CatalogCard title={catalog} img={icon} key={catalog} />;
   });
