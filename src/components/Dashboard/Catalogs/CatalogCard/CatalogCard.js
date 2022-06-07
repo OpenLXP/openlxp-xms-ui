@@ -15,6 +15,7 @@ const CatalogCard = (props) => {
           src={img}
           alt="catalog image"
           className="object-contain rounded-md"
+          width={100}
         />
         <div className="font-sans font-thin self-center text-2xl">{title}</div>
       </div>

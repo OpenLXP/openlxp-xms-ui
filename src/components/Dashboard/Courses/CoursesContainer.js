@@ -16,7 +16,7 @@ const Courses = (props) => {
   // Default state of the course data.
   const [courseData, setCourseData] = useState({
     courses: null,
-    isLoading: false,
+    isLoading: true,
     error: null,
   });
 
@@ -82,7 +82,7 @@ const Courses = (props) => {
       return <div>Loading...</div>;
     } else if (courseData.courses && !courseData.isLoading) {
       return <CourseList data={coursesToShow} />;
-    } else {
+    } else if (courseData.error){
       return <div>Error loading courses. Please contact an administrator.</div>;
     }
   },[coursesToShow]);
