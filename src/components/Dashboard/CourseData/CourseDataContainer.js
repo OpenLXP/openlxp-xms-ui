@@ -192,7 +192,7 @@ export default function CourseDataContainerV2({}) {
             path.pop();
             return groupArea;
           }
-          else if( typeof data[key] === "object" && data[key] === null ){
+          else if( key === "Supplemental_Ledger" && data[key] === null){
             const groupArea = (
               <div className={"ml-4 mt-2 mb-8"} key={path}>
                 <div className={"font-bold text-lg select-none"}>
