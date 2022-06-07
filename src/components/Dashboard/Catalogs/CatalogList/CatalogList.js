@@ -11,7 +11,7 @@ const CatalogsList = ({catalogs}) => {
     <div>
       <h1 className="font-sans text-2xl py-8">Course Catalogs</h1>
       <div
-        className="flex flex-wrap justify-between"
+        className="flex flex-wrap justify-left gap-8"
         data-testid="catalog-list">
         {content}
       </div>
