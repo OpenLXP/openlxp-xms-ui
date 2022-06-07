@@ -3,11 +3,12 @@ import axios from "axios";
 
 import CatalogList from "./CatalogList/CatalogList";
 import { catalogs_url } from "../../../config/endpoints";
+import { catchClause } from "@babel/types";
 
 const Catalogs = (props) => {
   const [catalogs, setCatalogs] = useState({
     providers: null,
-    isLoading: false,
+    isLoading: true,
     error: null,
   });
 
@@ -54,7 +55,7 @@ const Catalogs = (props) => {
     content = <CatalogList catalogs={catalogs.providers} />;
   }
   // Show the error message if there is an error
-  else {
+  else if (catalogs.error){
     content = (
       <div>Error loading catalogs. Please contact an administrator</div>
     );
