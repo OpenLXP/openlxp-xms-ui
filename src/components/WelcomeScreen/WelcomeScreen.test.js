@@ -23,8 +23,7 @@ describe("WelcomeScreen", () => {
     act(() => {
       render(<WelcomeScreen />, container);
     });
-    screen.getByText("Welcome!");
-    screen.getByText("DOD - Experience Management Service");
-    screen.getByText(/Lorem ipsum*?/);
+    screen.getByText("About Experience Management Service");
+    screen.getByText(/The Experience Management Service is the human-facing application*?/);
   });
 });

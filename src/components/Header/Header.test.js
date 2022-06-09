@@ -101,6 +101,6 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/dashboard");
+    expect(testLocation.pathname).toBe("/login");
   });
 });
