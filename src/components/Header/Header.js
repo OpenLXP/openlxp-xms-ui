@@ -19,6 +19,11 @@ const Header = () => {
       route: "/dashboard",
       testID: "catalog-btn"
     },
+    {
+      name: "Help", 
+      route: "/help",
+      testID: "help-btn"
+    }
   ];
 
   // to be replaced from the admin console
