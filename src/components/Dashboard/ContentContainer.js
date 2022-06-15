@@ -27,7 +27,7 @@ const ContentContainer = (props) => {
 
   return (
     <main className="flex-1 relative overflow-y-auto focus:outline-none">
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 md:px-8">
+      <div className="w-10/12 mx-auto py-6 px-4 sm:px-6 md:px-8">
         {/* Replace with your content */}
         <Switch>
           {pathToComponents.map((route, index) => (
