@@ -114,7 +114,7 @@ export default function CourseDataContainerV2({}) {
       <div
         title={title}
         className={
-          "w-full flex flex-row my-2 py-2 px-2 space-x-1 justify-start border-b "
+          "w-full flex flex-row my-2 py-2 px-2 space-x-1 justify-start "
         }
       >
         <div className={"text-xl font-bold w-full"}>{title}</div>
@@ -125,47 +125,50 @@ export default function CourseDataContainerV2({}) {
         >
           {course.data.record_status}
         </div>
+
+        <div className={"flex flex-row-reverse sticky top-0 pt-4 px-2"}>
+          {isEditing && (
+            <>
+              <div
+                className="mx-1 px-2 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
+                onClick={() => {
+                  getCourseData();
+                  setEditing(false);
+                }}
+              >
+                Cancel
+              </div>
+              <div
+                className="mx-1 px-2 rounded-md bg-green-200 text-green-800 cursor-pointer"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                Update
+              </div>
+            </>
+          )}
+          {!isEditing && (
+            <div
+              className="px-2 rounded-md bg-blue-light bg-opacity-20 text-blue-dark cursor-pointer h-6"
+              onClick={(event) => {
+                setEditing(true);
+              }}
+            >
+              Edit
+            </div>
+          )}
+        </div>
+
       </div>
     );
   }
   // editing rows
-  function editControls() {
-    return (
-      <div className={"flex flex-row-reverse pt-4 px-2"}>
-        {isEditing && (
-          <>
-            <div
-              className="mx-1 px-2 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
-              onClick={() => {
-                getCourseData();
-                setEditing(false);
-              }}
-            >
-              Cancel
-            </div>
-            <div
-              className="mx-1 px-2 rounded-md bg-green-200 text-green-800 cursor-pointer"
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              Update
-            </div>
-          </>
-        )}
-        {!isEditing && (
-          <div
-            className="px-2 rounded-md bg-blue-light bg-opacity-20 text-blue-dark cursor-pointer"
-            onClick={(event) => {
-              setEditing(true);
-            }}
-          >
-            Edit
-          </div>
-        )}
-      </div>
-    );
-  }
+  // function editControls() {
+  //   return (
+      
+  //   );
+  // }
   // creates the components for rendering
   function dataFields(data, pathToField = []) {
     let path = [...pathToField];
@@ -354,8 +357,11 @@ export default function CourseDataContainerV2({}) {
     <div className="bg-white shadow overflow-hidden rounded-md pb-8 px-4">
       {course.isLoading && "Loading ..."}
       {course?.error && "Error"}
-      {course?.data && !course?.error && !course.isLoading && courseHeader()}
-      {course?.data && !course?.error && !course.isLoading && editControls()}
+      <div className="flex flex-row w-8/12 fixed top-28 mt-14 mx-4 border-b bg-white">
+        {course?.data && !course?.error && !course.isLoading && courseHeader()}
+        {/* {course?.data && !course?.error && !course.isLoading && editControls()} */}
+      </div> 
+      <div className="h-20"></div>
       {course?.data &&
         !course?.error &&
         !course.isLoading &&
