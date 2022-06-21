@@ -11,7 +11,6 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/solid';
 
-
 const Courses = (props) => {
   // Default state of the course data.
   const [courseData, setCourseData] = useState({
@@ -92,7 +91,7 @@ const Courses = (props) => {
       <h2 className="text-2xl my-8">Course List</h2>
       {!courseData.error && (
         <div className="flex flex-row">
-          <div className={"rounded-md shadow w-1/2 my-5 ml-0.5"}>
+          <div className={"rounded-md shadow w-full my-5 ml-0.5"}>
             <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
               <input
                 type={"text"}
@@ -106,17 +105,19 @@ const Courses = (props) => {
               </div>
             </div>
           </div>
+          
+          {/* Pagination */}
           <button
             onClick={() => setPage(1)}
             title='First'
-            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 ml-4 mr-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white px-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 ml-4 mr-2 mt-6 h-10 text-blue rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light hover:text-white px-2 py-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
             disabled={page === 1 ? true : false}
           >
             <ChevronDoubleLeftIcon className='h-6 w-6' />
           </button>
           <button
             onClick={() => setPage(page - 1)}
-            className="flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-2 pr-4 py-2 mt-6 h-10 w-30 align-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300 disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit"
+            className="flex justify-center items-center gap-2 text-blue hover:text-white rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light pl-2 pr-4 py-2 mt-6 h-10 w-30 align-center transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit"
             disabled={page === 1 ? true : false}
           >
             <ChevronLeftIcon className='h-6 w-6' />
@@ -130,13 +131,13 @@ const Courses = (props) => {
               page === page
                 ? 'bg-blue-400 text-white'
                 : 'bg-blue-50 text-blue-400'
-            } flex justify-center items-center gap-2 h-10 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white px-2 py-2 mt-6 ml-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+            } flex justify-center items-center gap-2 h-10 rounded-md hover:shadow-md bg-blue hover:bg-blue-light hover:text-white px-2 py-2 mt-6 ml-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
           >
             {page}
           </button>
           <button
             onClick={() => setPage(page + 1)}
-            className="disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white pl-4 pr-2 py-2 m-2 mt-6 h-10 w-30 align-items-center transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300"
+            className="disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 text-blue rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light hover:text-white pl-4 pr-2 py-2 m-2 mt-6 h-10 w-30 align-items-center transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue"
             disabled={totalPages <= page ? true : false}
           >
             Next
@@ -146,7 +147,7 @@ const Courses = (props) => {
             title='Last'
             onClick={() => setPage(totalPages)}
             disabled={totalPages <= page ? true : false}
-            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 mt-6 h-10 text-blue-400 rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-400 hover:text-white p-2 py-2 transform transition-all duration-150 ease-in-out border-blue-300 border-2 outline-none focus:ring-2 ring-blue-300`}
+            className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 mt-6 h-10 text-blue rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light hover:text-white p-2 py-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
           >
             <ChevronDoubleRightIcon className='h-6 w-6' />
           </button>
