@@ -48,12 +48,12 @@ const Header = () => {
           <div className="flex flex-row justify-end">
             {!user ? (
               <div className="flex flex-row">
-                <div className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
+                <div className="hover:bg-blue-light rounded border md:text-lg m-2 p-2">
                   <NavLink to={"/login"} className="hover:bg-blue-light p-0 mt-2">
                     Sign In
                   </NavLink>
                 </div>
-                <div className=" hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2">
+                <div className=" hover:bg-blue-light rounded border md:text-lg m-2 p-2">
                   <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
                     Register
                   </NavLink>
@@ -64,7 +64,7 @@ const Header = () => {
                 <span className="px-2 text-white">
                   {user?.user?.first_name}&nbsp;{user?.user?.last_name}
                 </span>
-                <button className="hover:bg-blue-light rounded-t-lg md:text-lg mt-2 p-2 mx-2" 
+                <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2" 
                 onClick={()=>{logout()}}>Logout </button>
               </div>
             )}
