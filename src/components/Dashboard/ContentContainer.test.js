@@ -3,7 +3,7 @@ import axios from "axios";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route, NavLink } from "react-router-dom";
 import { axiosInstance } from "../../config/axiosInstance";
-import mockAxios from 'jest-mock-axios';
+// import mockAxios from 'jest-mock-axios';
 
 
 import ContentContainer from "./ContentContainer";
