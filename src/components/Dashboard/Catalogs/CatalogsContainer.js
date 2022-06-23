@@ -34,7 +34,6 @@ const Catalogs = (props) => {
 
       // If there is an error.
       .catch((err) => {
-        console.log(err);
         setCatalogs({
           providers: null,
           isLoading: false,
