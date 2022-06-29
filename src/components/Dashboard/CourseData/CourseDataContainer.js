@@ -7,7 +7,7 @@ import { axiosInstance } from "../../../config/axiosInstance";
 import { TrashIcon } from '@heroicons/react/outline';
 
 
-export default function CourseDataContainerV2({}) {
+export default function CourseDataContainerV2() {
   const { catalog, id } = useParams();
 
   // the state manager of the data
@@ -29,7 +29,7 @@ export default function CourseDataContainerV2({}) {
   const [isEditing, setEditing] = useState(false);
 
   // manages updating the value of the object
-  function handleUpdateData(arr = [], value) {
+  function handleUpdateData(value, arr = []) {
     let newData = updateDeeplyNestedJson(course.data.metadata, arr, value);
     setCourse({ ...course, data: { ...course.data, metadata: newData } });
   }

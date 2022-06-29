@@ -32,26 +32,12 @@ const Courses = (props) => {
   const location = useLocation();
   const catalogTitle = location.state;
 
-  // helper method for comparing length
-  const isTooLong = (length, data) => {
-    return length <= data?.length;
-  };
-
-  // helper method for matching strings
-  const isMatch = (query, str) => {
-    return str.indexOf(query) !== -1;
-  };
-
   const sortCourses = (event) => {
     let query = event.target.value;
     if(event.key === 'Enter'){
       setSearchQuery(query);
     }
   };
-
-  // useEffect(() => {
-  //   console.log(coursesToShow)
-  // }, [coursesToShow]);
 
   // Building the api call based on the catalog clicked
   const catalog_courses_api_url = catalog_courses_url + `${catalogTitle}` + "?page=" + page + "&search=" + searchQuery ;

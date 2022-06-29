@@ -7,7 +7,7 @@ import Header from "../components/Header/Header";
 
 
 const Dashboard = (props) => {
-  const navigation = [{ title: "Catalogs", path: "/dashboard" }];
+  // const navigation = [{ title: "Catalogs", path: "/dashboard" }];
 
   return (
     <>
