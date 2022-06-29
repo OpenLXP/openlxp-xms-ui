@@ -1,5 +1,4 @@
 import {
-  Switch,
   Route,
   BrowserRouter as Router,
   useLocation,

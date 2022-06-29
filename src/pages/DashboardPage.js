@@ -1,8 +1,6 @@
-import { NavLink, Switch, Route } from "react-router-dom";
 import ContentContainer from "../components/Dashboard/ContentContainer";
-import DashboardHeader from "../components/Dashboard/Header/DashboardHeaderIcon";
-import SidebarNav from "../components/Dashboard/SidebarNav";
-import Footer from "../components/Footer/Footer";
+// import DashboardHeader from "../components/Dashboard/Header/DashboardHeaderIcon";
+// import SidebarNav from "../components/Dashboard/SidebarNav";
 import Header from "../components/Header/Header";
 
 
