@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
     axiosInstance
       .post(`${host}/api/auth/logout`)
       .then((res) => removeLocal())
-      .catch((err))
+      .catch()
     removeLocal();
   };
 
