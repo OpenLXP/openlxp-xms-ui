@@ -11,7 +11,7 @@ const Help = () => {
     return (
       <>
         <main className="font-sans">
-          <h3 className="text-3xl mb-5">{help.title}</h3>
+          <h3 className="text-3xl font-semibold mb-5 pb-4 border-b-2">{help.title}</h3>
           {help.message.map((message, index) => {
             return (
               <div className="mb-5" key={index}>
