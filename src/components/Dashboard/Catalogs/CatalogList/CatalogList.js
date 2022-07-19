@@ -1,8 +1,9 @@
 import CatalogCard from "../CatalogCard/CatalogCard";
-import icon from "../../../../images/placeholder.jpg";
+import icon from "../../../../images/catalog.png";
 import { configUrl, host } from "../../../../config/endpoints";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../../../../config/axiosInstance";
+import Footer from "../../../Footer/Footer";
 
 const CatalogsList = ({catalogs}) => {
 
@@ -29,11 +30,14 @@ const CatalogsList = ({catalogs}) => {
 
   return (
     <div>
-      <h1 className="font-sans text-2xl py-8">Course Catalogs</h1>
+      <h1 className="font-sans text-3xl font-semibold mb-5 pb-4 pt-8 border-b-2">Course Catalogs</h1>
       <div
         className="flex flex-wrap justify-left gap-8"
         data-testid="catalog-list">
         {content}
+      </div>
+      <div className='bottom-0'>
+        <Footer/>
       </div>
     </div>
   );
