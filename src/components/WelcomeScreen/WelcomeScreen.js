@@ -1,4 +1,8 @@
+import { useHistory } from "react-router-dom";
+
 const WelcomeScreen = () => {
+  const history = useHistory();
+
   // custom text from the admin panel
   let welcome = {
     // title: "Welcome!",
@@ -13,7 +17,7 @@ const WelcomeScreen = () => {
     <>
       <main className="font-sans">
         {/* <h1 className="text-5xl my-8">{welcome.title}</h1> */}
-        <h3 className="text-3xl mb-5">{welcome.subtitle}</h3>
+        <h3 className="text-3xl font-semibold mb-5 pb-4 border-b-2">{welcome.subtitle}</h3>
         {welcome.message.map((message, index) => {
           return (
             <div className="mb-5" key={index}>
@@ -22,6 +26,12 @@ const WelcomeScreen = () => {
           );
         })}
 
+        <button
+          id={'create-account-button'}
+          className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer transition-all duration-150 ease-in-out'
+          onClick={() => history.push("/register")}>
+          Click Here to Get Started!
+        </button>
       </main>
     </>
   );
