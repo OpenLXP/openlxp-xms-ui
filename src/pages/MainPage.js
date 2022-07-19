@@ -5,15 +5,17 @@ import Footer from "../components/Footer/Footer";
 import Login from "./Login";
 import Register from "./Register";
 import Help from "./Help";
+import About from "./About";
 
 const MainPage = () => {
   return (
     <div className="relative flex flex-col min-h-screen">
       <Route path="/" component={Header} />
       <div className="w-10/12 p-2 mx-auto">
-        <div className="bg-gray-100 p-8 my-10 rounded-md">
+        <div className="p-8 my-10 rounded-md">
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
+            <Route path="/about" exact component={About} />
             <Route path="/help" exact component={Help}/>
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
