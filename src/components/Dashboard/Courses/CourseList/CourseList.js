@@ -1,14 +1,19 @@
 import CourseListHeader from "../CourseHeader/CourseListHeader";
 import CourseRow from "../CourseRow/CourseRow";
 import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const CourseList = (props) => {
+  const history = useHistory();
+
   const courses = props.data?.experiences.results || [];
   // Creates the individual rows of the table.
   const rows = courses?.map((data, index) => {
     if (Object.keys(data).length > 0)
       return  (
-      <tr key={data.metadata_key_hash}>
+      <tr key={data.metadata_key_hash}
+       className='group cursor-pointer hover:shadow-lg pr-2 pl-1 py-1 rounded-md outline-none' 
+       onClick={() => history.push(`/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`)} >
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
              {data.metadata?.Course?.CourseTitle}
