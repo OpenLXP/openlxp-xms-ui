@@ -126,7 +126,7 @@ export default function CourseDataContainerV2({}) {
           {course.data.record_status}
         </div>
 
-        <div className={"flex flex-row-reverse sticky top-0 pt-4 px-2"}>
+        <div className={"flex flex-row-reverse align-top top-0 pt-1 px-2"}>
           {isEditing && (
             <>
               <div
@@ -176,7 +176,7 @@ export default function CourseDataContainerV2({}) {
     if (!data) return null;
 
     return (
-      <div className={"px-2"}>
+      <div className={"px-2 pt-2"}>
         {Object.keys(data).map((key) => {
           // if the data[key] is an obj go deeper
           if (typeof data[key] === "object" && data[key] !== null) {
@@ -354,13 +354,13 @@ export default function CourseDataContainerV2({}) {
   }, [id]);
 
   return (
-    <div className="bg-white shadow overflow-hidden rounded-md pb-8 px-4">
+    <div className="bg-white shadow overflow-hidden rounded-md pb-8 mb-6">
       {course.isLoading && "Loading ..."}
       {course?.error && "Error"}
-      <div className="flex flex-row w-8/12 fixed top-28 mt-14 mx-4 border-b bg-white">
+      <header className="flex flex-row w-9/12 fixed pt-4 mx-4 px-4 sm:px-6 md:px-8 lg:px-10 border-b bg-white">
         {course?.data && !course?.error && !course.isLoading && courseHeader()}
         {/* {course?.data && !course?.error && !course.isLoading && editControls()} */}
-      </div> 
+      </header> 
       <div className="h-20"></div>
       {course?.data &&
         !course?.error &&
