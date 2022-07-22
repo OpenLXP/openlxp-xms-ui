@@ -35,7 +35,6 @@ export function AuthProvider({ children }) {
             setError(null);
         })
         .catch (err => {
-            console.error(err );
             removeLocal();  
             setError(err)
         })
@@ -46,9 +45,7 @@ export function AuthProvider({ children }) {
     axiosInstance
       .post(`${host}/api/auth/logout`)
       .then((res) => removeLocal())
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch()
     removeLocal();
   };
 

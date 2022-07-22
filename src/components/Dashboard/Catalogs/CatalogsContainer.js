@@ -3,7 +3,6 @@ import axios from "axios";
 
 import CatalogList from "./CatalogList/CatalogList";
 import { catalogs_url } from "../../../config/endpoints";
-import { catchClause } from "@babel/types";
 
 const Catalogs = (props) => {
   const [catalogs, setCatalogs] = useState({
@@ -34,7 +33,6 @@ const Catalogs = (props) => {
 
       // If there is an error.
       .catch((err) => {
-        console.log(err);
         setCatalogs({
           providers: null,
           isLoading: false,
