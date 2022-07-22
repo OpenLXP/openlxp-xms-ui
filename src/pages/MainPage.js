@@ -4,6 +4,8 @@ import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
 import Login from "./Login";
 import Register from "./Register";
+import Help from "./Help";
+
 const MainPage = () => {
   return (
     <div className="relative flex flex-col min-h-screen">
@@ -12,6 +14,7 @@ const MainPage = () => {
         <div className="bg-gray-100 p-8 my-10 rounded-md">
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
+            <Route path="/help" exact component={Help}/>
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
           </Switch>

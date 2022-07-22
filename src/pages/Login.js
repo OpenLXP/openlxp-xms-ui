@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import logo from "../resources/internal/dodLogo.png"
 
 
 export default function Login(){
@@ -24,9 +25,21 @@ export default function Login(){
         })
     }
     return(
-        <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center m-10'>
-            <h1 className="my-2 text-2xl font-bold"> Login Page </h1>
-            <form className="p-2 align-center"
+        <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center mb-10'>
+            <img src={logo} alt="Dod Logo" width={150} className='mx-auto' />
+            <h1 className="my-2 mx-auto text-2xl font-bold"> Sign in to your account </h1>
+
+            <span className="mx-auto">
+                or &nbsp;
+                <button
+                    id={'create-account-button'}
+                    className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer transition-all duration-150 ease-in-out'
+                    onClick={() => history.push("/register")}>
+                    Create an Account
+                </button>
+            </span>
+            
+            <form className="p-2 align-center mx-auto"
                 onSubmit={(event)=>{
                     event.preventDefault();
                     login(credenials);
