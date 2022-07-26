@@ -50,9 +50,12 @@ export default function Login(){
                 <input 
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all duration-200'
                     type="password" name="password" placeholder="Password"/>
+                
+                <div className='flex mx-auto content-center'>
                 <button
                     className='mt-4 mx-auto max-w-max items-center inline-flex gap-2 bg-blue-200 rounded-md hover:shadow-md hover:bg-blue hover:text-white px-4 py-2 transform transition-all duration-75 ease-in-out border-bg-blue border-2 outline-none focus:ring-2 ring-blue-400'
                     type="submit" >Login</button>
+                </div>
             </form>
         </div>
 

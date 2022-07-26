@@ -74,7 +74,7 @@ const Courses = (props) => {
 
   return (
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
-      <h2 className="text-2xl my-8">Course List</h2>
+      <h2 className="text-2xl font-semibold mt-8">Course List</h2>
       {!courseData.error && (
         <div className="flex flex-row">
           <div className={"rounded-md shadow w-full my-5 ml-0.5"}>

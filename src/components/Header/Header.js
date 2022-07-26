@@ -20,6 +20,11 @@ const Header = () => {
       testID: "catalog-btn"
     },
     {
+      name: "About ECC", 
+      route: "/about",
+      testID: "about-btn"
+    },
+    {
       name: "Help", 
       route: "/help",
       testID: "help-btn"
@@ -37,14 +42,17 @@ const Header = () => {
 
   return (
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
-      <div className="w-10/12 mx-auto h-auto mt-2 pt-2">
-        <HeaderLogo
+      <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
+        {/* <HeaderLogo
           title={logo.title}
           subtitle={logo.subtitle}
           img={logo.img}
-        />
-        <div className=" border-t flex flex-row justify-between mt-2 mx-2">
-          <NavBar navButtons={navButtons} />
+        /> */}
+        <div className="flex flex-row items-center">
+        <img src={icon} alt="DOD Logo" className={"pl-3"} width={60} height={60}/>
+        <NavBar navButtons={navButtons} />
+        </div>
+        {/* <div className="flex flex-row justify-between mt-2"> */}
           <div className="flex flex-row justify-end">
             {!user ? (
               <div className="flex flex-row">
@@ -55,7 +63,7 @@ const Header = () => {
                 </div>
                 <div className=" hover:bg-blue-light rounded border md:text-lg m-2 p-2">
                   <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
-                    Register
+                    Sign Up
                   </NavLink>
                 </div>
               </div>
@@ -69,7 +77,7 @@ const Header = () => {
               </div>
             )}
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </header>
   );
