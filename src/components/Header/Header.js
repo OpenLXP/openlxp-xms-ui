@@ -63,7 +63,7 @@ const Header = () => {
                 </div>
                 <div className=" hover:bg-blue-light rounded border md:text-lg m-2 p-2">
                   <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
-                    Register
+                    Sign Up
                   </NavLink>
                 </div>
               </div>
