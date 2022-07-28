@@ -3,6 +3,7 @@ import CatalogsContainer from "./Catalogs/CatalogsContainer";
 import CoursesContainer from "./Courses/CoursesContainer";
 import CourseDataContainer from "./CourseData/CourseDataContainer";
 import Login from "../../pages/Login";
+import Footer from "../Footer/Footer";
 
 const ContentContainer = (props) => {
   // Routes must be added in reverse order
@@ -39,6 +40,9 @@ const ContentContainer = (props) => {
             />
           ))}
         </Switch>
+      </div>
+      <div className='bottom-0'>
+        <Footer/>
       </div>
     </main>
   );

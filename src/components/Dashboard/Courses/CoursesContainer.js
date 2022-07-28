@@ -139,7 +139,7 @@ const Courses = (props) => {
           </button>
         </div>
       )}
-      <div className="shadow overflow-hidden border-b rounded-lg">{table}
+      <div className="overflow-hidden rounded-lg">{table}
       </div>
     </div>
   );

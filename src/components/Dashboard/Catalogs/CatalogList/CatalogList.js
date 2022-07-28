@@ -3,7 +3,6 @@ import icon from "../../../../images/catalog.png";
 import { configUrl, host } from "../../../../config/endpoints";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../../../../config/axiosInstance";
-import Footer from "../../../Footer/Footer";
 
 const CatalogsList = ({catalogs}) => {
 
@@ -35,9 +34,6 @@ const CatalogsList = ({catalogs}) => {
         className="flex flex-wrap justify-left gap-8"
         data-testid="catalog-list">
         {content}
-      </div>
-      <div className='bottom-0'>
-        <Footer/>
       </div>
     </div>
   );
