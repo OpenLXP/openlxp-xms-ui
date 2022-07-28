@@ -29,7 +29,7 @@ export default function CourseDataContainerV2() {
   const [isEditing, setEditing] = useState(false);
 
   // manages updating the value of the object
-  function handleUpdateData(value, arr = []) {
+  function handleUpdateData(arr = [], value) {
     let newData = updateDeeplyNestedJson(course.data.metadata, arr, value);
     setCourse({ ...course, data: { ...course.data, metadata: newData } });
   }
