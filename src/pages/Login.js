@@ -6,8 +6,10 @@ import logo from "../resources/internal/dodLogo.png"
 
 export default function Login(){
     const {user, login} = useAuth();
-    const [credenials, setCredentials] = useState({username:"", password:""});
+    const [credentials, setCredentials] = useState({username:"", password:""});
     const history = useHistory();
+
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(()=>{
         console.log(user);
@@ -24,6 +26,20 @@ export default function Login(){
             }
         })
     }
+
+    const handleLogin = (event) => {
+        console.log(credentials.username);
+        event.preventDefault();
+        if (credentials.username === '' || credentials.password === '') {
+            setErrorMsg('All fields required');
+        }
+        else{
+            login(credentials);
+            setErrorMsg("Invalid credentials");
+        }        
+    };
+    console.log(errorMsg);
+
     return(
         <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center mb-10'>
             <img src={logo} alt="Dod Logo" width={150} className='mx-auto' />
@@ -40,10 +56,7 @@ export default function Login(){
             </span>
             
             <form className="p-2 align-center mx-auto"
-                onSubmit={(event)=>{
-                    event.preventDefault();
-                    login(credenials);
-                }} onChange={handleChange}>
+                onSubmit={handleLogin} onChange={handleChange}>
                 <input 
                     className='shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
                     type="text" name="username" placeholder="Email"/> 
@@ -51,10 +64,14 @@ export default function Login(){
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all duration-200'
                     type="password" name="password" placeholder="Password"/>
                 
-                <div className='flex mx-auto content-center'>
-                <button
-                    className='mt-4 mx-auto max-w-max items-center inline-flex gap-2 bg-blue-200 rounded-md hover:shadow-md hover:bg-blue hover:text-white px-4 py-2 transform transition-all duration-75 ease-in-out border-bg-blue border-2 outline-none focus:ring-2 ring-blue-400'
-                    type="submit" >Login</button>
+                
+                <div className='flex flex-col mx-auto content-center'>
+                    <div className="flex mt-2 content-center items-center justify-center text-red-600 ">
+                        <span>{errorMsg}</span>
+                    </div>
+                    <button
+                        className='mt-4 mx-auto max-w-max items-center inline-flex gap-2 bg-blue-200 rounded-md hover:shadow-md hover:bg-blue hover:text-white px-4 py-2 transform transition-all duration-75 ease-in-out border-bg-blue border-2 outline-none focus:ring-2 ring-blue-400'
+                        type="submit" >Login</button>
                 </div>
             </form>
         </div>

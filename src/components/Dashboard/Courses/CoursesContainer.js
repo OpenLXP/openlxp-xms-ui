@@ -72,14 +72,20 @@ const Courses = (props) => {
     }
   },[coursesToShow]);
 
+  function clearSearch(){
+    setSearchQuery("");
+    document.getElementById('search').value="";
+  }
+  
   return (
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl font-semibold mt-8">Course List</h2>
       {!courseData.error && (
         <div className="flex flex-row">
-          <div className={"rounded-md shadow w-full my-5 ml-0.5"}>
+          <div className={"rounded-md  w-full my-5 ml-0.5"}>
             <div className="flex flex-row bg-white justify-between pl-2 pr-3 py-2 focus-within:ring-blue-light focus-within:ring-2 rounded-md">
               <input
+                id="search"
                 type={"text"}
                 className={"w-full bg-transparent px-2 py-1 outline-none"}
                 placeholder={"Search"}
@@ -90,8 +96,16 @@ const Courses = (props) => {
                 <ion-icon name="search-outline" />
               </div>
             </div>
+            <div className="flex justify-end">
+              <button
+                onClick={() => clearSearch()}
+                className={`text-blue justify-end`}
+                disabled={searchQuery===""}
+              > Clear Search
+              </button>
+            </div>
           </div>
-          
+                      
           {/* Pagination */}
           <button
             onClick={() => setPage(1)}
