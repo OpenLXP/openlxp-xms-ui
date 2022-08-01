@@ -4,10 +4,15 @@ import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 
 import CourseDataContainer from "./CourseDataContainer";
+import MockAxios from 'jest-mock-axios'
+
+MockAxios.create.mockImplementation(() => 'try');
 
 // mocking jest
+jest.unmock("./CourseDataContainer")
 // jest.mock("axios");
-// let axiosSpy = jest.spyOn(axios, "post");
+let axiosSpy = jest.spyOn(axios, "post");
+const axiosInstance = require("../../../config/axiosInstance");
 
 // setup
 const testData = {
@@ -70,7 +75,7 @@ describe("CourseDataContainer", () => {
         container
       );
     });
-    // screen.getByText("CourseURL");
+    screen.getByText("CourseURL");
     // screen.getByText("CourseCode");
     // screen.getByText("CourseType");
     // screen.getByText("CourseTitle");
