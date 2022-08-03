@@ -4,15 +4,20 @@ import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 
 import CourseDataContainer from "./CourseDataContainer";
-import MockAxios from 'jest-mock-axios'
+import MockAxios from 'jest-mock-axios';
+import { useAuth } from "../../../context/authContext";
 
-MockAxios.create.mockImplementation(() => 'try');
+// MockAxios.create.mockImplementation(() => 'try');
 
 // mocking jest
-jest.unmock("./CourseDataContainer")
+// jest.unmock("./CourseDataContainer")
 // jest.mock("axios");
-let axiosSpy = jest.spyOn(axios, "post");
-const axiosInstance = require("../../../config/axiosInstance");
+
+
+// mocking the useAuth hook
+jest.mock('../../../context/authContext', () => ({
+  useAuth: jest.fn(),
+}));
 
 // setup
 const testData = {
@@ -48,6 +53,15 @@ const testData = {
 let container = null;
 
 beforeEach(() => {
+  useAuth.mockImplementation(() => ({
+    user: { 
+      user: {
+        id: '1',
+        first_name: 'Test',
+        last_name: 'User',
+        email: 'test@test.com',
+    }},
+  }));
   container = document.createElement("div");
   document.body.appendChild(container);
 });
@@ -64,6 +78,9 @@ describe("CourseDataContainer", () => {
       // axios.get.mockImplementationOnce(() =>
       //   Promise.resolve({ data: testData })
       // );
+
+      MockAxios.get.mockImplementationOnce(() => Promise.resolve({ data: testData }));
+
       render(
         <MemoryRouter
           initialEntries={[
