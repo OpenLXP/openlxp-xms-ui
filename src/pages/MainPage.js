@@ -4,7 +4,7 @@ import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
 import Login from "./Login";
 import Register from "./Register";
-import Help from "./Help";
+import Support from "./Support";
 import About from "./About";
 
 const MainPage = () => {
@@ -16,7 +16,7 @@ const MainPage = () => {
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
             <Route path="/about" exact component={About} />
-            <Route path="/help" exact component={Help}/>
+            <Route path="/support" exact component={Support}/>
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
           </Switch>
