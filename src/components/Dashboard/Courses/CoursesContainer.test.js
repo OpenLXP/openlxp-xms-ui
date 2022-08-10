@@ -31,13 +31,14 @@ afterEach(() => {
   // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
+  MockAxios.reset();
   container = null;
 });
 
 describe("CoursesContainer", () => {
   it("does render", async () => {
     await act(async () => {
-      MockAxios.get.mockImplementationOnce(() => Promise.resolve({ data: [] }));
+      MockAxios.get.mockImplementation(() => Promise.resolve({ data: {experiences: [{}]} }));
 
       render(
         <MemoryRouter>
@@ -50,26 +51,6 @@ describe("CoursesContainer", () => {
   });
 
   it("does render search box and pagination", async () => {
-    await act(async () => {
-      MockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: [] });
-      });
-
-      render(
-        <MemoryRouter>
-          <CoursesContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
-    screen.getByPlaceholderText("Search");
-    screen.getByText("Clear Search");
-    screen.getByText("Next");
-    screen.getByText("Previous");
-  });
-
-  it("dose render courses", async () => {
     const testData = {
       experiences: [
         {
@@ -102,45 +83,15 @@ describe("CoursesContainer", () => {
           record_status: "Active",
           updated_by: "Owner",
         },
-        {
-          unique_record_identifier: "UID123",
-          date_deleted: null,
-          date_inserted: "2021-07-20T19:34:31.567535Z",
-          date_transmitted: null,
-          metadata: {
-            Metadata_Ledger: {
-              Course: {
-                CourseURL: "URL",
-                CourseCode: "CourseCode2",
-                CourseType: "CourseType2",
-                CourseTitle: "CourseTitle2",
-                CourseProviderName: "Provider",
-                CourseShortDescription: "ShortDescription",
-                EstimatedCompletionTime: 5,
-              },
-            },
-            Supplemental_Ledger: {
-              Instance: 1733998,
-            },
-          },
-          metadata_hash: "12345",
-          metadata_key: "1234",
-          metadata_key_hash: "2234",
-          metadata_transmission_status: "Ready",
-          metadata_transmission_status_code: "",
-          provider_name: "JKO",
-          record_status: "Active",
-          updated_by: "Owner",
-        },
       ],
-    }; 
-    
+    };
+
     await act(async () => {
-      MockAxios.get.mockImplementationOnce(() => {
+      MockAxios.get.mockImplementation(() => {
         return Promise.resolve({ data: testData });
       });
-
-      render(
+      
+      await render(
         <MemoryRouter>
           <CoursesContainer />
         </MemoryRouter>,
@@ -148,7 +99,64 @@ describe("CoursesContainer", () => {
       );
     });
 
-    // screen.getByText("CourseTitle");
+    screen.getByPlaceholderText("Search");
+    screen.getByText("Clear Search");
+    screen.getByText("Next");
+    screen.getByText("Previous");
+  });
+
+  it("dose render courses", async () => {
+    const testData = {
+          experiences: [
+            {
+              unique_record_identifier: "UID123",
+              date_deleted: null,
+              date_inserted: "2021-07-20T19:34:31.567535Z",
+              date_transmitted: null,
+              metadata: {
+                Metadata_Ledger: {
+                  Course: {
+                    CourseURL: "URL",
+                    CourseCode: "CourseCode",
+                    CourseType: "CourseType",
+                    CourseTitle: "CourseTitle",
+                    CourseProviderName: "Provider",
+                    CourseShortDescription: "ShortDescription",
+                    EstimatedCompletionTime: 5,
+                  },
+                },
+                Supplemental_Ledger: {
+                  Instance: 1733998,
+                },
+              },
+              metadata_hash: "12345",
+              metadata_key: "1234",
+              metadata_key_hash: "2234",
+              metadata_transmission_status: "Ready",
+              metadata_transmission_status_code: "",
+              provider_name: "JKO",
+              record_status: "Active",
+              updated_by: "Owner",
+            },
+          ],
+        };
+
+
+    
+    await act(async () => {
+      MockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: testData });
+      });
+
+      await render(
+        <MemoryRouter>
+          <CoursesContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    screen.getByTestId("course-table");
   });
 
   // it("does sort by filter elements", async () => {
