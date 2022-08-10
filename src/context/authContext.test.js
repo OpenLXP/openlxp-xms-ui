@@ -1,10 +1,13 @@
 import { AuthContext, AuthProvider, useAuth } from './authContext';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import MockAxios from 'jest-mock-axios';
 
 jest.unmock('./authContext');
 
 // mock axios
-jest.mock('axios');
+// jest.mock('axios');
+MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
 
 describe('Auth Context', () => {
   it('does render', () => {
@@ -38,6 +41,54 @@ describe('Auth Context', () => {
         <AuthContext>
           {(context) => {
             expect(context).toBeTruthy();
+            return <div>{JSON.stringify(context.error)}</div>;
+          }}
+        </AuthContext>
+      </AuthProvider>
+    );
+    expect(getByText('null')).toBeInTheDocument();
+  });
+
+  it('does login', () => {
+    MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext>
+          {(context) => {
+            expect(context).toBeTruthy();
+            context.login('hi');
+            return <div>{JSON.stringify(context.error)}</div>;
+          }}
+        </AuthContext>
+      </AuthProvider>
+    );
+    expect(getByText('null')).toBeInTheDocument();
+  });
+
+  it('does register', () => {
+    MockAxios.post.mockImplementation(() => Promise.resolve({}));
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext>
+          {(context) => {
+            expect(context).toBeTruthy();
+            context.register('hi');
+            return <div>{JSON.stringify(context.error)}</div>;
+          }}
+        </AuthContext>
+      </AuthProvider>
+    );
+    expect(getByText('null')).toBeInTheDocument();
+  });
+
+  it('does logout', () => {
+    MockAxios.post.mockImplementation(() => Promise.resolve({}));
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext>
+          {(context) => {
+            expect(context).toBeTruthy();
+            context.logout();
             return <div>{JSON.stringify(context.error)}</div>;
           }}
         </AuthContext>
