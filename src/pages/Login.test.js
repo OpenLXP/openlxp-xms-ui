@@ -108,6 +108,6 @@ describe('Login Page', () => {
           const button = screen.getByText(/Create an Account/i);
           fireEvent.click(button);
         });
-      });
+    });
   });
 });
