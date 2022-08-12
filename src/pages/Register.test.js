@@ -4,7 +4,8 @@ import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { useContext, createContext } from "react";
-
+import { MemoryRouter, Route } from "react-router-dom";
+import { useAuth } from '../context/authContext';
 
 let container = null;
 
@@ -32,7 +33,8 @@ let container = null;
     return render(
         <AuthContextWrapper value={{user, register}}>
             <Register />
-        </AuthContextWrapper>
+        </AuthContextWrapper>,
+        container
     );
   };
 
@@ -102,13 +104,59 @@ describe('Register Page', () => {
         fireEvent.click(button);
       });
     });
+  });
 
-    // it('should navigate user to login page ', () => {
-    //     renderer();
-    //     act(() => {  
-    //         const button = screen.getByText(/Sign in to your account/i);
-    //         fireEvent.click(button);
-    //     });
-    // });
+  describe('Navigate to other pages', () => {
+    it('should click login button and navigate to login page', () => {
+      let testHistory, testLocation;
+      act(() => {
+        render(
+          <MemoryRouter initialEntries={["/register"]}>
+            <Register />
+            <Route
+              path="/login"
+              render={({ history, location }) => {
+                testHistory = history;
+                testLocation = location;
+              }}
+            />
+          </MemoryRouter>,
+          container
+        );
+        const button = screen.getByText(/Sign in to your Account/i);
+        fireEvent(button, new MouseEvent("click", { bubbles: true }));
+      });
+      expect(testLocation.pathname).toBe("/login");
+    });
+
+    it('if user, navigate to dashboard', () => {
+      let useAuth = jest.fn();
+      useAuth.mockImplementation(() => ({
+        user: { 
+          user: {
+            id: '1',
+            first_name: 'Test',
+            last_name: 'User',
+            email: 'test@test.com',
+        }},
+      }));
+      let testHistory, testLocation;
+      act(() => {
+        render(
+          <MemoryRouter initialEntries={["/register"]}>
+            <Register />
+            <Route
+              path="/dashboard"
+              render={({ history, location }) => {
+                testHistory = history;
+                testLocation = location;
+              }}
+            />
+          </MemoryRouter>,
+          container
+        );
+        
+      });
+    });
   });
 });

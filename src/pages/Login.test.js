@@ -3,6 +3,8 @@ import Login from './Login';
 import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
+import { MemoryRouter, Route } from "react-router-dom";
+
 
 let container = null;
 
@@ -102,12 +104,30 @@ describe('Login Page', () => {
       });
     //   expect(mockAxios.post).toHaveBeenCalled();
     });
+  });
 
+  describe('Login Page', () => {
     it('should click register button', () => {
-        act(() => {  
-          const button = screen.getByText(/Create an Account/i);
-          fireEvent.click(button);
-        });
+
+      let testHistory, testLocation;
+      act(() => {
+        render(
+          <MemoryRouter initialEntries={["/login"]}>
+            <Login />
+            <Route
+              path="/register"
+              render={({ history, location }) => {
+                testHistory = history;
+                testLocation = location;
+              }}
+            />
+          </MemoryRouter>
+        );
+        const button = screen.getByText(/Create an Account/i);
+        fireEvent(button, new MouseEvent("click", { bubbles: true }));
+      });
+      expect(testLocation.pathname).toBe("/register");
+
     });
   });
 });
