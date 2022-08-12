@@ -3,10 +3,12 @@ import Register from './Register';
 import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
+import { useContext, createContext } from "react";
+
 
 let container = null;
 
-beforeEach(() => {
+  beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
   });
@@ -16,12 +18,23 @@ beforeEach(() => {
     container.remove();
     container = null;
   });
+  
+  const AuthContext = createContext()
+  const AuthContextWrapper = ({children}) => {
+    const user = jest.fn()
+    const register = jest.fn()
+    return(<AuthContext.Provider value={{user, register}}>{children}</AuthContext.Provider>)
+  }
 
-const renderer = () => {
-  return render(
-    <Register />
-  );
-};
+  const user = jest.fn()
+  const register = jest.fn()
+  const renderer = () => {
+    return render(
+        <AuthContextWrapper value={{user, register}}>
+            <Register />
+        </AuthContextWrapper>
+    );
+  };
 
 describe('Register Page', () => {
 
