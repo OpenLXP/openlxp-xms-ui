@@ -27,7 +27,7 @@ jobs:
 
     - name: Run coverage
       run: |
-        npm install
+        yarn
         yarn test	--coverage
   build:
     name: Build Docker Image
