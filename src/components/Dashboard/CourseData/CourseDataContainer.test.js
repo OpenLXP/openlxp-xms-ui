@@ -119,34 +119,34 @@ describe("CourseDataContainer", () => {
     screen.getByPlaceholderText(testData.metadata.Supplemental_Ledger.Instance);
   });
 
-  // it("does show error message", async () => {
-  //   await act(async () => {
-  //     // mocking the calls for jest
-  //     mockAxios.get.mockImplementationOnce(() =>
-  //       Promise.resolve({ data: testData })
-  //     );
-  //     render(
-  //       <MemoryRouter
-  //         initialEntries={[
-  //           "/dashboard/JKO/course/000e893d-5741-4c07-8dd8-2e3d9fa4b862",
-  //         ]}
-  //       >
-  //         <CourseDataContainer />
-  //       </MemoryRouter>,
-  //       container
-  //     );
-  //   });
+  it("does show error message", async () => {
+    await act(async () => {
+      // mocking the calls for jest
+      mockAxios.get.mockImplementationOnce(() =>
+        Promise.resolve({ data: testData })
+      );
+      render(
+        <MemoryRouter
+          initialEntries={[
+            "/dashboard/JKO/course/000e893d-5741-4c07-8dd8-2e3d9fa4b862",
+          ]}
+        >
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
 
-  //   await act(async () => {
-  //     fireEvent.click(screen.getByText("Edit"));
-  //   });
-  //   await act(async () => {
-  //     mockAxios.patch.mockImplementationOnce(() => Promise.reject());
-  //     fireEvent.click(screen.getByText("Update"));
-  //   });
+    await act(async () => {
+      fireEvent.click(screen.getByText("Edit"));
+    });
+    await act(async () => {
+      mockAxios.post.mockImplementationOnce(() => Promise.reject());
+      fireEvent.click(screen.getByText("Update"));
+    });
 
-  //   screen.getByText(/Error/i);
-  // });
+    screen.getByText(/Error/i);
+  });
 
   it("does show edit button", async () => {
     await act(async () => {
