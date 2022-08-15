@@ -3,9 +3,7 @@ import Register from './Register';
 import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
-import { useContext, createContext } from "react";
 import { MemoryRouter, Route } from "react-router-dom";
-import { useAuth } from '../context/authContext';
 
 let container = null;
 
@@ -20,20 +18,11 @@ let container = null;
     container = null;
   });
   
-  const AuthContext = createContext()
-  const AuthContextWrapper = ({children}) => {
-    const user = jest.fn()
-    const register = jest.fn()
-    return(<AuthContext.Provider value={{user, register}}>{children}</AuthContext.Provider>)
-  }
 
-  const user = jest.fn()
-  const register = jest.fn()
+
   const renderer = () => {
     return render(
-        <AuthContextWrapper value={{user, register}}>
-            <Register />
-        </AuthContextWrapper>,
+        <Register />,
         container
     );
   };
@@ -99,24 +88,20 @@ describe('Register Page', () => {
         fireEvent.change(email, { target: { value: 'email@test.com' } });
         fireEvent.change(password, { target: { value: 'password' } });
         fireEvent.change(confirmPassword, { target: { value: 'password' } });
-
-        const button = screen.getByText(/Create Account/i);
-        // fireEvent.click(button);
       });
     });
   });
 
   describe('Navigate to other pages', () => {
     it('should click login button and navigate to login page', () => {
-      let testHistory, testLocation;
+      let testLocation;
       act(() => {
         render(
           <MemoryRouter initialEntries={["/register"]}>
             <Register />
             <Route
               path="/login"
-              render={({ history, location }) => {
-                testHistory = history;
+              render={({ location }) => {
                 testLocation = location;
               }}
             />
@@ -140,17 +125,13 @@ describe('Register Page', () => {
             email: 'test@test.com',
         }},
       }));
-      let testHistory, testLocation;
       act(() => {
         render(
           <MemoryRouter initialEntries={["/register"]}>
             <Register />
             <Route
               path="/dashboard"
-              render={({ history, location }) => {
-                testHistory = history;
-                testLocation = location;
-              }}
+              render={() => { }}
             />
           </MemoryRouter>,
           container

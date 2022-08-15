@@ -229,7 +229,6 @@ describe("CourseList", () => {
   });
 
   test("Click row of data", () => {
-    let testHistory, testLocation;
     act(() => {
       const data = {
         experiences: {
@@ -298,10 +297,7 @@ describe("CourseList", () => {
             <CourseList data={data} />
             <Route
               path="/dashboard/test/course/1234"
-              render={({ history, location }) => {
-                testHistory = history;
-                testLocation = location;
-              }}
+              render={() => { }}
             />
           </BrowserRouter>
         </MemoryRouter>,

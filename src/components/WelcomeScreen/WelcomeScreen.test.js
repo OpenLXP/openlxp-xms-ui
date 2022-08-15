@@ -32,15 +32,14 @@ describe("WelcomeScreen", () => {
 describe('Navigates to register page', () => {
   it('should click register button', () => {
 
-    let testHistory, testLocation;
+    let testLocation;
     act(() => {
       render(
         <MemoryRouter initialEntries={["/"]}>
           <WelcomeScreen />
           <Route
             path="/register"
-            render={({ history, location }) => {
-              testHistory = history;
+            render={({ location }) => {
               testLocation = location;
             }}
           />

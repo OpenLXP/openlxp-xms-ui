@@ -38,14 +38,9 @@ describe('Login Page', () => {
       fireEvent.change(password, { target: { value: 'password' } });
     });
 
-    const button = screen.getByText(/Login/i);
-    // act(() => {
-    //   fireEvent.click(button);
-    // });
     mockAxios.post.mockImplementationOnce(() =>
         Promise.resolve({ data: { user: {} } })
     );
-    // expect(mockAxios.post).toHaveBeenCalled();
   });
 });
 
@@ -102,22 +97,20 @@ describe('Login Page', () => {
 
         fireEvent.click(button);
       });
-    //   expect(mockAxios.post).toHaveBeenCalled();
     });
   });
 
   describe('Login Page', () => {
     it('should click register button', () => {
 
-      let testHistory, testLocation;
+      let testLocation;
       act(() => {
         render(
           <MemoryRouter initialEntries={["/login"]}>
             <Login />
             <Route
               path="/register"
-              render={({ history, location }) => {
-                testHistory = history;
+              render={({ location }) => {
                 testLocation = location;
               }}
             />

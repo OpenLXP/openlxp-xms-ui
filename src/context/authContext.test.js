@@ -1,5 +1,5 @@
-import { AuthContext, AuthProvider, useAuth } from './authContext';
-import { render, screen } from '@testing-library/react';
+import { AuthContext, AuthProvider } from './authContext';
+import { render } from '@testing-library/react';
 import MockAxios from 'jest-mock-axios';
 
 jest.unmock('./authContext');
