@@ -229,6 +229,30 @@ describe("CourseDataContainer", () => {
     screen.getByText("Add Supplemental Data");
   });
 
+  it("does remove values from Supplemental Ledger", async () => {
+    await act(async () => {
+      mockAxios.get.mockImplementationOnce(() => {
+        return Promise.resolve({ data: testData });
+      });
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Edit"));
+    });
+    
+    act(() => {
+      fireEvent.click(screen.getByText("Delete"));
+    });
+
+    expect(screen.queryByText("Instance")).not.toBeInTheDocument();
+  });
+
   it("does add new value to Supplemental Ledger", async () => {
     await act(async () => {
       mockAxios.get.mockImplementationOnce(() => {
@@ -253,10 +277,102 @@ describe("CourseDataContainer", () => {
       fireEvent.change(screen.getByPlaceholderText("Value"), {
         target: { value: "unique_value" },
       });
-      fireEvent.click(screen.getByText("Add Supplemental Data"));
+      fireEvent.keyPress(screen.getByText("Add Supplemental Data"), {
+        charCode: '13',
+      });
     });
 
     screen.getByText("unique_key");
     screen.getByPlaceholderText("unique_value");
   });
+
+  it("Click of cancel button", async () => {
+    await act(async () => {
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: testData });
+      });
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Edit"));
+    });
+
+    mockAxios.get.mockImplementation(() => {
+      return Promise.resolve({ data: testData });
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Cancel"));
+    });
+  });
+
+  it("Click of update button after adding values supplemental values", async () => {
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
+
+    await act(async () => {
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: testData });
+      });
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Edit"));
+    });
+    
+    act(() => {
+      fireEvent.change(screen.getByPlaceholderText("Key Name"), {
+        target: { value: "unique_key" },
+      });
+      fireEvent.change(screen.getByPlaceholderText("Value"), {
+        target: { value: "unique_value" },
+      });
+      fireEvent.click(screen.getByText("Add Supplemental Data"));
+    });
+
+    mockAxios.post.mockImplementation(() => {
+      return Promise.resolve({ data: testData });
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Update"));
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Done"));
+    });
+  });
+
+  it("error", async () => {
+    await act(async () => {
+      mockAxios.get.mockImplementation(() => Promise.reject(new Error("failed")));
+
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    screen.getByText("Error");
+  });
+  
 });
