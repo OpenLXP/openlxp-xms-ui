@@ -39,9 +39,9 @@ describe('Login Page', () => {
     });
 
     const button = screen.getByText(/Login/i);
-    act(() => {
-      fireEvent.click(button);
-    });
+    // act(() => {
+    //   fireEvent.click(button);
+    // });
     mockAxios.post.mockImplementationOnce(() =>
         Promise.resolve({ data: { user: {} } })
     );
