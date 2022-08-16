@@ -3,6 +3,8 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import CatalogList from "./CatalogList";
+import mockAxios from 'jest-mock-axios';
+
 
 let container = null;
 beforeEach(() => {
@@ -21,6 +23,9 @@ afterEach(() => {
 describe("Catalog List", () => {
   test("does render when no data is passed", () => {
     act(() => {
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: {} });
+      });
       render(
         <BrowserRouter>
           <CatalogList />
@@ -34,6 +39,9 @@ describe("Catalog List", () => {
 
   test("does render catalog header", () => {
     act(() => {
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: {} });
+      });
       render(
         <BrowserRouter>
           <CatalogList />
@@ -46,6 +54,9 @@ describe("Catalog List", () => {
 
   test("does not render when empty data is passed", () => {
     act(() => {
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: {} });
+      });
       const data = [];
 
       render(
@@ -62,6 +73,10 @@ describe("Catalog List", () => {
   test("does render catalog cards when passed data", () => {
     act(() => {
       const data = ["DAU", "edX"];
+      mockAxios.get.mockImplementation(() => {
+        return Promise.resolve({ data: {} });
+      });
+
       render(
         <BrowserRouter>
           <CatalogList catalogs={data} />
@@ -72,5 +87,19 @@ describe("Catalog List", () => {
 
     screen.getByText("DAU");
     screen.getByText("edX");
+  });
+
+  test("axios get config error", () => {
+    act(() => {
+      const data = ["DAU", "edX"];
+      mockAxios.get.mockImplementation(() => Promise.reject(new Error("Error failed")));
+
+      render(
+        <BrowserRouter>
+          <CatalogList catalogs={data} />
+        </BrowserRouter>,
+        container
+      );
+    });
   });
 });

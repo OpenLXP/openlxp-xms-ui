@@ -1,5 +1,6 @@
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 
 import WelcomeScreen from "./WelcomeScreen";
 
@@ -25,5 +26,28 @@ describe("WelcomeScreen", () => {
     });
     screen.getByText("About Experience Management Service");
     screen.getByText(/The Experience Management Service is the human-facing application*?/);
+  });
+});
+
+describe('Navigates to register page', () => {
+  it('should click register button', () => {
+
+    let testLocation;
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/"]}>
+          <WelcomeScreen />
+          <Route
+            path="/register"
+            render={({ location }) => {
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
+      const button = screen.getByText(/Click Here to Get Started!/i);
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+    expect(testLocation.pathname).toBe("/register");
   });
 });
