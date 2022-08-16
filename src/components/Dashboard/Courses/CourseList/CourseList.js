@@ -16,7 +16,7 @@ const CourseList = (props) => {
        onClick={() => history.push(`/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`)} >
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
-             {data.metadata?.Course?.CourseTitle}
+             {data.metadata?.Course?.title}
            </div>
            <div className="font-light">
              {data.metadata?.Course?.CourseCode}
