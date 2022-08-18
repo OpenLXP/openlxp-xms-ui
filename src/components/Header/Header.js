@@ -25,9 +25,9 @@ const Header = () => {
       testID: "about-btn"
     },
     {
-      name: "Help", 
-      route: "/help",
-      testID: "help-btn"
+      name: "Support", 
+      route: "/support",
+      testID: "support-btn"
     }
   ];
 
