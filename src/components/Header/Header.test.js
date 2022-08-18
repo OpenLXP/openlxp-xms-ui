@@ -32,7 +32,7 @@ describe("Header", () => {
     screen.getByText("Sign In");
     screen.getByText("Home");
     screen.getByText("Catalogs");
-    screen.getByText("Help");
+    screen.getByText("Support");
   });
 
   test("does take user to home when clicking home", () => {

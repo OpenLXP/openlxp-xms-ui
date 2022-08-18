@@ -121,6 +121,14 @@ describe("CourseDataContainer", () => {
 
   it("does show error message", async () => {
     await act(async () => {
+      const mockIntersectionObserver = jest.fn();
+      mockIntersectionObserver.mockReturnValue({
+        observe: () => null,
+        unobserve: () => null,
+        disconnect: () => null
+      });
+      window.IntersectionObserver = mockIntersectionObserver;
+
       // mocking the calls for jest
       mockAxios.get.mockImplementationOnce(() =>
         Promise.resolve({ data: testData })
