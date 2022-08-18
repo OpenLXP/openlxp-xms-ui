@@ -31,8 +31,8 @@ describe("Header", () => {
 
     screen.getByText("Sign In");
     screen.getByText("Home");
-    screen.getByText("Experience Management Service");
-    screen.getByText("Department of Defense");
+    screen.getByText("Catalogs");
+    screen.getByText("Help");
   });
 
   test("does take user to home when clicking home", () => {
@@ -74,7 +74,7 @@ describe("Header", () => {
         </MemoryRouter>
       );
 
-      const button = screen.getByTestId("logo-button");
+      const button = screen.getByTestId("home-btn");
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 

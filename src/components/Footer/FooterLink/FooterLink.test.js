@@ -27,6 +27,12 @@ describe("Footer", () => {
     screen.getByText("test name");
   });
 
+  test("does render link", () => {
+    act(() => {
+      render(<FooterLink link="/test" />);
+    });
+  });
+
   test("does render correct link", () => {
     act(() => {
       render(<FooterLink name="Title" link="/test" />);

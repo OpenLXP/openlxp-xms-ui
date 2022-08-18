@@ -25,7 +25,7 @@ describe("Footer ", () => {
       render(<Footer />);
     });
 
-    screen.getByText("Home");
     screen.getByText("Contact US");
+    screen.getByText("DOD Home Page");
   });
 });

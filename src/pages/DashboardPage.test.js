@@ -48,7 +48,7 @@ describe("DashboardPage", () => {
       );
     });
     screen.getByText("Catalogs");
-    screen.getByText("Experience Management Service");
+    screen.getByText("Error loading catalogs. Please contact an administrator");
     // screen.getByText("Test Name 1");
     // screen.getByText("Test Name 2");
   });
