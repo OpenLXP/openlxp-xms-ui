@@ -1,15 +1,9 @@
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import axios from "axios";
 import { unmountComponentAtNode } from "react-dom";
-import {
-  BrowserRouter,
-  MemoryRouter,
-  StaticRouter,
-  Route,
-} from "react-router-dom";
+import { StaticRouter } from "react-router-dom";
 import DashboardPage from "./DashboardPage";
-// import MockAxios from 'jest-mock-axios';
-
+import mockAxios from 'jest-mock-axios';
 
 let container = null;
 
@@ -33,13 +27,10 @@ describe("DashboardPage", () => {
       const response = { data: data };
 
       // axios.get.mockResolvedValue(response);
-      axios.get.mockImplementationOnce(() =>
-        Promise.resolve({ data: data })
+      mockAxios.get.mockImplementationOnce(() =>
+        Promise.resolve(response)
       );
 
-      // MockAxios.get.mockImplementation(() =>
-      //   Promise.resolve(response)
-      // );
 
       render(
         <StaticRouter location={{ pathname: "/dashboard" }}>
@@ -47,9 +38,7 @@ describe("DashboardPage", () => {
         </StaticRouter>
       );
     });
-    screen.getByText("Catalogs");
+    // screen.getByText("Catalogs");
     screen.getByText("Error loading catalogs. Please contact an administrator");
-    // screen.getByText("Test Name 1");
-    // screen.getByText("Test Name 2");
   });
 });
