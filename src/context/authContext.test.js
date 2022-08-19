@@ -1,13 +1,8 @@
 import { AuthContext, AuthProvider } from './authContext';
 import { render } from '@testing-library/react';
-import MockAxios from 'jest-mock-axios';
+import mockAxios from 'jest-mock-axios';
 
 jest.unmock('./authContext');
-
-// mock axios
-// jest.mock('axios');
-MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
-MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
 
 describe('Auth Context', () => {
   it('does render', () => {
@@ -50,7 +45,7 @@ describe('Auth Context', () => {
   });
 
   it('does login', () => {
-    MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+    mockAxios.post.mockImplementationOnce(() => Promise.resolve({ data: { experiences: [{}] } }));
     const { getByText } = render(
       <AuthProvider>
         <AuthContext>
@@ -66,7 +61,7 @@ describe('Auth Context', () => {
   });
 
   it('does register', () => {
-    MockAxios.post.mockImplementation(() => Promise.resolve({}));
+    mockAxios.post.mockImplementationOnce(() => Promise.resolve({}));
     const { getByText } = render(
       <AuthProvider>
         <AuthContext>
@@ -82,7 +77,7 @@ describe('Auth Context', () => {
   });
 
   it('fail login', () => {
-    MockAxios.post.mockImplementation(() => Promise.reject(new Error("login fail")));
+    mockAxios.post.mockImplementationOnce(() => Promise.reject(new Error("login fail")));
     const { getByText } = render(
       <AuthProvider>
         <AuthContext>
@@ -98,7 +93,7 @@ describe('Auth Context', () => {
   });
 
   it('fail register', () => {
-    MockAxios.post.mockImplementation(() => Promise.reject(new Error("register fail")));
+    mockAxios.post.mockImplementationOnce(() => Promise.reject(new Error("register fail")));
     const { getByText } = render(
       <AuthProvider>
         <AuthContext>
@@ -114,7 +109,7 @@ describe('Auth Context', () => {
   });
 
   it('does logout', () => {
-    MockAxios.post.mockImplementation(() => Promise.resolve({}));
+    mockAxios.post.mockImplementationOnce(() => Promise.resolve({}));
     const { getByText } = render(
       <AuthProvider>
         <AuthContext>
