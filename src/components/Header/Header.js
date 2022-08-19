@@ -20,11 +20,6 @@ const Header = () => {
       testID: "catalog-btn"
     },
     {
-      name: "About ECC", 
-      route: "/about",
-      testID: "about-btn"
-    },
-    {
       name: "Support", 
       route: "/support",
       testID: "support-btn"
