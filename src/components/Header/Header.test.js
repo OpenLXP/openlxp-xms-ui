@@ -31,7 +31,6 @@ describe("Header", () => {
 
     screen.getByText("Sign In");
     screen.getByText("Home");
-    screen.getByText("Catalogs");
     screen.getByText("Support");
   });
 
