@@ -5,7 +5,6 @@ import Footer from "../components/Footer/Footer";
 import Login from "./Login";
 import Register from "./Register";
 import Support from "./Support";
-import About from "./About";
 
 const MainPage = () => {
   return (
@@ -15,7 +14,6 @@ const MainPage = () => {
         <div className="p-8 my-10 rounded-md">
           <Switch>
             <Route path="/" exact component={WelcomeScreen} />
-            <Route path="/about" exact component={About} />
             <Route path="/support" exact component={Support}/>
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
