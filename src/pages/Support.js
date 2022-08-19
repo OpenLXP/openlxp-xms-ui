@@ -66,7 +66,7 @@ const Support = () => {
                 <h1 className='pb-4 border-b mb-8 text-3xl font-semibold'>Support</h1>
                 <h2 className='text-2xl font-semibold pb-2'>About</h2>
                 {panelCode(aboutContent)}
-                <h2 className='text-xl font-semibold pb-2 mt-4'>Navigating XMS</h2>
+                <h2 className='text-xl font-semibold pb-2 mt-4'>Navigating the Expereince Management Service</h2>
                 {panelCode(navigateContent)}
             </div>
         // </main>
