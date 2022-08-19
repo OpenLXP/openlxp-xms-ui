@@ -44,19 +44,19 @@ const Header = () => {
           img={logo.img}
         /> */}
         <div className="flex flex-row items-center">
-        <img src={icon} alt="DOD Logo" className={"pl-3"} width={60} height={60}/>
+        <img src={icon} alt="DOD Logo" className={"pl-3 mr-2"} width={60} height={60}/>
         <NavBar navButtons={navButtons} />
         </div>
         {/* <div className="flex flex-row justify-between mt-2"> */}
           <div className="flex flex-row justify-end">
             {!user ? (
               <div className="flex flex-row">
-                <div className="hover:bg-blue-light rounded border md:text-lg m-2 p-2">
+                <div className="hover:bg-blue-light rounded border md:text-md m-2 p-2">
                   <NavLink to={"/login"} className="hover:bg-blue-light p-0 mt-2">
                     Sign In
                   </NavLink>
                 </div>
-                <div className=" hover:bg-blue-light rounded border md:text-lg m-2 p-2">
+                <div className=" hover:bg-blue-light rounded border md:text-md m-2 p-2">
                   <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
                     Sign Up
                   </NavLink>
