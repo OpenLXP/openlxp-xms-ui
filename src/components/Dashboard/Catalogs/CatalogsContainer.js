@@ -3,6 +3,7 @@ import axios from "axios";
 
 import CatalogList from "./CatalogList/CatalogList";
 import { catalogs_url } from "../../../config/endpoints";
+import { axiosInstance } from "../../../config/axiosInstance";
 
 const Catalogs = (props) => {
   const [catalogs, setCatalogs] = useState({
@@ -21,7 +22,7 @@ const Catalogs = (props) => {
     });
 
     // Requesting data from the API endpoint
-    axios
+    axiosInstance
       .get(catalogs_url)
       .then((resp) => {
         setCatalogs({
