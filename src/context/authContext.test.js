@@ -81,22 +81,6 @@ describe('Auth Context', () => {
     expect(getByText('null')).toBeInTheDocument();
   });
 
-  it('fail login', () => {
-    MockAxios.post.mockImplementation(() => Promise.reject(new Error("login fail")));
-    const { getByText } = render(
-      <AuthProvider>
-        <AuthContext>
-          {(context) => {
-            expect(context).toBeTruthy();
-            context.login('hi');
-            return <div>{JSON.stringify(context.user)}</div>;
-          }}
-        </AuthContext>
-      </AuthProvider>
-    );
-    expect(getByText('null')).toBeInTheDocument();
-  });
-
   it('fail register', () => {
     MockAxios.post.mockImplementation(() => Promise.reject(new Error("register fail")));
     const { getByText } = render(
