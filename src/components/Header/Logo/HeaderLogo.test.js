@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 describe("Logo", () => {
-  test("does render title", () => {
+  test("does render title, does not render subtitle when the subtitle is not defined", () => {
     act(() => {
       render(
         <BrowserRouter>
@@ -30,9 +30,11 @@ describe("Logo", () => {
     });
 
     screen.getAllByText("Test Title");
+    const component = screen.getByText("Test Title").parentElement;
+    expect(component.childElementCount).toBe(1);
   });
 
-  test("does render subtitle", () => {
+  test("does not render title when the title is not defined, does render subtitle", () => {
     act(() => {
       render(
         <BrowserRouter>
@@ -41,6 +43,9 @@ describe("Logo", () => {
       );
     });
     screen.getAllByText("Test Subtitle");
+    
+    const component = screen.getByText("Test Subtitle").parentElement;
+    expect(component.childElementCount).toBe(1);
   });
 
   test("does render img", () => {
@@ -52,31 +57,6 @@ describe("Logo", () => {
       );
     });
     screen.getByAltText(/DOD*?/);
-  });
-
-  test("does not render title when the title is not defined", () => {
-    act(() => {
-      render(
-        <BrowserRouter>
-          <Logo subtitle="Test Subtitle" />
-        </BrowserRouter>
-      );
-    });
-
-    const component = screen.getByText("Test Subtitle").parentElement;
-    expect(component.childElementCount).toBe(1);
-  });
-
-  test("does not render subtitle when the subtitle is not defined", () => {
-    act(() => {
-      render(
-        <BrowserRouter>
-          <Logo title="Test Title" />
-        </BrowserRouter>
-      );
-    });
-    const component = screen.getByText("Test Title").parentElement;
-    expect(component.childElementCount).toBe(1);
   });
   
   test("does not render image when the image is not defined", () => {

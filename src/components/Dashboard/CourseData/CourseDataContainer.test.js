@@ -156,10 +156,27 @@ describe("CourseDataContainer", () => {
     screen.getByText(/Error/i);
   });
 
-  it("does show edit button", async () => {
+  it("error", async () => {
     await act(async () => {
-      // mocking the call for jest
+      mockAxios.get.mockImplementation(() => Promise.reject(new Error("failed")));
 
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    screen.getByText("Error");
+  });
+  
+});
+
+describe("CourseDataContainer", () => {
+
+  beforeEach(() => {
+    act(() => {
       mockAxios.get.mockImplementationOnce(() => {
         return Promise.resolve({ data: testData });
       });
@@ -171,25 +188,13 @@ describe("CourseDataContainer", () => {
         container
       );
     });
+  });
 
+  it("does show edit button, cancel/update buttons", async () => {
     screen.getByText("Edit");
   });
 
   it("does show update and cancel buttons", async () => {
-    await act(async () => {
-      // mocking the call for jest
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
     });
@@ -198,35 +203,11 @@ describe("CourseDataContainer", () => {
   });
 
   it("does show title information", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     screen.getByTitle(testData.metadata.Metadata_Ledger.Course.CourseTitle);
     screen.getByText("Active");
   });
 
   it("does show add key and value information information", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
     });
@@ -238,18 +219,6 @@ describe("CourseDataContainer", () => {
   });
 
   it("does remove values from Supplemental Ledger", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
     });
@@ -262,18 +231,6 @@ describe("CourseDataContainer", () => {
   });
 
   it("does add new value to Supplemental Ledger", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
     });
@@ -295,18 +252,6 @@ describe("CourseDataContainer", () => {
   });
 
   it("Click of cancel button", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
     });
@@ -328,18 +273,6 @@ describe("CourseDataContainer", () => {
       disconnect: () => null
     });
     window.IntersectionObserver = mockIntersectionObserver;
-
-    await act(async () => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: testData });
-      });
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -367,20 +300,4 @@ describe("CourseDataContainer", () => {
       fireEvent.click(screen.getByText("Done"));
     });
   });
-
-  it("error", async () => {
-    await act(async () => {
-      mockAxios.get.mockImplementation(() => Promise.reject(new Error("failed")));
-
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
-
-    screen.getByText("Error");
-  });
-  
 });

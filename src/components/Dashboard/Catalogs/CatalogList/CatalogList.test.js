@@ -35,20 +35,6 @@ describe("Catalog List", () => {
     });
 
     screen.getByTestId("catalog-list");
-  });
-
-  test("does render catalog header", () => {
-    act(() => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: {} });
-      });
-      render(
-        <BrowserRouter>
-          <CatalogList />
-        </BrowserRouter>,
-        container
-      );
-    });
     screen.getByText("Course Catalogs");
   });
 
