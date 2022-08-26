@@ -43,7 +43,7 @@ jobs:
        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Docker build
       run: |
-       docker build . -t openlxp/openlxp-xds-ui
+       docker build . -t openlxp/openlxp-xms-ui
     - name: Push Image
       run: |
-        docker push openlxp/openlxp-xds-ui
+        docker push openlxp/openlxp-xms-ui

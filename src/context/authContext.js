@@ -27,17 +27,10 @@ export function AuthProvider({ children }) {
         });
   };
 
-  // Login user
+ 
   const login = (userData) => {
-    axiosInstance.post(login_url, userData)
-        .then (res=>{
-            setLocal(res.data);
-            setError(null);
-        })
-        .catch (err => {
-            removeLocal();  
-            setError(err)
-        })
+    setError(null);
+    setLocal(userData);
   };
 
   // Logout user

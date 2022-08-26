@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { axiosInstance } from "../config/axiosInstance";
+import { login_url } from "../config/endpoints";
 import { useAuth } from "../context/authContext";
 import logo from "../resources/internal/dodLogo.png"
 
@@ -28,17 +30,22 @@ export default function Login(){
     }
 
     const handleLogin = (event) => {
-        console.log(credentials.username);
         event.preventDefault();
         if (credentials.username === '' || credentials.password === '') {
             setErrorMsg('All fields required');
         }
-        else{
-            login(credentials);
-            setErrorMsg("Invalid credentials");
-        }        
+        else(
+        axiosInstance
+            .post(login_url, credentials)
+            .then((res) => {
+                login(res.data);
+                router.push('/');
+            })
+            .catch((error) => {
+                setErrorMsg('Invalid credentials');
+            })
+        )
     };
-    console.log(errorMsg);
 
     return(
         <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center mb-10'>
