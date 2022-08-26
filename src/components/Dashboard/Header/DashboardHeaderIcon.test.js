@@ -32,15 +32,14 @@ describe("DashboardHeaderIcon", () => {
   });
 
   test("does change location to home on click", () => {
-    let testLocation, testHistory;
+    let testLocation;
     act(() => {
       render(
         <MemoryRouter initialEntries={["/my/test/location"]}>
           <DashboardHeaderIcon />
           <Route
             props="/"
-            render={({ history, location }) => {
-              testHistory = history;
+            render={({ location }) => {
               testLocation = location;
             }}
           />

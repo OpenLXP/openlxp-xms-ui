@@ -38,8 +38,6 @@ const CourseList = (props) => {
            </NavLink>
          </td>
       </tr>)
-
-    // return <CourseRow data={row} rowIndex={index} key={index} />;
   });
 
   return (

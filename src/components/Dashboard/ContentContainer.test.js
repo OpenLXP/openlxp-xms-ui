@@ -108,8 +108,6 @@ describe("ContentContainer", () => {
         </MemoryRouter>
       );
     });
-    // screen.getByText("Test Title");
-    // screen.getByText("CC: TestCode123");
   });
 
   test("does render CourseData", async () => {
@@ -177,6 +175,5 @@ describe("ContentContainer", () => {
         </MemoryRouter>
       );
     });
-    // screen.getByTitle("Test Title");
   });
 });

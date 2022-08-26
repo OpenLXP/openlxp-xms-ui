@@ -46,6 +46,5 @@ describe("CourseHeader", () => {
 
     screen.getByText("Title");
     screen.getByText("Course Code");
-    // screen.getByText("Course Status");
   });
 });

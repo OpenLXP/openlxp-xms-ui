@@ -26,23 +26,11 @@ const Header = () => {
     }
   ];
 
-  // to be replaced from the admin console
-  const logo = {
-    title: "Experience Management Service",
-    subtitle: "Department of Defense",
-    img: icon,
-  };
-
   const {user, logout} = useAuth();
 
   return (
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
-        {/* <HeaderLogo
-          title={logo.title}
-          subtitle={logo.subtitle}
-          img={logo.img}
-        /> */}
         <div className="flex flex-row items-center">
         <img src={icon} alt="DOD Logo" className={"pl-3 mr-2"} width={60} height={60}/>
         <NavBar navButtons={navButtons} />

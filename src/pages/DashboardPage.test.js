@@ -26,7 +26,6 @@ describe("DashboardPage", () => {
       const data = ["Test Name 1", "Test Name 2", "Test Name 3"];
       const response = { data: data };
 
-      // axios.get.mockResolvedValue(response);
       mockAxios.get.mockImplementationOnce(() =>
         Promise.resolve(response)
       );
@@ -38,7 +37,6 @@ describe("DashboardPage", () => {
         </StaticRouter>
       );
     });
-    // screen.getByText("Catalogs");
     screen.getByText("Error loading catalogs. Please contact an administrator");
   });
 });

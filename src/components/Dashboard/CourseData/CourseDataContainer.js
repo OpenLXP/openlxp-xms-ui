@@ -359,7 +359,6 @@ export default function CourseDataContainerV2() {
       {course?.error && "Error"}
       <header className="flex flex-row w-9/12 fixed pt-4 mx-4 px-4 sm:px-6 md:px-8 lg:px-10 border-b bg-white">
         {course?.data && !course?.error && !course.isLoading && courseHeader()}
-        {/* {course?.data && !course?.error && !course.isLoading && editControls()} */}
       </header> 
       <div className="h-20"></div>
       {course?.data &&

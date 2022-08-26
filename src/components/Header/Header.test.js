@@ -35,15 +35,14 @@ describe("Header", () => {
   });
 
   test("does take user to home when clicking home", () => {
-    let testHistory, testLocation;
+    let testLocation;
     act(() => {
       render(
         <MemoryRouter initialEntries={["/my/initial/route"]}>
           <Header />
           <Route
             path="/"
-            render={({ history, location }) => {
-              testHistory = history;
+            render={({ location }) => {
               testLocation = location;
             }}
           />
@@ -58,15 +57,14 @@ describe("Header", () => {
   });
 
   test("does take user to home when clicking Header Logo", () => {
-    let testHistory, testLocation;
+    let testLocation;
     act(() => {
       render(
         <MemoryRouter initialEntries={["/my/initial/route"]}>
           <Header />
           <Route
             path="/"
-            render={({ history, location }) => {
-              testHistory = history;
+            render={({ location }) => {
               testLocation = location;
             }}
           />
@@ -81,15 +79,14 @@ describe("Header", () => {
   });
 
   test("dose take user to Dashboard when clicking Sign In", () => {
-    let testHistory, testLocation;
+    let testLocation;
     act(() => {
       render(
         <MemoryRouter initialEntries={["/my/initial/route"]}>
           <Header />
           <Route
             path="/"
-            render={({ history, location }) => {
-              testHistory = history;
+            render={({ location }) => {
               testLocation = location;
             }}
           />
