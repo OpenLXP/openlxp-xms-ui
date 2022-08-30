@@ -4,12 +4,21 @@ import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+
+// mocking the useAuth hook
+jest.mock('../context/authContext', () => ({
+  useAuth: jest.fn(),
+}));
 
 let container = null;
 
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    useAuth.mockImplementation(() => ({
+      user: false, register: () => {}
+    }));
   });
   
   afterEach(() => {
@@ -88,6 +97,10 @@ describe('Register Page', () => {
         fireEvent.change(email, { target: { value: 'email@test.com' } });
         fireEvent.change(password, { target: { value: 'password' } });
         fireEvent.change(confirmPassword, { target: { value: 'password' } });
+
+        const button = screen.getByText(/Create Account/i);
+
+        fireEvent.click(button);
       });
     });
   });
@@ -115,15 +128,8 @@ describe('Register Page', () => {
     });
 
     it('if user, navigate to dashboard', () => {
-      let useAuth = jest.fn();
       useAuth.mockImplementation(() => ({
-        user: { 
-          user: {
-            id: '1',
-            first_name: 'Test',
-            last_name: 'User',
-            email: 'test@test.com',
-        }},
+        user: true, register: () => {}
       }));
       act(() => {
         render(

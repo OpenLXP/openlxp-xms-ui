@@ -3,13 +3,21 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
 import Header from "./Header";
+import { useAuth } from "../../context/authContext";
 
+// mocking the useAuth hook
+jest.mock('../../context/authContext', () => ({
+  useAuth: jest.fn(),
+}));
 let container = null;
 
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  useAuth.mockImplementation(() => ({
+    user: false, login: () => {}
+  }));
 });
 
 afterEach(() => {
@@ -101,5 +109,29 @@ describe("Header", () => {
     });
 
     expect(testLocation.pathname).toBe("/login");
+  });
+
+  test("dose take user to Dashboard when clicking Logout", () => {
+    useAuth.mockImplementation(() => ({
+      user: {user: {first_name: "jo", last_name: "smith"}}, logout: () => {}
+    }));
+    let testHistory, testLocation;
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
+
+      const button = screen.getByText("Logout");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
   });
 });

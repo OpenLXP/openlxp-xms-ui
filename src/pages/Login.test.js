@@ -4,13 +4,21 @@ import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
+// mocking the useAuth hook
+jest.mock('../context/authContext', () => ({
+  useAuth: jest.fn(),
+}));
 
 let container = null;
 
 beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    useAuth.mockImplementation(() => ({
+      user: false, login: () => {}
+    }));
   });
   
   afterEach(() => {
@@ -70,7 +78,33 @@ describe('Login Page', () => {
     });
 
     it('should change show error message for empty attributes', () => {
+      const input_p = screen.getByPlaceholderText('Password');
+      const input_e = screen.getByPlaceholderText('Email');
+      act(() => {
+        fireEvent.change(input_e, { target: { value: '' } });
+        fireEvent.change(input_p, { target: { value: '' } });
+
+        const button = screen.getByText(/Login/i);
+        fireEvent.click(button);
+      });
+
+      expect(screen.getByText(/All fields required/i)).toBeInTheDocument();
+    });
+
+    it('should change show error message for empty password', () => {
       const input = screen.getByPlaceholderText('Password');
+      act(() => {
+        fireEvent.change(input, { target: { value: '' } });
+
+        const button = screen.getByText(/Login/i);
+        fireEvent.click(button);
+      });
+
+      expect(screen.getByText(/All fields required/i)).toBeInTheDocument();
+    });
+
+    it('should change show error message for empty email', () => {
+      const input = screen.getByPlaceholderText('Email');
       act(() => {
         fireEvent.change(input, { target: { value: '' } });
 
@@ -121,6 +155,24 @@ describe('Login Page', () => {
       });
       expect(testLocation.pathname).toBe("/register");
 
+    });
+    it('if user, navigate to dashboard', () => {
+      useAuth.mockImplementation(() => ({
+        user: true, register: () => {}
+      }));
+      act(() => {
+        render(
+          <MemoryRouter initialEntries={["/login"]}>
+            <Login />
+            <Route
+              path="/dashboard"
+              render={() => { }}
+            />
+          </MemoryRouter>,
+          container
+        );
+        
+      });
     });
   });
 });

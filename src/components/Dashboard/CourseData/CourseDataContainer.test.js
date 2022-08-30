@@ -87,6 +87,57 @@ describe("CourseDataContainer", () => {
     screen.getByText("CourseShortDescription");
     screen.getByText("EstimatedCompletionTime");
   });
+
+  it("does render with data", async () => {
+    await act(async () => {
+      mockAxios.get.mockImplementation(() => Promise.resolve({ data: {
+        unique_record_identifier: "2341",
+        date_deleted: null,
+        date_inserted: "2021-07-20T19:34:31.567535Z",
+        date_transmitted: null,
+        metadata: {
+          Metadata_Ledger: {
+            Course: {
+              CourseURL: "Course URL",
+              CourseCode: "Course Code",
+              CourseType: "Course Type",
+              CourseTitle: "Course Title",
+              CourseProviderName: "Course Provider",
+              CourseShortDescription: "some description",
+              EstimatedCompletionTime: 5,
+            },
+          },
+          Supplemental_Ledger: null,
+        },
+        metadata_hash: "metadata_hash",
+        metadata_key: "metadata_key",
+        metadata_key_hash: "metadata_key_hash",
+        metadata_transmission_status: "Ready",
+        metadata_transmission_status_code: "",
+        provider_name: "Course Provider",
+        record_status: "Active",
+        updated_by: "Owner",
+      } }));
+
+      render(
+        <MemoryRouter
+          initialEntries={[
+            {pathname: "/dashboard/JKO/course/000e893d-5741-4c07-8dd8-2e3d9fa4b862"},
+          ]}
+        >
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+    screen.getByText("CourseURL");
+    screen.getByText("CourseCode");
+    screen.getByText("CourseType");
+    screen.getByText("CourseTitle");
+    screen.getByText("CourseProviderName");
+    screen.getByText("CourseShortDescription");
+    screen.getByText("EstimatedCompletionTime");
+  });
   
   it("does render correct data for each data field", async () => {
     await act(async () => {
@@ -284,6 +335,36 @@ describe("CourseDataContainer", () => {
 
     screen.getByText("unique_key");
     screen.getByPlaceholderText("unique_value");
+  });
+
+  it("does not add new value when empty", async () => {
+    await act(async () => {
+      mockAxios.get.mockImplementationOnce(() => {
+        return Promise.resolve({ data: testData });
+      });
+      render(
+        <MemoryRouter>
+          <CourseDataContainer />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Edit"));
+    });
+
+    act(() => {
+      fireEvent.change(screen.getByPlaceholderText("Key Name"), {
+        target: { value: "" },
+      });
+      fireEvent.change(screen.getByPlaceholderText("Value"), {
+        target: { value: "" },
+      });
+      fireEvent.keyPress(screen.getByText("Add Supplemental Data"), {
+        charCode: '13',
+      });
+    });
   });
 
   it("Click of cancel button", async () => {
