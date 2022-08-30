@@ -58,12 +58,12 @@ describe("Logo", () => {
     act(() => {
       render(
         <BrowserRouter>
-          <Logo subtitle="Test Subtitle" />
+          <Logo subtitle="My Test Subtitle" />
         </BrowserRouter>
       );
     });
 
-    const component = screen.getByText("Test Subtitle").parentElement;
+    const component = screen.getByText("My Test Subtitle").parentElement;
     expect(component.childElementCount).toBe(1);
   });
 
@@ -71,11 +71,11 @@ describe("Logo", () => {
     act(() => {
       render(
         <BrowserRouter>
-          <Logo title="Test Title" />
+          <Logo title="My Test Title" />
         </BrowserRouter>
       );
     });
-    const component = screen.getByText("Test Title").parentElement;
+    const component = screen.getByText("My Test Title").parentElement;
     expect(component.childElementCount).toBe(1);
   });
   

@@ -104,9 +104,9 @@ describe('Login Page', () => {
     });
 
     it('should change show error message for empty email', () => {
-      const input = screen.getByPlaceholderText('Email');
+      const input_e = screen.getByPlaceholderText('Email');
       act(() => {
-        fireEvent.change(input, { target: { value: '' } });
+        fireEvent.change(input_e, { target: { value: '' } });
 
         const button = screen.getByText(/Login/i);
         fireEvent.click(button);

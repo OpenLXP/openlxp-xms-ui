@@ -20,35 +20,26 @@ afterEach(() => {
   container = null;
 });
 
+const mockMyAxios = () => {
+  mockAxios.get.mockImplementation(() => {
+    return Promise.resolve({ data: {} });
+  });
+  render(
+    <BrowserRouter>
+      <CatalogList />
+    </BrowserRouter>,
+    container
+  );
+};
 describe("Catalog List", () => {
   test("does render when no data is passed", () => {
-    act(() => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: {} });
-      });
-      render(
-        <BrowserRouter>
-          <CatalogList />
-        </BrowserRouter>,
-        container
-      );
-    });
+    act(mockMyAxios);
 
     screen.getByTestId("catalog-list");
   });
 
   test("does render catalog header", () => {
-    act(() => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: {} });
-      });
-      render(
-        <BrowserRouter>
-          <CatalogList />
-        </BrowserRouter>,
-        container
-      );
-    });
+    act(mockMyAxios);
     screen.getByText("Course Catalogs");
   });
 
