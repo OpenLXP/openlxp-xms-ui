@@ -56,6 +56,9 @@ beforeEach(() => {
   }));
   container = document.createElement("div");
   document.body.appendChild(container);
+  mockAxios.get.mockImplementation(() => {
+    return Promise.resolve({ data: testData });
+  });
 });
 afterEach(() => {
   unmountComponentAtNode(container);
@@ -66,7 +69,6 @@ afterEach(() => {
 describe("CourseDataContainer", () => {
   it("does render", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementation(() => Promise.resolve({ data: testData }));
 
       render(
         <MemoryRouter
@@ -141,10 +143,6 @@ describe("CourseDataContainer", () => {
   
   it("does render correct data for each data field", async () => {
     await act(async () => {
-      // mocking the calls for jest
-      mockAxios.get.mockImplementationOnce(() =>
-        Promise.resolve({ data: testData })
-      );
       render(
         <MemoryRouter initialEntries={["/dashboard/JKO/course/2341"]}>
           <CourseDataContainer />
@@ -172,10 +170,6 @@ describe("CourseDataContainer", () => {
 
   it("does show error message", async () => {
     await act(async () => {
-      // mocking the calls for jest
-      mockAxios.get.mockImplementationOnce(() =>
-        Promise.resolve({ data: testData })
-      );
       render(
         <MemoryRouter
           initialEntries={[
@@ -203,10 +197,6 @@ describe("CourseDataContainer", () => {
     await act(async () => {
       // mocking the call for jest
 
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
-
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -221,9 +211,6 @@ describe("CourseDataContainer", () => {
   it("does show update and cancel buttons", async () => {
     await act(async () => {
       // mocking the call for jest
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
 
       render(
         <MemoryRouter>
@@ -242,9 +229,6 @@ describe("CourseDataContainer", () => {
 
   it("does show title information", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -259,9 +243,6 @@ describe("CourseDataContainer", () => {
 
   it("does show add key and value information information", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -282,9 +263,6 @@ describe("CourseDataContainer", () => {
 
   it("does remove values from Supplemental Ledger", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -306,9 +284,6 @@ describe("CourseDataContainer", () => {
 
   it("does add new value to Supplemental Ledger", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -339,9 +314,6 @@ describe("CourseDataContainer", () => {
 
   it("does not add new value when empty", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementationOnce(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -369,9 +341,6 @@ describe("CourseDataContainer", () => {
 
   it("Click of cancel button", async () => {
     await act(async () => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
@@ -384,9 +353,6 @@ describe("CourseDataContainer", () => {
       fireEvent.click(screen.getByText("Edit"));
     });
 
-    mockAxios.get.mockImplementation(() => {
-      return Promise.resolve({ data: testData });
-    });
 
     act(() => {
       fireEvent.click(screen.getByText("Cancel"));
@@ -403,9 +369,6 @@ describe("CourseDataContainer", () => {
     window.IntersectionObserver = mockIntersectionObserver;
 
     await act(async () => {
-      mockAxios.get.mockImplementation(() => {
-        return Promise.resolve({ data: testData });
-      });
       render(
         <MemoryRouter>
           <CourseDataContainer />
