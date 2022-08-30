@@ -6,8 +6,10 @@ jest.unmock('./authContext');
 
 // mock axios
 // jest.mock('axios');
-MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
-MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+beforeEach(() => {
+  MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+  MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+});
 
 describe('Auth Context', () => {
   it('does render', () => {
