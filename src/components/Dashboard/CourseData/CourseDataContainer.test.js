@@ -194,31 +194,13 @@ describe("CourseDataContainer", () => {
   });
 
   it("does show edit button", async () => {
-    await act(async () => {
-      // mocking the call for jest
-
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     screen.getByText("Edit");
   });
 
   it("does show update and cancel buttons", async () => {
-    await act(async () => {
-      // mocking the call for jest
-
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -228,28 +210,14 @@ describe("CourseDataContainer", () => {
   });
 
   it("does show title information", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     screen.getByTitle(testData.metadata.Metadata_Ledger.Course.CourseTitle);
     screen.getByText("Active");
   });
 
   it("does show add key and value information information", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -262,14 +230,7 @@ describe("CourseDataContainer", () => {
   });
 
   it("does remove values from Supplemental Ledger", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -283,14 +244,7 @@ describe("CourseDataContainer", () => {
   });
 
   it("does add new value to Supplemental Ledger", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -313,14 +267,7 @@ describe("CourseDataContainer", () => {
   });
 
   it("does not add new value when empty", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -340,14 +287,7 @@ describe("CourseDataContainer", () => {
   });
 
   it("Click of cancel button", async () => {
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <CourseDataContainer />
-        </MemoryRouter>,
-        container
-      );
-    });
+    await commonAct();
 
     act(() => {
       fireEvent.click(screen.getByText("Edit"));
@@ -420,3 +360,15 @@ describe("CourseDataContainer", () => {
   });
   
 });
+async function commonAct() {
+  await act(async () => {
+    // mocking the call for jest
+    render(
+      <MemoryRouter>
+        <CourseDataContainer />
+      </MemoryRouter>,
+      container
+    );
+  });
+}
+
