@@ -169,6 +169,13 @@ export default function CourseDataContainerV2() {
       
   //   );
   // }
+
+  const checkSpecialChar =(e)=>{
+    if(/[<>/?{}#$%*()`~\\]/.test(e.key)){
+        e.preventDefault();
+    }
+  };
+
   // creates the components for rendering
   function dataFields(data, pathToField = []) {
     let path = [...pathToField];
@@ -242,6 +249,7 @@ export default function CourseDataContainerV2() {
                 disabled={!isEditing}
                 placeholder={data[key]}
                 value={data[key]}
+                onKeyPress={(e)=>checkSpecialChar(e)}
                 name={`${tempPath.join(".")}`}
                 className={`${
                   isEditing && "shadow-sm"

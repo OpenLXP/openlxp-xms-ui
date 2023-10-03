@@ -32,6 +32,10 @@ const Courses = (props) => {
   const catalogTitle = location.state;
 
   const sortCourses = (event) => {
+    if(/[<>/?+={};#$%*()`~\\]/.test(event.key)){
+      event.preventDefault();
+    }
+
     let query = event.target.value;
     if(event.key === 'Enter'){
       setSearchQuery(query);
