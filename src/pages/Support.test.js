@@ -1,3 +1,5 @@
+'use strict';
+
 import { unmountComponentAtNode } from "react-dom";
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { StaticRouter } from "react-router-dom";

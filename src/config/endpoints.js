@@ -1,3 +1,5 @@
+'use strict';
+
 export const host = process.env.REACT_APP_XMS_BACKEND
 const api = 'api/';
 

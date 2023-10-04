@@ -1,3 +1,5 @@
+'use strict';
+
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter } from "react-router-dom";

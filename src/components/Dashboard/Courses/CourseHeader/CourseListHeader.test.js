@@ -1,3 +1,5 @@
+'use strict';
+
 import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 

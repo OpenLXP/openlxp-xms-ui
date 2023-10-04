@@ -1,3 +1,5 @@
+'use strict';
+
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosInstance } from "../config/axiosInstance";

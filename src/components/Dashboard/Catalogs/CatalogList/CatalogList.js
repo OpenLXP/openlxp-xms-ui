@@ -1,3 +1,5 @@
+'use strict';
+
 import CatalogCard from "../CatalogCard/CatalogCard";
 import icon from "../../../../images/catalog.png";
 import { configUrl, host } from "../../../../config/endpoints";

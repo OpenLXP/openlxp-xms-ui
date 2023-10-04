@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * UPDATE DEEPLY NESTED JSON
  * @param {object} dataToBeUpdated - The data that will be updated

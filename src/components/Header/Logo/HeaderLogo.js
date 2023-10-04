@@ -1,3 +1,5 @@
+'use strict';
+
 import { NavLink } from "react-router-dom";
 
 /**

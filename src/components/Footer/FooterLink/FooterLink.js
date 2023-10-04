@@ -1,3 +1,5 @@
+'use strict';
+
 const FooterLink = (props) => {
   const link = props.link || null;
   const name = props.name || null;

@@ -1,3 +1,5 @@
+'use strict';
+
 import CourseListHeader from "../CourseHeader/CourseListHeader";
 import CourseRow from "../CourseRow/CourseRow";
 import { NavLink } from "react-router-dom";

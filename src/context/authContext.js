@@ -1,3 +1,5 @@
+'use strict';
+
 import { axiosInstance } from '../config/axiosInstance';
 import { host, login_url, register_url } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';

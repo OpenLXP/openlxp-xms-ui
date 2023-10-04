@@ -1,3 +1,5 @@
+'use strict';
+
 import { Route, Switch } from "react-router";
 import CatalogsContainer from "./Catalogs/CatalogsContainer";
 import CoursesContainer from "./Courses/CoursesContainer";
