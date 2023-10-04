@@ -1,7 +1,7 @@
 import { axiosInstance } from '../config/axiosInstance';
 import { host, login_url, register_url } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/useStorage';
+import { useSessionStorage } from '../hooks/useStorage';
 
 export const AuthContext = createContext({});
 
@@ -10,7 +10,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
-  const [user, setLocal, removeLocal] = useLocalStorage('user', null);
+  const [user, setLocal, removeLocal] = useSessionStorage('user', null);
 
   useEffect(() => checkUserLoggedIn(), []);
 
