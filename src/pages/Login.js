@@ -52,7 +52,7 @@ export default function Login(){
             e.preventDefault();
         }
     };
-    
+
     return(
         <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center mb-10'>
             <img src={logo} alt="Dod Logo" width={150} className='mx-auto' />
@@ -72,7 +72,7 @@ export default function Login(){
                 onSubmit={handleLogin} onChange={handleChange}>
                 <input 
                     className='shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
-                    type="text" name="username" placeholder="Email" onKeyPress={(e)=>checkSpecialCharEmail(e)}/> 
+                    type="text" name="username" maxLength="255" placeholder="Email" onKeyPress={(e)=>checkSpecialCharEmail(e)}/> 
                 <input 
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all duration-200'
                     type="password" name="password" placeholder="Password"/>

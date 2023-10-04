@@ -93,6 +93,7 @@ const Courses = (props) => {
                 type={"text"}
                 className={"w-full bg-transparent px-2 py-1 outline-none"}
                 placeholder={"Search"}
+                maxLength="1000"
                 onKeyPress={(event) => sortCourses(event)}
                 defaultValue = {searchQuery}
               />

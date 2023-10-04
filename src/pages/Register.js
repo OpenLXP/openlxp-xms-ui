@@ -42,7 +42,7 @@ export default function Register() {
             e.preventDefault();
         }
     };
-    
+
     return(
         <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center m-10'> 
             <img src={logo} alt="Dod Logo" width={150} className='mx-auto' />
@@ -60,13 +60,13 @@ export default function Register() {
             <form className="p-2 align-center" onSubmit={handleSubmit} onChange={handleChange}>
                 <input 
                     className='shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
-                    type="text" name="first_name" placeholder="First Name" onKeyPress={(e)=>checkSpecialChar(e)}/>
+                    type="text" name="first_name" placeholder="First Name" maxLength="255" onKeyPress={(e)=>checkSpecialChar(e)}/>
                 <input 
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
-                    type="text" name="last_name" placeholder="Last Name" onKeyPress={(e)=>checkSpecialChar(e)}/>
+                    type="text" name="last_name" placeholder="Last Name" maxLength="255" onKeyPress={(e)=>checkSpecialChar(e)}/>
                 <input 
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
-                    type="text" name="email" placeholder="Email" onKeyPress={(e)=>checkSpecialCharEmail(e)}/>
+                    type="text" name="email" placeholder="Email" maxLength="255" onKeyPress={(e)=>checkSpecialCharEmail(e)}/>
                 <input  
                     className='mt-2 shadow focus:shadow-md rounded-md p-2 w-full border border-gray-200 text-gray-700 focus:ring-2 outline-none transition-all  duration-200'
                     type="password" name="password" placeholder="Password"/>
