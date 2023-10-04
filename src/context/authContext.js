@@ -10,7 +10,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
-  const [user, setLocal, removeLocal] = useSessionStorage('user', null);
+  const [user, setSession, removeSession] = useSessionStorage('user', null);
 
   useEffect(() => checkUserLoggedIn(), []);
 
@@ -18,12 +18,12 @@ export function AuthProvider({ children }) {
   const register = (userData) => {
       axiosInstance.post(register_url, userData)
         .then(res => {
-            setLocal(res.data);
+            setSession(res.data);
             setError(null);
         })
         .catch(err => {
             setError(err);
-            removeLocal();
+            removeSession();
         });
   };
 
@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
         console.log("success");
     })
     .catch((err) => {
-        removeLocal();
+        removeSession();
         logout();
     });
   };
