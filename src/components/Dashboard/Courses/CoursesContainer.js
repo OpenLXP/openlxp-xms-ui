@@ -32,6 +32,10 @@ const Courses = (props) => {
   const catalogTitle = location.state;
 
   const sortCourses = (event) => {
+    if(/[<>/?+={};#$%*()`~\\]/.test(event.key)){
+      event.preventDefault();
+    }
+
     let query = event.target.value;
     if(event.key === 'Enter'){
       setSearchQuery(query);
@@ -89,6 +93,7 @@ const Courses = (props) => {
                 type={"text"}
                 className={"w-full bg-transparent px-2 py-1 outline-none"}
                 placeholder={"Search"}
+                maxLength="1000"
                 onKeyPress={(event) => sortCourses(event)}
                 defaultValue = {searchQuery}
               />
