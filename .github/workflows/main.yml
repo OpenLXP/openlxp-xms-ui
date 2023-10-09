@@ -3,7 +3,7 @@ name: Build and Push Docker image to AWS ECR
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - GitAction-ECR  # Trigger the workflow on push to the main branch
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
