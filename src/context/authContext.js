@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
  
   const login = (userData) => {
     setError(null);
-    setLocal(userData);
+    setSession(userData);
   };
 
   // Logout user
