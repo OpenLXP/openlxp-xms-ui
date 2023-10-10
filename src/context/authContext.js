@@ -1,7 +1,9 @@
+'use strict';
+
 import { axiosInstance } from '../config/axiosInstance';
 import { host, login_url, register_url } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/useStorage';
+import { useSessionStorage } from '../hooks/useStorage';
 
 export const AuthContext = createContext({});
 
@@ -10,7 +12,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
-  const [user, setLocal, removeLocal] = useLocalStorage('user', null);
+  const [user, setSession, removeSession] = useSessionStorage('user', null);
 
   useEffect(() => checkUserLoggedIn(), []);
 
@@ -18,28 +20,28 @@ export function AuthProvider({ children }) {
   const register = (userData) => {
       axiosInstance.post(register_url, userData)
         .then(res => {
-            setLocal(res.data);
+            setSession(res.data);
             setError(null);
         })
         .catch(err => {
             setError(err);
-            removeLocal();
+            removeSession();
         });
   };
 
  
   const login = (userData) => {
     setError(null);
-    setLocal(userData);
+    setSession(userData);
   };
 
   // Logout user
   const logout = async () => {
     axiosInstance
       .post(`${host}api/auth/logout`)
-      .then((res) => removeLocal())
+      .then((res) => removeSession())
       .catch()
-    removeLocal();
+    removeSession();
   };
 
   // // Check if user is logged in
@@ -49,7 +51,7 @@ export function AuthProvider({ children }) {
         console.log("success");
     })
     .catch((err) => {
-        removeLocal();
+        removeSession();
         logout();
     });
   };

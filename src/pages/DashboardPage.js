@@ -1,3 +1,5 @@
+'use strict';
+
 import ContentContainer from "../components/Dashboard/ContentContainer";
 // import DashboardHeader from "../components/Dashboard/Header/DashboardHeaderIcon";
 import Header from "../components/Header/Header";

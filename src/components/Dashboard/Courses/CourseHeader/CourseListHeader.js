@@ -1,3 +1,5 @@
+'use strict';
+
 const CourseHeader = (props) => {
   return (
     <tr>

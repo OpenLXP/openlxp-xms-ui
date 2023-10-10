@@ -1,3 +1,5 @@
+'use strict';
+
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import axios from "axios";
 import { unmountComponentAtNode } from "react-dom";

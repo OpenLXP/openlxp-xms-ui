@@ -1,3 +1,5 @@
+'use strict';
+
 import { flattenObjectToArray, updateDeeplyNestedJson } from "./utils";
 
 describe("function flattenObject", () => {

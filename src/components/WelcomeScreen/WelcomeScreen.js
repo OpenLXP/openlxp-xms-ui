@@ -1,3 +1,5 @@
+'use strict';
+
 import { useHistory } from "react-router-dom";
 
 const WelcomeScreen = () => {

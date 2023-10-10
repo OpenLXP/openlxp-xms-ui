@@ -1,3 +1,5 @@
+'use strict';
+
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

@@ -1,3 +1,5 @@
+'use strict';
+
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import Register from './Register';
 import mockAxios from 'jest-mock-axios';

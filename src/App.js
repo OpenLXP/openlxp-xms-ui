@@ -1,3 +1,5 @@
+'use strict';
+
 import {
   Route,
   BrowserRouter as Router,
