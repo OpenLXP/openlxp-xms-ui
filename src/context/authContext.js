@@ -39,9 +39,9 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     axiosInstance
       .post(`${host}api/auth/logout`)
-      .then((res) => removeLocal())
+      .then((res) => removeSession())
       .catch()
-    removeLocal();
+    removeSession();
   };
 
   // // Check if user is logged in
