@@ -4,8 +4,6 @@ on:
   pull_request:
     branches: [ GitAction-ECR ]
 
-name: AWS ECR push
-
 jobs:
   deploy:
     name: Deploy
