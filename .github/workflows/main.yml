@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - GitAction-ECR
-
-
+env:
+  AWS_REGION: us-east-2
+  
 jobs:
   push_to_ecr:
     name: Push Docker image to Amazon ECR
@@ -16,11 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: 1248SDFJLASDF
-          aws-secret-access-key: FASDLFKJ334094JDS
-          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
           
       - name: Login to Amazon ECR
         id: login-ecr
