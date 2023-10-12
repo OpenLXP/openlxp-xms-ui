@@ -29,7 +29,6 @@ export default function Register() {
     }
 
     function handleSubmit(event){
-        console.log(credentials);
         event.preventDefault();
         register(credentials);
     }
