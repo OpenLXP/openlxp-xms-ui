@@ -60,7 +60,7 @@ const Courses = (props) => {
           isLoading: false,
           error: error,
         });
-        console.log(error);
+        console.log("Courses unable to be loaded. Contact system admin.");
       });
   }, [page, searchQuery]);
 

@@ -17,7 +17,7 @@ const CatalogsList = ({catalogs}) => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Catalogs unable to be loaded. Contact system admin.");
       });
   }, []);
 

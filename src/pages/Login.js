@@ -16,7 +16,6 @@ export default function Login(){
     const [errorMsg, setErrorMsg] = useState();
 
     useEffect(()=>{
-        console.log(user);
         if(user){
             history.push("/dashboard");
         }
