@@ -3,7 +3,7 @@ name: Push to Amazon ECR
 on:
   push:
     branches:
-      - GitAction-ECR
+      - GitAction-ECR-sammy
 env:
   AWS_REGION: us-east-2
   ECR_REPO_NAME: openlxp_test
