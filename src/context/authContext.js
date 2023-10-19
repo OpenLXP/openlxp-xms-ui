@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
             setError(null);
         })
         .catch(err => {
+            console.log("There was an error verifying user registration");
             setError(err);
             removeSession();
         });
@@ -51,6 +52,7 @@ export function AuthProvider({ children }) {
         console.log("success");
     })
     .catch((err) => {
+        console.log("There was an error verifying if user is logged in successfully");
         removeSession();
         logout();
     });
