@@ -36,6 +36,7 @@ const Catalogs = (props) => {
 
       // If there is an error.
       .catch((err) => {
+        console.log("Failed to retrieve data from endpoint")
         setCatalogs({
           providers: null,
           isLoading: false,
