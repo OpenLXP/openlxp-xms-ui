@@ -6,8 +6,9 @@ import { useAuth } from "../../context/authContext";
 
 // Local imports
 import icon from "../../resources/internal/dodLogo.png";
-import HeaderLogo from "./Logo/HeaderLogo";
+//import HeaderLogo from "./Logo/HeaderLogo";
 import NavBar from "./NavBar/NavBar";
+import Link from "next/link";
 
 const Header = () => {
   const navButtons = [
@@ -38,7 +39,7 @@ const Header = () => {
   const {user, logout} = useAuth();
 
   return (
-    <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
+    <header className={'bg-white w-full shadow z-50'}>
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
         {/* <HeaderLogo
           title={logo.title}
@@ -54,14 +55,14 @@ const Header = () => {
             {!user ? (
               <div className="flex flex-row">
                 <div className="hover:bg-blue-light rounded border md:text-md m-2 p-2">
-                  <NavLink to={"/login"} className="hover:bg-blue-light p-0 mt-2">
+                  <Link href="/login" className="hover:bg-blue-light p-0 mt-2">
                     Sign In
-                  </NavLink>
+                  </Link>
                 </div>
                 <div className=" hover:bg-blue-light rounded border md:text-md m-2 p-2">
-                  <NavLink to={"/register"} className="hover:bg-blue-light p-0 mt-2">
+                  <Link href="/register" className="hover:bg-blue-light p-0 mt-2">
                     Sign Up
-                  </NavLink>
+                  </Link>
                 </div>
               </div>
             ) : (

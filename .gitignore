@@ -8,8 +8,15 @@
 # testing
 /coverage
 
+# next.js
+/.next/
+/out/
+
 # production
 /build
+
+# vercel
+.vercel
 
 # misc
 .DS_Store
@@ -24,3 +31,10 @@ yarn-error.log*
 package-lock.json
 .vscode/settings.json
 .idea
+
+# Yarn specific
+./yarn.lock
+yarn.lock
+.yarn
+/.yarn
+

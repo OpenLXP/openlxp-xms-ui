@@ -2,6 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
+import Link from "next/link";
 
 const NavBar = (props) => {
   const navButtons = props.navButtons || [];
@@ -16,9 +17,9 @@ const NavBar = (props) => {
             <div
               className="p-2 mx-2 hover:bg-blue-light lg:text-md rounded-t-lg md:text-md"
               key={index}>
-              <NavLink to={button.route} data-testid={button.testId}>
+              <Link href={button.route} data-testid={button.testId}>
                 {button.name}
-              </NavLink>
+              </Link>
             </div>
           );
         }
@@ -27,9 +28,9 @@ const NavBar = (props) => {
             <div
               className="p-2 mx-2 hover:bg-blue-light lg:text-md rounded-t-lg md:text-md"
               key={index}>
-              <NavLink to={button.route} data-testid={button.testId}>
+              <Link href={button.route} data-testid={button.testId}>
                 {button.name}
-              </NavLink>
+              </Link>
             </div>
           );
         }

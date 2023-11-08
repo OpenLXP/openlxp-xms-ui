@@ -2,7 +2,7 @@
 
 import { Switch, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
-import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
+import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
 import Login from "./Login";
 import Register from "./Register";
@@ -11,19 +11,17 @@ import Support from "./Support";
 const MainPage = () => {
   return (
     <div className="relative flex flex-col min-h-screen">
-      <Route path="/" component={Header} />
+      <Header />
       <div className="w-10/12 p-2 mx-auto">
         <div className="p-8 my-10 rounded-md">
-          <Switch>
-            <Route path="/" exact component={WelcomeScreen} />
-            <Route path="/support" exact component={Support}/>
+            <WelcomeScreen/>
+            {/* <Route path="/support" exact component={Support}/>
             <Route path="/login" exact component={Login} />
-            <Route path="/register" exact component={Register} />
-          </Switch>
+            <Route path="/register" exact component={Register} /> */}
         </div>
       </div>
       <div className='absolute bottom-0 w-full'>
-        <Route path="/" component={Footer} />
+        <Footer />
       </div>
     </div>
   );
