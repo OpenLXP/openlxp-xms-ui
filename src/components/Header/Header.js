@@ -3,10 +3,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import Image from 'next/image';
 
 // Local imports
-import icon from "../../resources/internal/dodLogo.png";
-//import HeaderLogo from "./Logo/HeaderLogo";
+import logoImage from '../../public/dodLogo.png'
 import NavBar from "./NavBar/NavBar";
 import Link from "next/link";
 
@@ -33,7 +33,6 @@ const Header = () => {
   const logo = {
     title: "Experience Management Service",
     subtitle: "Department of Defense",
-    img: icon,
   };
 
   const {user, logout} = useAuth();
@@ -41,13 +40,8 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
-        {/* <HeaderLogo
-          title={logo.title}
-          subtitle={logo.subtitle}
-          img={logo.img}
-        /> */}
         <div className="flex flex-row items-center">
-        <img src={icon} alt="DOD Logo" className={"pl-3 mr-2"} width={60} height={60}/>
+        <Image src={logoImage} alt={'home'} height={'50'} width={'50'} priority={true}/>
         <NavBar navButtons={navButtons} />
         </div>
         {/* <div className="flex flex-row justify-between mt-2"> */}
@@ -55,7 +49,7 @@ const Header = () => {
             {!user ? (
               <div className="flex flex-row">
                 <div className="hover:bg-blue-light rounded border md:text-md m-2 p-2">
-                  <Link href="/login" className="hover:bg-blue-light p-0 mt-2">
+                  <Link href={'/login'} className="hover:bg-blue-light p-0 mt-2">
                     Sign In
                   </Link>
                 </div>

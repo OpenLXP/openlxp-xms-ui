@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router";
 import CatalogsContainer from "./Catalogs/CatalogsContainer";
 import CoursesContainer from "./Courses/CoursesContainer";
 import CourseDataContainer from "./CourseData/CourseDataContainer";
-import Login from "../../pages/Login";
+import Login from "../login";
 import Footer from "../../components/Footer/Footer";
 
 const ContentContainer = (props) => {

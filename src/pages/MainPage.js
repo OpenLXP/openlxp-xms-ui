@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
 import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./login";
+import Register from "./register";
 import Support from "./Support";
 
 const MainPage = () => {
