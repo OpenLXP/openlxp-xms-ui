@@ -4,8 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
-import logo from "../resources/internal/dodLogo.png"
-
+import logoImage from "../public/dodLogo.png";
+import Image from 'next/image';
 
 export default function Register() {
     const {user, register} = useAuth();
@@ -46,7 +46,9 @@ export default function Register() {
 
     return(
         <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center m-10'> 
-            <img src={logo} alt="Dod Logo" width={150} className='mx-auto' />
+            <div className="flex flex-col items-center justify-between">
+                <Image src={logoImage} alt={'home'} height={"200"} width={"200"} priority={true}/>
+            </div>
             <h1 className="my-2 mx-auto text-2xl font-bold"> Create your account </h1>
 
             <span className="mx-auto">
