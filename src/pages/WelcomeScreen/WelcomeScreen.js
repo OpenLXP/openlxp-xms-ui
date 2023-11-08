@@ -1,6 +1,5 @@
 'use strict';
 
-import { useHistory } from "react-router-dom";
 import { useRouter } from "next/router";
 
 const WelcomeScreen = () => {

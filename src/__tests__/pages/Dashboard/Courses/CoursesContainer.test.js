@@ -3,10 +3,10 @@
 import { fireEvent, act, screen, render } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import axios from "axios";
-import CoursesContainer from "./CoursesContainer";
+import CoursesContainer from "../../../../pages/Dashboard/Courses/CoursesContainer";
 import { MemoryRouter } from "react-router-dom";
 import MockAxios from 'jest-mock-axios';
-import { useAuth } from "../../../context/authContext";
+import { useAuth } from "../../../../context/authContext";
 
 // mocking axios
 // jest.mock("axios");

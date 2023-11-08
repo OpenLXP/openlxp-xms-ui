@@ -3,7 +3,7 @@
 import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 
-import CourseListHeader from "./CourseListHeader";
+import CourseListHeader from "../../../../../pages/Dashboard/Courses/CourseHeader/CourseListHeader";
 
 let container = null;
 beforeEach(() => {

@@ -1,7 +1,7 @@
 'use strict';
 
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import Register from './Register';
+import Register from '../../pages/Register';
 import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";

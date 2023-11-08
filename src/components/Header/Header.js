@@ -39,7 +39,7 @@ const Header = () => {
   const {user, logout} = useAuth();
 
   return (
-    <header className={'bg-white w-full shadow z-50'}>
+    <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
         {/* <HeaderLogo
           title={logo.title}

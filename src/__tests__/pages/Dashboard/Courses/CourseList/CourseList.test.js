@@ -3,7 +3,7 @@
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import CourseList from "./CourseList";
+import CourseList from "../../../../../pages/Dashboard/Courses/CourseList/CourseList";
 
 let container = null;
 beforeEach(() => {

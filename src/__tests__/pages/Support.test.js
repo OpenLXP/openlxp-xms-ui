@@ -3,7 +3,7 @@
 import { unmountComponentAtNode } from "react-dom";
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { StaticRouter } from "react-router-dom";
-import Support from "./Support";
+import Support from "../../pages/Support";
 
 let container = null;
 

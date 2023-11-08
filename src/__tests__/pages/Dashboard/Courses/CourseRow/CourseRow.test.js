@@ -3,7 +3,7 @@
 import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import CourseRow from "./CourseRow";
+import CourseRow from "../../../../../pages/Dashboard/Courses/CourseRow/CourseRow";
 
 let container = null;
 beforeEach(() => {

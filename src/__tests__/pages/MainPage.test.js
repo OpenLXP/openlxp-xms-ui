@@ -8,7 +8,7 @@ import {
   StaticRouter,
   Route,
 } from "react-router-dom";
-import MainPage from "./MainPage";
+import MainPage from "../../pages/MainPage";
 
 let container = null;
 
