@@ -31,7 +31,7 @@ const WelcomeScreen = () => {
         <button
           id={'create-account-button'}
           className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer transition-all duration-150 ease-in-out'
-          onClick={() => router.push('/Register')}>
+          onClick={() => router.push('/register')}>
           Click Here to Get Started!
         </button>
       </main>
