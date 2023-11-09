@@ -8,12 +8,13 @@ import { useAuth } from "../context/authContext";
 import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from "../components/layouts/DefaultLayout";
+import { useRouter } from "next/router";
 
 
 export default function Login(){
     const {user, login} = useAuth();
     const [credentials, setCredentials] = useState({username:"", password:""});
-    const history = useHistory();
+    const history = useRouter();
 
     const [errorMsg, setErrorMsg] = useState();
 

@@ -7,6 +7,7 @@ import { useAuth } from '../context/authContext';
 import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from '../components/layouts/DefaultLayout';
+import { useRouter } from 'next/router';
 
 export default function Register() {
     const {user, register} = useAuth();
@@ -18,7 +19,7 @@ export default function Register() {
         confirmPassword:"",
     });
 
-    const history = useHistory();
+    const history = useRouter();
     useEffect(()=>{
         if(!user) return;
         history.push("/dashboard");
