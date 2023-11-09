@@ -2,6 +2,7 @@
 
 import { Disclosure, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import DefaultLayout from '../components/layouts/DefaultLayout';
 
 const Support = () => {
 
@@ -64,6 +65,7 @@ const Support = () => {
 
     return (
         // <main className="font-sans">
+        <DefaultLayout>
             <div className='pb-20'>
                 <h1 className='pb-4 border-b mb-8 text-3xl font-semibold'>Support</h1>
                 <h2 className='text-2xl font-semibold pb-2'>About</h2>
@@ -71,6 +73,7 @@ const Support = () => {
                 <h2 className='text-xl font-semibold pb-2 mt-4'>Navigating the Expereince Management Service</h2>
                 {panelCode(navigateContent)}
             </div>
+        </DefaultLayout>
         // </main>
     );
 };
