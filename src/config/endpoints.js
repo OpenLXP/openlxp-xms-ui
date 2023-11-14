@@ -1,6 +1,6 @@
 'use strict';
 
-export const host = process.env.REACT_APP_XMS_BACKEND
+export const host = process.env.NEXT_PUBLIC_XMS_BACKEND
 const api = 'api/';
 
 //catalogs

@@ -41,7 +41,7 @@ export default function Register() {
         }
         else(
         axiosInstance
-            .post("http://localhost:8000/api/auth/register", {
+            .post(register_url, {
                 first_name: credentials.first_name,
                 last_name: credentials.last_name,
                 email: credentials.email,

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../config/axiosInstance";
 import { login_url } from "../config/endpoints";
-import { useAuth } from '@/context/authContext';
+import { useAuth } from "@/context/authContext";
 import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from "../components/layouts/DefaultLayout";
@@ -39,7 +39,7 @@ export default function Login(){
         }
         else(
         axiosInstance
-            .post('http://localhost:8000/api/auth/login', credentials)
+            .post(login_url, credentials)
             .then((res) => {
                 console.log("res", res)
                 login(res.data);
