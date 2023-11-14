@@ -4,7 +4,7 @@ import { render, act, screen, fireEvent } from "@testing-library/react";
 import axios from "axios";
 import { unmountComponentAtNode } from "react-dom";
 import { StaticRouter } from "react-router-dom";
-import DashboardPage from "../../pages/DashboardPage";
+import DashboardPage from "../../pages/dashboard";
 import mockAxios from 'jest-mock-axios';
 
 let container = null;

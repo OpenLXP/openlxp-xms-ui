@@ -4,7 +4,7 @@ import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
-import CatalogCard from "../../../../../pages/Dashboard/Catalogs/CatalogCard/CatalogCard";
+import CatalogCard from "../../../../../pages/dashboard/Catalogs/CatalogCard/CatalogCard";
 import icon from "../../../../images/placeholder.jpg";
 
 let container = null;

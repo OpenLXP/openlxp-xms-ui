@@ -4,7 +4,7 @@ import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
-import DashboardHeaderIcon from "../../../../pages/Dashboard/Header/DashboardHeaderIcon";
+import DashboardHeaderIcon from "../../../../pages/dashboard/Header/DashboardHeaderIcon";
 
 let container = null;
 

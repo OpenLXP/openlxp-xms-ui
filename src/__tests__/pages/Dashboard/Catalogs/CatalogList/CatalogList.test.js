@@ -4,7 +4,7 @@ import { render, act, screen } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
-import CatalogList from "../../../../../pages/Dashboard/Catalogs/CatalogList/CatalogList";
+import CatalogList from "../../../../../pages/dashboard/Catalogs/CatalogList/CatalogList";
 import mockAxios from 'jest-mock-axios';
 
 

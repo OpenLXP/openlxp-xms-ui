@@ -5,7 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import MainPage from "./MainPage";
-import DashboardPage from "./DashboardPage";
+import DashboardPage from "./dashboard";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
