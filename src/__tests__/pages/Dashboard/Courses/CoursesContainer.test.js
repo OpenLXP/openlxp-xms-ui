@@ -3,7 +3,7 @@
 import { fireEvent, act, screen, render } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import axios from "axios";
-import CoursesContainer from "../../../../pages/dashboard/Courses/[catalogTitle]";
+import CoursesContainer from "../../../../pages/dashboard/[catalogTitle]";
 import { MemoryRouter } from "react-router-dom";
 import MockAxios from 'jest-mock-axios';
 import { useAuth } from "../../../../context/authContext";

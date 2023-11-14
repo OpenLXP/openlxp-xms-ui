@@ -2,8 +2,8 @@
 
 import CourseListHeader from "../CourseHeader/CourseListHeader";
 import CourseRow from "../CourseRow/CourseRow";
-import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Link from 'next/link';
 
 const CourseList = (props) => {
   const history = useHistory();
@@ -28,16 +28,17 @@ const CourseList = (props) => {
          <td className="px-6 py-4  text-center text-sm font-medium"
            aria-label={`View more about this course ${data.metadata_key_hash}`}
          >
-           <NavLink
+           <Link
              aria-label={`View more about this course ${data.metadata_key_hash}`}
-             to={{
-               pathname: `/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`,
-              //  state: data,
-             }}
+            //  to={{
+            //    pathname: `/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`,
+            //   //  state: data,
+            //  }}
+             href={`/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`} 
              className="text-blue hover:text-blue-light"
            >
              View
-           </NavLink>
+           </Link>
          </td>
       </tr>)
 

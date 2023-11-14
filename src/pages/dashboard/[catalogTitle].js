@@ -3,16 +3,16 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import CourseList from "./CourseList/CourseList";
-import { catalog_courses_url } from "../../../config/endpoints";
-import { axiosInstance } from "../../../config/axiosInstance";
+import CourseList from "./Courses/CourseList/CourseList";
+import { catalog_courses_url } from "../../config/endpoints";
+import { axiosInstance } from "../../config/axiosInstance";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/solid';
-
+import DefaultLayout from "@/components/layouts/DefaultLayout";
 
 export function getServerSideProps(context) {
   const { catalogTitle } = context.query;
@@ -40,7 +40,7 @@ const Courses = (catalogTitle) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Gets the data passed from the catalog click event
-  const location = useLocation();
+  // const location = useLocation();
   // const catalogTitle = location.state;
 
   const sortCourses = (event) => {
@@ -55,7 +55,8 @@ const Courses = (catalogTitle) => {
   };
 
   // Building the api call based on the catalog clicked
-  const catalog_courses_api_url = catalog_courses_url + `${catalogTitle}` + "?page=" + page + "&search=" + searchQuery ;
+  const catalog_courses_api_url = catalog_courses_url + `${catalogTitle.catalogTitle}` + "?page=" + page + "&search=" + searchQuery ;
+  console.log(catalogTitle.catalogTitle);
   useEffect(() => {
     setCourseData({ courses: null, isLoading: true, error: null });
     axiosInstance.get(catalog_courses_api_url)
@@ -94,6 +95,7 @@ const Courses = (catalogTitle) => {
   }
   
   return (
+    <DefaultLayout>
     <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
       <h2 className="text-2xl font-semibold mt-8">Course List</h2>
       {!courseData.error && (
@@ -173,6 +175,7 @@ const Courses = (catalogTitle) => {
       <div className="overflow-hidden rounded-lg">{table}
       </div>
     </div>
+    </DefaultLayout>
   );
 };
 export default Courses;
