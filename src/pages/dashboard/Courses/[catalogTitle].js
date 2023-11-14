@@ -13,7 +13,17 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/solid';
 
-const Courses = (props) => {
+
+export function getServerSideProps(context) {
+  const { catalogTitle } = context.query;
+  return {
+    props: {
+      catalogTitle,
+    },
+  };
+}
+
+const Courses = (catalogTitle) => {
   // Default state of the course data.
   const [courseData, setCourseData] = useState({
     courses: null,
@@ -31,7 +41,7 @@ const Courses = (props) => {
 
   // Gets the data passed from the catalog click event
   const location = useLocation();
-  const catalogTitle = location.state;
+  // const catalogTitle = location.state;
 
   const sortCourses = (event) => {
     if(/[<>/?+={};#$%*()`~\\]/.test(event.key)){

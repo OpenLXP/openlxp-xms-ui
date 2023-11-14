@@ -3,9 +3,6 @@
 import Header from "../components/Header/Header";
 import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
 import Footer from "../components/Footer/Footer";
-import Login from "./login";
-import Register from "./register";
-import Support from "./support";
 
 const MainPage = () => {
   return (
