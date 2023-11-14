@@ -1,9 +1,7 @@
 'use strict';
 
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Link from 'next/link';
-
 
 const CatalogCard = (props) => {
   const title = props.title;

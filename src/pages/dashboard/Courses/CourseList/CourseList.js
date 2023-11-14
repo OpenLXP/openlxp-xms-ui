@@ -14,7 +14,7 @@ const CourseList = (props) => {
       return  (
       <tr key={data.metadata_key_hash}
        className='group cursor-pointer hover:shadow-lg pr-2 pl-1 py-1 rounded-md outline-none' 
-       onClick={() => router.push(`/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`)} >
+       onClick={() => router.push(`/dashboard/${data.provider_name}/${data.metadata_key_hash}`)} >
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
              {data.metadata?.Course?.CourseTitle}
@@ -26,18 +26,7 @@ const CourseList = (props) => {
 
          <td className="px-6 py-4  text-center text-sm font-medium"
            aria-label={`View more about this course ${data.metadata_key_hash}`}
-         >
-           <Link
-             aria-label={`View more about this course ${data.metadata_key_hash}`}
-            //  to={{
-            //    pathname: `/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`,
-            //   //  state: data,
-            //  }}
-             href={`/dashboard/${data.provider_name}/course/${data.metadata_key_hash}`} 
-             className="text-blue hover:text-blue-light"
-           >
-             View
-           </Link>
+         > View
          </td>
       </tr>)
   });
