@@ -25,7 +25,6 @@ export function AuthProvider({ children }) {
   const login = (userData) => {
     setError(null);
     setSession(userData);
-    console.log("here");
   };
 
   // Logout user

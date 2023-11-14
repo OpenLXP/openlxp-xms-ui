@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 
 // contexts
-//import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider } from '../context/authContext';
 
 // styles
 import '../styles/global.css';
@@ -26,6 +26,7 @@ export default function MyApp({ Component, pageProps }) {
   );
 
   return (
+    <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps['dehydratedState']}>
           <Head>
@@ -36,5 +37,6 @@ export default function MyApp({ Component, pageProps }) {
           <ReactQueryDevtools />
         </Hydrate>
       </QueryClientProvider>
+    </AuthProvider>
   );
 }

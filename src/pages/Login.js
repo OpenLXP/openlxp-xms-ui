@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../config/axiosInstance";
 import { login_url } from "../config/endpoints";
-import { useAuth } from "@/context/authContext";
+import { useAuth } from "../context/authContext";
 import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from "../components/layouts/DefaultLayout";
@@ -37,20 +37,18 @@ export default function Login(){
         if (credentials.username === '' || credentials.password === '') {
             setErrorMsg('All fields required');
         }
-        else(
+        else{
         axiosInstance
             .post(login_url, credentials)
             .then((res) => {
-                console.log("res", res)
                 login(res.data);
                 router.push('/');
-                console.log("here")
             })
             .catch((error) => {
                 console.log(error)
                 setErrorMsg('Invalid credentials');
             })
-        )
+        }
     };
 
     const checkSpecialCharEmail =(e)=>{
