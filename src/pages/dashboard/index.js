@@ -1,18 +1,69 @@
 'use strict';
 
-import CatalogsContainer from "./Catalogs/CatalogsContainer";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Dashboard() {
-  return (
-    <div className={'relative custom-scroll min-h-screen'}>
-      <Header />
-      {/* <div className='w-10/12 mx-auto px-4 sm:px-6 md:px-8'> */}
-      <div className='max-w-7xl mx-auto px-4 sm:px-4 lg:px-8'>
-        <CatalogsContainer />
-      </div>
-      <Footer />
-    </div>
-  );
-}
+import CatalogList from "./Catalogs/CatalogList/CatalogList";
+import { catalogs_url } from "../../config/endpoints";
+import { axiosInstance } from "../../config/axiosInstance";
+import DefaultLayout from "@/components/layouts/DefaultLayout";
+
+const Catalogs = (props) => {
+  const [catalogs, setCatalogs] = useState({
+    providers: null,
+    isLoading: true,
+    error: null,
+  });
+
+  // API Endpoint for XIS Catalogs.
+  // const catalogs_api_url = process.env.REACT_APP_XIS_CATALOGS_API;
+
+  useEffect(() => {
+    // Setting the catalogs to loading
+    setCatalogs({
+      isLoading: true,
+    });
+
+    // Requesting data from the API endpoint
+    axiosInstance
+      .get(catalogs_url)
+      .then((resp) => {
+        setCatalogs({
+          providers: JSON.parse(resp.data),
+          isLoading: false,
+          error: null,
+        });
+      })
+
+      // If there is an error.
+      .catch((err) => {
+        console.log("Failed to retrieve data from endpoint")
+        setCatalogs({
+          providers: null,
+          isLoading: false,
+          error: err,
+        });
+      });
+  }, []);
+
+  // Default state is to load nothing
+  let content = null;
+
+  // Show a loading message
+  if (catalogs.isLoading) {
+    content = <div> Loading...</div>;
+  }
+  // Show the content if there is any
+  else if (catalogs.providers && !catalogs.isLoading) {
+    content = <CatalogList catalogs={catalogs.providers} />;
+  }
+  // Show the error message if there is an error
+  else if (catalogs.error){
+    content = (
+      <div>Error loading catalogs. Please contact an administrator</div>
+    );
+  }
+
+  return (<DefaultLayout>{content}</DefaultLayout>);
+};
+export default Catalogs;
