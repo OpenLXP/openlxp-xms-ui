@@ -7,10 +7,22 @@ import { updateDeeplyNestedJson } from "../../../utils/utils";
 import { catalog_courses_url } from "../../../config/endpoints";
 import { axiosInstance } from "../../../config/axiosInstance";
 import { TrashIcon } from '@heroicons/react/outline';
+import DefaultLayout from "@/components/layouts/DefaultLayout";
 
+export function getServerSideProps(context) {
+  const { catalogTitle, courseMetadataKey } = context.query;
+  return {
+    props: {
+      catalogTitle,
+      courseMetadataKey
+    },
+  };
+}
 
-export default function CourseDataContainerV2() {
-  const { catalog, id } = useParams();
+export default function CourseDataContainerV2({catalogTitle, courseMetadataKey}) {
+  // const { catalog, id } = useParams();
+  const catalog = catalogTitle;
+  const id = courseMetadataKey;
 
   // the state manager of the data
   const [course, setCourse] = useState({
@@ -364,6 +376,7 @@ export default function CourseDataContainerV2() {
   }, [id]);
 
   return (
+    <DefaultLayout>
     <div className="bg-white shadow overflow-hidden rounded-md pb-8 mb-6">
       {course.isLoading && "Loading ..."}
       {course?.error && "Error"}
@@ -450,5 +463,6 @@ export default function CourseDataContainerV2() {
         </Dialog>
       </Transition>
     </div>
+    </DefaultLayout>
   );
 }
