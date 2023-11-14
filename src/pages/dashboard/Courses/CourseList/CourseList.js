@@ -1,7 +1,6 @@
 'use strict';
 
 import CourseListHeader from "../CourseHeader/CourseListHeader";
-import CourseRow from "../CourseRow/CourseRow";
 import { useHistory } from "react-router-dom";
 import Link from 'next/link';
 
@@ -41,8 +40,6 @@ const CourseList = (props) => {
            </Link>
          </td>
       </tr>)
-
-    // return <CourseRow data={row} rowIndex={index} key={index} />;
   });
 
   return (
