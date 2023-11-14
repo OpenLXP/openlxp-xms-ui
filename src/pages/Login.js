@@ -1,10 +1,9 @@
 'use strict';
 
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { axiosInstance } from "../config/axiosInstance";
 import { login_url } from "../config/endpoints";
-import { useAuth } from "../context/authContext";
+import { useAuth } from '@/context/authContext';
 import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from "../components/layouts/DefaultLayout";
@@ -12,15 +11,15 @@ import { useRouter } from "next/router";
 
 
 export default function Login(){
-    const {user, login} = useAuth();
+    const { user, login } = useAuth();
     const [credentials, setCredentials] = useState({username:"", password:""});
-    const history = useRouter();
+    const router = useRouter();
 
     const [errorMsg, setErrorMsg] = useState();
 
     useEffect(()=>{
         if(user){
-            history.push("/dashboard");
+            router.push("/dashboard");
         }
     },[user]);
 
@@ -40,12 +39,15 @@ export default function Login(){
         }
         else(
         axiosInstance
-            .post(login_url, credentials)
+            .post('http://localhost:8000/api/auth/login', credentials)
             .then((res) => {
+                console.log("res", res)
                 login(res.data);
                 router.push('/');
+                console.log("here")
             })
             .catch((error) => {
+                console.log(error)
                 setErrorMsg('Invalid credentials');
             })
         )
@@ -70,7 +72,7 @@ export default function Login(){
                     <button
                         id={'create-account-button'}
                         className='text-blue-400 hover:underline hover:text-blue-500 cursor-pointer transition-all duration-150 ease-in-out'
-                        onClick={() => history.push("/register")}>
+                        onClick={() => router.push("/register")}>
                         Create an Account
                     </button>
                 </span>

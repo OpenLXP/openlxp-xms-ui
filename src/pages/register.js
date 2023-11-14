@@ -8,6 +8,8 @@ import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from '../components/layouts/DefaultLayout';
 import { useRouter } from 'next/router';
+import { axiosInstance } from '../config/axiosInstance';
+import { register_url } from '../config/endpoints';
 
 export default function Register() {
     const {user, register} = useAuth();
@@ -30,10 +32,31 @@ export default function Register() {
         setCredentials((prev)=>({...prev,[name]:value}));
     }
 
-    function handleSubmit(event){
+    const handleSubmit = (event) => {
         event.preventDefault();
-        register(credentials);
-    }
+        if (credentials.first_name === '' || credentials.last_name === ''|| credentials.email === ''|| credentials.password === '') {
+            // setErrorMsg('All fields required');
+            console.log('All fields required');
+
+        }
+        else(
+        axiosInstance
+            .post("http://localhost:8000/api/auth/register", {
+                first_name: credentials.first_name,
+                last_name: credentials.last_name,
+                email: credentials.email,
+                password: credentials.password,
+            })
+            .then((res) => {
+                router.push('/');
+                register(res.data);
+            })
+            .catch((err) => {
+                console.log("Account registration failed.");
+            })
+        )
+    };
+
     const checkSpecialChar =(e)=>{
         if(/[<>/?+={};#$%&*()`~\\]/.test(e.key)){
             e.preventDefault();

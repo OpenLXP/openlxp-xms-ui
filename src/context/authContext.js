@@ -1,7 +1,7 @@
 'use strict';
 
 import { axiosInstance } from '../config/axiosInstance';
-import { host, login_url, register_url } from '../config/endpoints';
+import { host } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useSessionStorage } from '../hooks/useStorage';
 
@@ -18,22 +18,14 @@ export function AuthProvider({ children }) {
 
   // Register user
   const register = (userData) => {
-      axiosInstance.post(register_url, userData)
-        .then(res => {
-            setSession(res.data);
-            setError(null);
-        })
-        .catch(err => {
-            console.log("There was an error verifying user registration");
-            setError(err);
-            removeSession();
-        });
+    setError(null);
+    setSession(userData);
   };
-
  
   const login = (userData) => {
     setError(null);
     setSession(userData);
+    console.log("here");
   };
 
   // Logout user
