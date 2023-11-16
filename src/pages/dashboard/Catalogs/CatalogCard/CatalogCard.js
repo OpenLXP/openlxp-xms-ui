@@ -13,7 +13,7 @@ const CatalogCard = (props) => {
       href={`/dashboard/${title}`}
       className="my-4"
       data-testid="nav-link">
-      <div className="flex flex-row w-64 h-28 bg-gray-200 p-3 rounded-lg space-x-12 hover:h-32 hover:shadow-lg transition-shadow">
+      <div className="flex flex-row w-64 h-28 bg-gray-200 p-3 rounded-lg space-x-12 hover:shadow-lg transition-shadow">
         <img
           src={img}
           alt="catalog image"
