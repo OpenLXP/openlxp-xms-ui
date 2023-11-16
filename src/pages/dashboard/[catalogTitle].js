@@ -56,7 +56,6 @@ const Courses = (catalogTitle) => {
 
   // Building the api call based on the catalog clicked
   const catalog_courses_api_url = catalog_courses_url + `${catalogTitle.catalogTitle}` + "?page=" + page + "&search=" + searchQuery ;
-  console.log(catalogTitle.catalogTitle);
   useEffect(() => {
     setCourseData({ courses: null, isLoading: true, error: null });
     axiosInstance.get(catalog_courses_api_url)
@@ -148,10 +147,10 @@ const Courses = (catalogTitle) => {
             // onClick={() => setPage(page)}
             className={`${
               page === page
-                ? 'bg-blue-400 text-white'
+                ? 'bg-blue text-white'
                 : 'bg-blue-50 text-blue-400'
-            } flex justify-center items-center gap-2 h-10 rounded-md hover:shadow-md bg-blue hover:bg-blue-light hover:text-white px-2 py-2 mt-6 ml-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
-          >
+            } flex justify-center items-center gap-2 h-10 rounded-md hover:shadow-md bg-blue px-2 py-2 mt-6 ml-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
+          > 
             {page}
           </button>
           <button
