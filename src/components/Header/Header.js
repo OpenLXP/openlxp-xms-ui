@@ -61,7 +61,7 @@ const Header = () => {
               </div>
             ) : (
               <div>
-                <span className="flex px-2 text-white items-center">
+                <span className="flex flex-row px-2 text-white items-center">
                   {user?.user?.first_name}&nbsp;{user?.user?.last_name}
                 </span>
                 <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2" 
