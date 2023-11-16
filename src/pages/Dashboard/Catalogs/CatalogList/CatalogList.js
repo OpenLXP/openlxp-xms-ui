@@ -1,7 +1,7 @@
 'use strict';
 
 import CatalogCard from "../CatalogCard/CatalogCard";
-import icon from "../../../../images/catalog.png";
+import icon from "../../../../public/catalog.png";
 import { configUrl, host } from "../../../../config/endpoints";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../../../../config/axiosInstance";
