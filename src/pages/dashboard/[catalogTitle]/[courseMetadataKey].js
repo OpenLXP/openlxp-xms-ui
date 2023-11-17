@@ -377,14 +377,13 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
 
   return (
     <DefaultLayout>
-    <div className="bg-white shadow overflow-hidden rounded-md pb-8 mb-6">
+    <div className="bg-white shadow rounded-md pb-8 mb-6">
       {course.isLoading && "Loading ..."}
       {course?.error && "Error"}
-      <header className="flex flex-row w-9/12 fixed pt-4 mx-4 px-4 sm:px-6 md:px-8 lg:px-10 border-b bg-white">
+      <div className="sticky top-0 pt-4 mx-4 px-4 sm:px-6 md:px-8 lg:px-10 border-b bg-white">
         {course?.data && !course?.error && !course.isLoading && courseHeader()}
-        {/* {course?.data && !course?.error && !course.isLoading && editControls()} */}
-      </header> 
-      <div className="h-20"></div>
+      </div>
+
       {course?.data &&
         !course?.error &&
         !course.isLoading &&
