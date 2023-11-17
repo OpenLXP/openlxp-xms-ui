@@ -4,6 +4,7 @@ import { axiosInstance } from '../config/axiosInstance';
 import { host } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useSessionStorage } from '../hooks/useStorage';
+import { useRouter } from 'next/router';
 
 export const AuthContext = createContext({});
 
@@ -13,6 +14,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [user, setSession, removeSession] = useSessionStorage('user', null);
+  const router = useRouter();
 
   useEffect(() => checkUserLoggedIn(), []);
 
@@ -34,6 +36,7 @@ export function AuthProvider({ children }) {
       .then((res) => removeSession())
       .catch()
     removeSession();
+    router.push("/");
   };
 
   // // Check if user is logged in
