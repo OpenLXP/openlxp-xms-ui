@@ -1,11 +1,9 @@
 'use strict';
 
 import {
-  Route,
   useLocation,
 } from "react-router-dom";
-import MainPage from "./MainPage";
-import DashboardPage from "./dashboard";
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -29,9 +27,9 @@ const App = () => {
   };
 
   return (
-        <div className="flex flex-col min-h-screen">
-          <Link href={'/'} passHref component={loadContent} />
-        </div>
+    <div className="flex flex-col min-h-screen">
+      <Link href={'/'} passHref component={loadContent} />
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ const WelcomeScreen = () => {
   return (
     <>
       <main className="font-sans">
-        <h3 className="text-3xl font-semibold mb-5 pb-4 border-b-2">{welcome.title}</h3>
+        <h1 className="font-sans text-3xl font-semibold mb-5 pb-4 pt-8 border-b-2">{welcome.title}</h1>
         {welcome.message.map((message, index) => {
           return (
             <div className="mb-5" key={index}>

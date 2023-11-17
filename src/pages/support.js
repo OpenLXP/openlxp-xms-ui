@@ -67,7 +67,7 @@ const Support = () => {
         // <main className="font-sans">
         <DefaultLayout>
             <div className='pb-20'>
-                <h1 className='pb-4 border-b mb-8 text-3xl font-semibold'>Support</h1>
+                <h1 className="font-sans text-3xl font-semibold mb-5 pb-4 pt-8 border-b-2">Support</h1>
                 <h2 className='text-2xl font-semibold pb-2'>About</h2>
                 {panelCode(aboutContent)}
                 <h2 className='text-xl font-semibold pb-2 mt-4'>Navigating the Expereince Management Service</h2>
