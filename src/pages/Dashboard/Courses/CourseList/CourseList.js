@@ -1,7 +1,6 @@
 'use strict';
 
 import CourseListHeader from "../CourseHeader/CourseListHeader";
-import Link from 'next/link';
 import { useRouter } from "next/router";
 
 const CourseList = (props) => {

@@ -1,7 +1,6 @@
 'use strict';
 
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import Image from 'next/image';
 
@@ -44,32 +43,30 @@ const Header = () => {
         <Image src={logoImage} alt={'home'} height={'50'} width={'50'} priority={true}/>
         <NavBar navButtons={navButtons} />
         </div>
-        {/* <div className="flex flex-row justify-between mt-2"> */}
-          <div className="flex flex-row justify-end">
-            {!user ? (
-              <div className="flex flex-row">
-                <div className="hover:bg-blue-light rounded border md:text-md m-2 p-2">
-                  <Link href={'/login'} className="hover:bg-blue-light p-0 mt-2">
-                    Sign In
-                  </Link>
-                </div>
-                <div className=" hover:bg-blue-light rounded border md:text-md m-2 p-2">
-                  <Link href="/register" className="hover:bg-blue-light p-0 mt-2">
-                    Sign Up
-                  </Link>
-                </div>
+        <div className="flex flex-row justify-end">
+          {!user ? (
+            <div className="flex flex-row">
+              <div className="hover:bg-blue-light rounded border md:text-md m-2 p-2">
+                <Link href={'/login'} className="hover:bg-blue-light p-0 mt-2">
+                  Sign In
+                </Link>
               </div>
-            ) : (
-              <div>
-                <span className="flex flex-row px-2 text-white items-center">
-                  {user?.user?.first_name}&nbsp;{user?.user?.last_name}
-                </span>
-                <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2" 
-                onClick={()=>{logout()}}>Logout </button>
+              <div className=" hover:bg-blue-light rounded border md:text-md m-2 p-2">
+                <Link href="/register" className="hover:bg-blue-light p-0 mt-2">
+                  Sign Up
+                </Link>
               </div>
-            )}
-          </div>
-        {/* </div> */}
+            </div>
+          ) : (
+            <div>
+              <span className="flex flex-row px-2 text-white items-center">
+                {user?.user?.first_name}&nbsp;{user?.user?.last_name}
+              </span>
+              <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2" 
+              onClick={()=>{logout()}}>Logout </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

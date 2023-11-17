@@ -1,6 +1,5 @@
 'use strict';
 
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
 import Link from "next/link";
 
