@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 
 export default function DefaultLayout({ children, footerLocation }) {
   return (
-    <div className={'relative custom-scroll min-h-screen'}>
+    <div className='relative custom-scroll min-h-screen'>
       <Header />
       <div className='w-9/12 mx-auto px-4 sm:px-6 md:px-8'> 
         {children}

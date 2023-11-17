@@ -377,7 +377,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
 
   return (
     <DefaultLayout>
-    <div className="bg-white shadow rounded-md pb-8 mb-6">
+    <div className="bg-white shadow rounded-md pb-4 mb-6">
       {course.isLoading && "Loading ..."}
       {course?.error && "Error"}
       <div className="sticky top-0 pt-4 mx-4 px-4 sm:px-6 md:px-8 lg:px-10 border-b bg-white">
@@ -462,6 +462,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
         </Dialog>
       </Transition>
     </div>
+    <div className="pb-20"></div>
     </DefaultLayout>
   );
 }

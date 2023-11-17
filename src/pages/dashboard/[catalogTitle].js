@@ -95,7 +95,7 @@ const Courses = (catalogTitle) => {
   
   return (
     <DefaultLayout>
-    <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto">
+    <div className="rounded-lg align-middle min-w-full overflow-auto mx-auto pb-20">
       <h2 className="text-2xl font-semibold mt-8">Course List</h2>
       {!courseData.error && (
         <div className="flex flex-row">
