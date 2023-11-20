@@ -48,8 +48,8 @@ export default function Register() {
                 password: credentials.password,
             })
             .then((res) => {
-                router.push('/');
                 register(res.data);
+                router.push('/');
             })
             .catch((err) => {
                 console.log("Account registration failed.");
