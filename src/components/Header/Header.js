@@ -58,11 +58,11 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div>
-              <span className="px-2 text-white items-center justify-center">
+            <div className="flex flex-row">
+              <span className="px-2 p-6 text-white items-center justify-center">
                 {user?.user?.first_name}&nbsp;{user?.user?.last_name}
               </span>
-              <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2" 
+              <button className="hover:bg-blue-light rounded border md:text-lg m-2 p-2.5" 
               onClick={()=>{logout()}}>Logout </button>
             </div>
           )}
