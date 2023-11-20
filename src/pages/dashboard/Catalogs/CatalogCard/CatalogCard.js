@@ -16,11 +16,11 @@ const CatalogCard = (props) => {
       <div className="flex flex-row w-64 h-28 bg-gray-200 p-3 rounded-lg space-x-12 hover:shadow-lg transition-shadow">
         
         { img.src ?
-            <Image src={img.src} alt={'catalog image'} width={'100'} height={'80'} priority={true}/> :
-            <img src={img} alt="catalog image" className="object-contain rounded-md" width={100} />
+            <Image src={img.src} alt={'catalog image default'} width={'100'} height={'80'} priority={true}/> :
+            <img src={img} alt="catalog image" className="object-contain rounded-md" width={'100'} height={'80'}/>
         }
         
-        <div className="font-sans font-thin self-center text-2xl">{title}</div>
+        <div className="font-sans font-thin self-center w-1/2 text-2xl">{title}</div>
       </div>
     </Link>
   );
