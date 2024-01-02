@@ -1,9 +1,10 @@
 'use strict';
 
 import { axiosInstance } from '../config/axiosInstance';
-import { host, login_url, register_url } from '../config/endpoints';
+import { host } from '../config/endpoints';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useSessionStorage } from '../hooks/useStorage';
+import { useRouter } from 'next/router';
 
 export const AuthContext = createContext({});
 
@@ -13,23 +14,15 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [user, setSession, removeSession] = useSessionStorage('user', null);
+  const router = useRouter();
 
   useEffect(() => checkUserLoggedIn(), []);
 
   // Register user
   const register = (userData) => {
-      axiosInstance.post(register_url, userData)
-        .then(res => {
-            setSession(res.data);
-            setError(null);
-        })
-        .catch(err => {
-            console.log("There was an error verifying user registration");
-            setError(err);
-            removeSession();
-        });
+    setError(null);
+    setSession(userData);
   };
-
  
   const login = (userData) => {
     setError(null);
@@ -43,6 +36,7 @@ export function AuthProvider({ children }) {
       .then((res) => removeSession())
       .catch()
     removeSession();
+    router.push("/");
   };
 
   // // Check if user is logged in
