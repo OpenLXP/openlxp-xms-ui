@@ -7,7 +7,7 @@ import { BrowserRouter, MemoryRouter, Route, NavLink } from "react-router-dom";
 import { axiosInstance } from "../../../config/axiosInstance";
 import mockAxios from 'jest-mock-axios';
 
-import ContentContainer from "../../../pages/dashboard";
+import ContentContainer from "../../../pages/dashboard/index";
 
 jest.mock('axios');
 let container = null;

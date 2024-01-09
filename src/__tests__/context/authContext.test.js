@@ -1,10 +1,10 @@
 'use strict';
 
-import { AuthContext, AuthProvider } from '../../context/authContext';
+import { AuthContext, AuthProvider, useAuth } from '../../context/authContext';
 import { render } from '@testing-library/react';
 import MockAxios from 'jest-mock-axios';
 
-jest.unmock('./authContext');
+jest.unmock('../../context/authContext');
 
 // mock axios
 // jest.mock('axios');

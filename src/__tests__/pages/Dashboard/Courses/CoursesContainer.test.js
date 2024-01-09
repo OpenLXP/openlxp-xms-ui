@@ -7,10 +7,9 @@ import CoursesContainer from "../../../../pages/dashboard/[catalogTitle]";
 import { MemoryRouter } from "react-router-dom";
 import MockAxios from 'jest-mock-axios';
 import { useAuth } from "../../../../context/authContext";
-
 // mocking axios
 // jest.mock("axios");
-jest.mock('../../../context/authContext', () => ({
+jest.mock('../../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
 
