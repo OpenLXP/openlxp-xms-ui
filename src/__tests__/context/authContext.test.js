@@ -3,6 +3,7 @@
 import { AuthContext, AuthProvider, useAuth } from '../../context/authContext';
 import { render } from '@testing-library/react';
 import MockAxios from 'jest-mock-axios';
+import mockRouter from 'next-router-mock';
 
 jest.unmock('../../context/authContext');
 
@@ -10,6 +11,9 @@ jest.unmock('../../context/authContext');
 // jest.mock('axios');
 MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
 MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+beforeEach(() => {
+  mockRouter.setCurrentUrl('/');
+});
 
 describe('Auth Context', () => {
   it('does render', () => {

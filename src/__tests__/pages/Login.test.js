@@ -6,6 +6,7 @@ import mockAxios from 'jest-mock-axios';
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
+import mockRouter from 'next-router-mock';
 
 
 let container = null;
@@ -13,6 +14,7 @@ let container = null;
 beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    mockRouter.setCurrentUrl('/');
   });
   
   afterEach(() => {
