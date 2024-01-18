@@ -9,7 +9,7 @@ import mockAxios from 'jest-mock-axios';
 import { useAuth } from "../../../../context/authContext";
 
 // mocking the useAuth hook
-jest.mock('../../../context/authContext', () => ({
+jest.mock('../../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
 

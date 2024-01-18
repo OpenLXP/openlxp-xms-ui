@@ -3,13 +3,15 @@
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import CourseList from "../../../../../pages/dashboard/Courses/CourseList/CourseList";
+import CourseList from "../../../../pages/dashboard/Courses/CourseList/CourseList";
+import mockRouter from 'next-router-mock';
 
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  mockRouter.setCurrentUrl('/');
 });
 
 afterEach(() => {

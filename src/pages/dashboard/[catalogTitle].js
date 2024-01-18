@@ -1,8 +1,6 @@
 'use strict';
 
 import React, { useState, useEffect, useMemo } from "react";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
 import CourseList from "./Courses/CourseList/CourseList";
 import { catalog_courses_url } from "../../config/endpoints";
 import { axiosInstance } from "../../config/axiosInstance";
@@ -11,6 +9,7 @@ import {
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  SearchIcon
 } from '@heroicons/react/solid';
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 
@@ -110,9 +109,15 @@ const Courses = (catalogTitle) => {
                 onKeyPress={(event) => sortCourses(event)}
                 defaultValue = {searchQuery}
               />
-              <div className={"flex justify-center items-center"}>
-                <ion-icon name="search-outline" />
-              </div>
+
+              <button
+                title='Search'
+                type='submit' onClick={(e) => setSearchQuery(e)}
+                className='outline-none rounded-full p-2 ml-2 focus:bg-gray-100 text-gray-400 hover:text-blue-400 hover:text-shadow cursor-pointer'
+              >
+                <SearchIcon className='h-5 w-5' />
+              </button>
+
             </div>
             <div className="flex justify-end">
               <button

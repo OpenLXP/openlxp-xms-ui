@@ -3,7 +3,7 @@
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
-
+import mockRouter from 'next-router-mock';
 import WelcomeScreen from "../../../pages/WelcomeScreen/WelcomeScreen";
 
 let container = null;
@@ -12,6 +12,7 @@ beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  mockRouter.setCurrentUrl('/');
 });
 
 afterEach(() => {

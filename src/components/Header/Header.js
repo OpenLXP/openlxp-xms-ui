@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 import Image from 'next/image';
 
 // Local imports
-import logoImage from '../../public/dodLogo.png';
+import logoImage from '@/public/dodLogo.png';
 import NavBar from "./NavBar/NavBar";
 import Link from "next/link";
 
