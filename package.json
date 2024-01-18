@@ -33,6 +33,11 @@
     "test": "jest --watch",
     "coverage": "jest --watchAll --coverage --verbose --noStackTrace --silent --maxWorkers=50%"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
