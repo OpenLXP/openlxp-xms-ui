@@ -4,10 +4,12 @@ import { unmountComponentAtNode } from "react-dom";
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { StaticRouter } from "react-router-dom";
 import Support from "../../pages/support";
+import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
 
 let container = null;
 
 beforeEach(() => {
+  useAuthenticatedUser();
   container = document.createElement("div");
   document.body.appendChild(container);
 });
