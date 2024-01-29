@@ -40,7 +40,7 @@ const Header = () => {
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
         <div className="flex flex-row items-center">
-        <Image src={logoImage} alt={'home'} height={'50'} width={'50'} priority={true}/>
+        <Image src={logoImage} alt={'home'} height={'50'} width={'50'} priority={true} data-testid="home-btn"/>
         <NavBar navButtons={navButtons} />
         </div>
         <div className="flex flex-row justify-end">

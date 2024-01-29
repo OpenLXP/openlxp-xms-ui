@@ -8,7 +8,7 @@ import {
   StaticRouter,
   Route,
 } from "react-router-dom";
-import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
+import { useAuthenticatedUser, useUnauthenticatedUser } from "@/__mocks__/predefinedMocks";
 import MainPage from "../../pages/index";
 
 let container = null;
@@ -26,7 +26,7 @@ afterEach(() => {
 
 describe("MainPage", () => {
   test("does render", () => {
-    useAuthenticatedUser();
+    useUnauthenticatedUser();
     act(() => {
       render(
         <StaticRouter location={{ pathname: "/" }}>

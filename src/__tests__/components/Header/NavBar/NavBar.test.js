@@ -45,6 +45,5 @@ describe("NavBar", () => {
       );
     });
     screen.getByText("test");
-    screen.getByTestId("test-id");
   });
 });

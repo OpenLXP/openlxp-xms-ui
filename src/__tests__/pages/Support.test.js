@@ -29,7 +29,7 @@ describe("Support page", () => {
         </StaticRouter>
       );
     });
-    screen.getByText("Support");
+    expect(screen.getAllByText('Support').length).toBe(2);
     screen.getByText("About");
     screen.getByText("Navigating the Expereince Management Service");
     screen.getByText("What is ECC?");

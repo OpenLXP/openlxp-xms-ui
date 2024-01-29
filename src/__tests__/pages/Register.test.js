@@ -8,6 +8,7 @@ import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
 import mockRouter from 'next-router-mock';
 import { useAuthenticatedUser, useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
+import singletonRouter from 'next/router';
 
 let container = null;
 
@@ -116,7 +117,10 @@ describe('Register Page', () => {
         const button = screen.getByText(/Sign in to your Account/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));
       });
-      expect(testLocation.pathname).toBe("/login");
+      expect(singletonRouter).toMatchObject({
+        asPath: '/login',
+      });
+
     });
 
     it('if user, navigate to dashboard', () => {

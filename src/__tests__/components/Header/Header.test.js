@@ -5,13 +5,14 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
 import Header from "../../../components/Header/Header";
-import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
+import { useAuthenticatedUser, useUnauthenticatedUser } from "@/__mocks__/predefinedMocks";
+import singletonRouter from 'next/router';
 
 let container = null;
 
 beforeEach(() => {
   // setup a DOM element as a render target
-  useAuthenticatedUser();
+  useUnauthenticatedUser();
   container = document.createElement("div");
   document.body.appendChild(container);
 });
@@ -58,7 +59,9 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/',
+    });
   });
 
   test("does take user to home when clicking Header Logo", () => {
@@ -81,7 +84,9 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/',
+    });
   });
 
   test("dose take user to Dashboard when clicking Sign In", () => {
@@ -104,6 +109,8 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/login");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/login',
+    });
   });
 });
