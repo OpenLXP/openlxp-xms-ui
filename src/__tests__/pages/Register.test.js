@@ -7,10 +7,12 @@ import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
 import mockRouter from 'next-router-mock';
+import { useAuthenticatedUser, useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
 
 let container = null;
 
   beforeEach(() => {
+    useUnauthenticatedUser();
     container = document.createElement("div");
     document.body.appendChild(container);
     mockRouter.setCurrentUrl('/');
@@ -32,7 +34,6 @@ let container = null;
   };
 
 describe('Register Page', () => {
-
     it('should render a form', () => {
         renderer();
   

@@ -7,6 +7,8 @@ import mockRouter from 'next-router-mock';
 
 jest.unmock('../../context/authContext');
 
+jest.mock('axios');
+
 // mock axios
 // jest.mock('axios');
 MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));

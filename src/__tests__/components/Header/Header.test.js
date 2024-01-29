@@ -5,11 +5,13 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
 import Header from "../../../components/Header/Header";
+import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
 
 let container = null;
 
 beforeEach(() => {
   // setup a DOM element as a render target
+  useAuthenticatedUser();
   container = document.createElement("div");
   document.body.appendChild(container);
 });

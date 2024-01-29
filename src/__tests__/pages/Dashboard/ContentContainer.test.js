@@ -6,6 +6,7 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route, NavLink } from "react-router-dom";
 import { axiosInstance } from "../../../config/axiosInstance";
 import mockAxios from 'jest-mock-axios';
+import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
 
 import ContentContainer from "../../../pages/dashboard/index";
 
@@ -13,6 +14,7 @@ jest.mock('axios');
 let container = null;
 
 beforeEach(() => {
+  useAuthenticatedUser();
   container = document.createElement("div");
   document.body.appendChild(container);
 });
