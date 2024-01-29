@@ -8,15 +8,17 @@ import { useAuthenticatedUser } from '@/__mocks__/predefinedMocks';
 
 jest.unmock('../../context/authContext');
 
+// mock axios
+jest.mock('axios');
 
 // mock axios
 // jest.mock('axios');
-MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
-MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
-beforeEach(() => {
-  useAuthenticatedUser();
-  mockRouter.setCurrentUrl('/');
-});
+// MockAxios.get.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+// MockAxios.post.mockImplementation(() => Promise.resolve({ data: { experiences: [{}] } }));
+// beforeEach(() => {
+//   useAuthenticatedUser();
+//   mockRouter.setCurrentUrl('/');
+// });
 
 describe('Auth Context', () => {
   it('does render', () => {
