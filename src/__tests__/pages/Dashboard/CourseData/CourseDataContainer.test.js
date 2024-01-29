@@ -13,6 +13,12 @@ jest.mock('../../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
+
 // setup
 const testData = {
   unique_record_identifier: "2341",
