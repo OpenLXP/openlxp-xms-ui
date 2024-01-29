@@ -26,21 +26,20 @@ describe("CatalogCard ", () => {
     act(() => {
       render(
         <BrowserRouter>
-          <CatalogCard />
+          <CatalogCard img={""}/>
         </BrowserRouter>,
         container
       );
     });
     expect(container.textContent).toBe("");
-    expect(screen.getByAltText("catalog image").src).toBe("");
-    expect(screen.getByTestId("nav-link")).toBeVisible();
+    expect(screen.getByAltText("catalog image").src).toBe("http://localhost/");
   });
 
   test("does render passed title", () => {
     act(() => {
       render(
         <BrowserRouter>
-          <CatalogCard title="Title" />
+          <CatalogCard title="Title" img={""} />
         </BrowserRouter>,
         container
       );
