@@ -4,7 +4,7 @@ module.exports = {
     // dont collect coverage from tailwind.config.js
   
     collectCoverageFrom: ['<rootDir>/src/**/*.js'],
-    coveragePathIgnorePatterns: ['<rootDir>/src/pages/_app.js'],
+    coveragePathIgnorePatterns: ['<rootDir>/src/pages/_app.js', '<rootDir>/src/pages/App.js'],
     moduleNameMapper: {
       /* Handle CSS imports (with CSS modules)
        https://jestjs.io/docs/webpack#mocking-css-modules */
