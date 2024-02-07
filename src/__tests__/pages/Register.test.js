@@ -62,9 +62,19 @@ describe('Register Page', () => {
       const input = screen.getByPlaceholderText('Email');
 
       act(() => {
+        fireEvent.change(screen.getByPlaceholderText('First Name'), { target: { value: 'John?' } });
+      });
+
+      act(() => {
+        fireEvent.change(screen.getByPlaceholderText('Last Name'), { target: { value: 'Doe' } });
+      });
+
+      act(() => {
         fireEvent.change(input, { target: { value: 'email' } });
       });
 
+      const button = screen.getByText(/Create Account/i);
+        fireEvent(button, new MouseEvent("click", { bubbles: true }));
       expect(input.value).toBe('email');
     });
 
