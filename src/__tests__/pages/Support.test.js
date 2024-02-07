@@ -33,5 +33,9 @@ describe("Support page", () => {
     screen.getByText("About");
     screen.getByText("Navigating the Expereince Management Service");
     screen.getByText("What is ECC?");
+
+    const button = screen.getByText("What is ECC?");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+
   });
 });
