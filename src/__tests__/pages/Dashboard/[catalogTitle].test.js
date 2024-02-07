@@ -3,12 +3,12 @@
 import { fireEvent, act, screen, render } from "@testing-library/react";
 import { unmountComponentAtNode } from "react-dom";
 import axios from "axios";
-import CourseDataContainerV2 from "../../../../../pages/dashboard/[catalogTitle]/[courseMetadataKey]";
+import Courses from "../../../pages/dashboard/[catalogTitle]";
 import { MemoryRouter } from "react-router-dom";
 import MockAxios from 'jest-mock-axios';
-import { useAuth } from "../../../../../context/authContext"
+import { useAuth } from "../../../context/authContext"
 
-jest.mock('../../../../../context/authContext', () => ({
+jest.mock('../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
 
@@ -42,12 +42,12 @@ describe("CourseDataContainerV2", () => {
 
       render(
         <MemoryRouter>
-          <CourseDataContainerV2 />
+          <Courses />
         </MemoryRouter>,
         container
       );
     });
-    screen.getByText("Edit");
+    screen.getByText("Course List");
   });
 
   it("does render edit", async () => {
@@ -58,19 +58,30 @@ describe("CourseDataContainerV2", () => {
       
       await render(
         <MemoryRouter>
-          <CourseDataContainerV2 />
+          <Courses />
         </MemoryRouter>,
         container
       );
     });
 
     act(() => {
-        const button = screen.getByText(/Edit/i);
+        const button = screen.getByText(/Next/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
     act(() => {
-        const button = screen.getByText(/Update/i);
+        const button = screen.getByTestId(/last-page/i);
+        fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+
+    act(() => {
+        const button = screen.getByText(/Previous/i);
+        fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+
+
+    act(() => {
+        const button = screen.getByTestId(/first-page/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 

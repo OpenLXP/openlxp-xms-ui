@@ -133,6 +133,7 @@ const Courses = (catalogTitle) => {
           <button
             onClick={() => setPage(1)}
             title='First'
+            data-testid="first-page"
             className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 ml-4 mr-2 mt-6 h-10 text-blue rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light hover:text-white px-2 py-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
             disabled={page === 1 ? true : false}
           >
@@ -168,6 +169,7 @@ const Courses = (catalogTitle) => {
           </button>
           <button
             title='Last'
+            data-testid="last-page"
             onClick={() => setPage(totalPages)}
             disabled={totalPages <= page ? true : false}
             className={`disabled:saturate-0 disabled:cursor-not-allowed disabled:pointer-events-none disabled:hover:bg-inherit flex justify-center items-center gap-2 mt-6 h-10 text-blue rounded-md hover:shadow-md bg-blue-50 hover:bg-blue-light hover:text-white p-2 py-2 transform transition-all duration-150 ease-in-out border-blue border-2 outline-none focus:ring-2 ring-blue`}
