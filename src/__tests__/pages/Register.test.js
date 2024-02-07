@@ -63,10 +63,12 @@ describe('Register Page', () => {
 
       act(() => {
         fireEvent.change(screen.getByPlaceholderText('First Name'), { target: { value: 'John?' } });
+        fireEvent.keyPress(screen.getByPlaceholderText('First Name'), { key: '?' });
       });
 
       act(() => {
         fireEvent.change(screen.getByPlaceholderText('Last Name'), { target: { value: 'Doe' } });
+        fireEvent.keyPress(screen.getByPlaceholderText('First Name'), { key: '/' });
       });
 
       act(() => {
@@ -74,7 +76,7 @@ describe('Register Page', () => {
       });
 
       const button = screen.getByText(/Create Account/i);
-        fireEvent(button, new MouseEvent("click", { bubbles: true }));
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
       expect(input.value).toBe('email');
     });
 
