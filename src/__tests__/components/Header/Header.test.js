@@ -113,4 +113,27 @@ describe("Header", () => {
       asPath: '/login',
     });
   });
+
+  test("dose logout", () => {
+    let testHistory, testLocation;
+    useAuthenticatedUser();
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
+
+      const button = screen.getByText("Logout");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+
+  });
 });
