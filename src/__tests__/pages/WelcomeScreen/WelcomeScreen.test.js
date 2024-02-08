@@ -5,6 +5,7 @@ import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
 import mockRouter from 'next-router-mock';
 import WelcomeScreen from "../../../pages/WelcomeScreen/WelcomeScreen";
+import singletonRouter from 'next/router';
 
 let container = null;
 
@@ -51,6 +52,8 @@ describe('Navigates to register page', () => {
       const button = screen.getByText(/Click Here to Get Started!/i);
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
-    expect(testLocation.pathname).toBe("/register");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/register',
+    });
   });
 });

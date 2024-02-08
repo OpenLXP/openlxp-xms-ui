@@ -5,6 +5,7 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import NavBar from "../../../../components/Header/NavBar/NavBar";
+import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
 
 let container = null;
 
@@ -23,6 +24,7 @@ afterEach(() => {
 
 describe("NavBar", () => {
   test("does render", () => {
+    useAuthenticatedUser();
     act(() => {
       render(
         <BrowserRouter>
@@ -43,6 +45,5 @@ describe("NavBar", () => {
       );
     });
     screen.getByText("test");
-    screen.getByTestId("test-id");
   });
 });

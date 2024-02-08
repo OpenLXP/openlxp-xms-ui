@@ -142,8 +142,6 @@ describe("CoursesContainer", () => {
           ],
         };
 
-
-    
     await act(async () => {
       MockAxios.get.mockImplementation(() => {
         return Promise.resolve({ data: testData });

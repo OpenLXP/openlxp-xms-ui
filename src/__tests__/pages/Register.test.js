@@ -7,10 +7,13 @@ import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
 import mockRouter from 'next-router-mock';
+import { useAuthenticatedUser, useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
+import singletonRouter from 'next/router';
 
 let container = null;
 
   beforeEach(() => {
+    useUnauthenticatedUser();
     container = document.createElement("div");
     document.body.appendChild(container);
     mockRouter.setCurrentUrl('/');
@@ -32,7 +35,6 @@ let container = null;
   };
 
 describe('Register Page', () => {
-
     it('should render a form', () => {
         renderer();
   
@@ -60,9 +62,21 @@ describe('Register Page', () => {
       const input = screen.getByPlaceholderText('Email');
 
       act(() => {
+        fireEvent.change(screen.getByPlaceholderText('First Name'), { target: { value: 'John?' } });
+        fireEvent.keyPress(screen.getByPlaceholderText('First Name'), { key: '?' });
+      });
+
+      act(() => {
+        fireEvent.change(screen.getByPlaceholderText('Last Name'), { target: { value: 'Doe' } });
+        fireEvent.keyPress(screen.getByPlaceholderText('First Name'), { key: '/' });
+      });
+
+      act(() => {
         fireEvent.change(input, { target: { value: 'email' } });
       });
 
+      const button = screen.getByText(/Create Account/i);
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
       expect(input.value).toBe('email');
     });
 
@@ -115,7 +129,10 @@ describe('Register Page', () => {
         const button = screen.getByText(/Sign in to your Account/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));
       });
-      expect(testLocation.pathname).toBe("/login");
+      expect(singletonRouter).toMatchObject({
+        asPath: '/login',
+      });
+
     });
 
     it('if user, navigate to dashboard', () => {

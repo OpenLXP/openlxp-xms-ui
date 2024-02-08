@@ -5,11 +5,14 @@ import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
 import Header from "../../../components/Header/Header";
+import { useAuthenticatedUser, useUnauthenticatedUser } from "@/__mocks__/predefinedMocks";
+import singletonRouter from 'next/router';
 
 let container = null;
 
 beforeEach(() => {
   // setup a DOM element as a render target
+  useUnauthenticatedUser();
   container = document.createElement("div");
   document.body.appendChild(container);
 });
@@ -56,7 +59,9 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/',
+    });
   });
 
   test("does take user to home when clicking Header Logo", () => {
@@ -79,7 +84,9 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/',
+    });
   });
 
   test("dose take user to Dashboard when clicking Sign In", () => {
@@ -102,6 +109,31 @@ describe("Header", () => {
       fireEvent(button, new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(testLocation.pathname).toBe("/login");
+    expect(singletonRouter).toMatchObject({
+      asPath: '/login',
+    });
+  });
+
+  test("dose logout", () => {
+    let testHistory, testLocation;
+    useAuthenticatedUser();
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={["/my/initial/route"]}>
+          <Header />
+          <Route
+            path="/"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+            }}
+          />
+        </MemoryRouter>
+      );
+
+      const button = screen.getByText("Logout");
+      fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    });
+
   });
 });

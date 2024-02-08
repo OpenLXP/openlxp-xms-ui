@@ -7,11 +7,14 @@ import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
 import mockRouter from 'next-router-mock';
+import { useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
+import singletonRouter from 'next/router';
 
 
 let container = null;
 
 beforeEach(() => {
+  useUnauthenticatedUser();
     container = document.createElement("div");
     document.body.appendChild(container);
     mockRouter.setCurrentUrl('/');
@@ -39,8 +42,12 @@ describe('Login Page', () => {
     const password = screen.getByPlaceholderText('Password');
     act(() => {
       fireEvent.change(email, { target: { value: 'email@test.com' } });
+      fireEvent.keyPress(email, { key: '}' });
       fireEvent.change(password, { target: { value: 'password' } });
     });
+
+    const button = screen.getByText(/Login/i);
+    fireEvent(button, new MouseEvent("click", { bubbles: true }));
 
     mockAxios.post.mockImplementationOnce(() =>
         Promise.resolve({ data: { user: {} } })
@@ -87,7 +94,15 @@ describe('Login Page', () => {
 
     it('should log a user in.', () => {
       mockAxios.post.mockImplementation(() =>
-        Promise.resolve({ data: { user: {} } })
+        Promise.resolve({ data: { user: {
+          user: {
+            id: '1',
+            username: 'test',
+            first_name: 'Test',
+            last_name: 'User',
+            email: 'test@test.com',
+          },
+        }, } })
       );
 
       act(() => {
@@ -123,7 +138,9 @@ describe('Login Page', () => {
         const button = screen.getByText(/Create an Account/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));
       });
-      expect(testLocation.pathname).toBe("/register");
+      expect(singletonRouter).toMatchObject({
+        asPath: '/register',
+      });
 
     });
   });

@@ -263,6 +263,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
                 disabled={!isEditing}
                 placeholder={data[key]}
                 value={data[key]}
+                data-testid={"textbox"}
                 onKeyPress={(e)=>checkSpecialChar(e)}
                 name={`${tempPath.join(".")}`}
                 className={`${
