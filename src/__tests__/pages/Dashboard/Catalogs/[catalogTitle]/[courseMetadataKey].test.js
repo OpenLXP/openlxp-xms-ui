@@ -12,6 +12,12 @@ jest.mock('../../../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  }))
+
 let container = null;
 beforeEach(() => {
   useAuth.mockImplementation(() => ({
