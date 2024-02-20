@@ -15,7 +15,7 @@ const CatalogCard = (props) => {
       data-testid="nav-link">
       <div className="flex flex-row w-64 h-28 bg-gray-200 p-3 rounded-lg space-x-12 hover:shadow-lg transition-shadow">
         
-        { img.src ?
+        { img?.src ?
             <Image src={img.src} alt={'catalog image default'} width={'100'} height={'80'} priority={true}/> :
             <img src={img} alt="catalog image" className="object-contain rounded-md" width={'100'} height={'80'}/>
         }
