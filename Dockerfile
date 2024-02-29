@@ -5,7 +5,10 @@ FROM node:14.18.1-alpine AS deps
 
 # RUN apk add libc6-compat
 WORKDIR /app
-COPY package.json ./
+COPY . .
+
+RUN ls -al
+
 RUN yarn install --production
 
 # Rebuild the source code only when needed
