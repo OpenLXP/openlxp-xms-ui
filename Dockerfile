@@ -9,7 +9,7 @@ COPY . .
 
 RUN ls -al
 
-RUN yarn install --production && \
+RUN yarn install && \
     ls -al
 
 # Rebuild the source code only when needed
@@ -18,6 +18,7 @@ WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
+RUN ls -al
 
 RUN yarn build
 
