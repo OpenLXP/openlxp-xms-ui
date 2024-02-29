@@ -9,7 +9,8 @@ COPY . .
 
 RUN ls -al
 
-RUN yarn install --production
+RUN yarn install --production && \
+    ls -al
 
 # Rebuild the source code only when needed
 FROM node:14.18.1-alpine AS builder
