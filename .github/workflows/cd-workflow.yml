@@ -5,6 +5,7 @@ on:
     branches: 
       - main
       - dev
+      - next-dockerfile
   pull_request:
     branches: 
       - main
