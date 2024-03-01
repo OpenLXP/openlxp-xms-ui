@@ -1,3 +1,5 @@
+'use strict';
+
 const FooterLink = (props) => {
   const link = props.link || null;
   const name = props.name || null;
@@ -7,7 +9,7 @@ const FooterLink = (props) => {
       className=" text-center text-white text-sm hover:bg-blue rounded-sm"
       href={link}
       target="_blank"
-      rel="noreferrer">
+      rel="noopener noreferrer">
       {name}
     </a>
   );

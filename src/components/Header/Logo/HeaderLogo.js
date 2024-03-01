@@ -1,3 +1,5 @@
+'use strict';
+
 import { NavLink } from "react-router-dom";
 
 /**
@@ -11,20 +13,20 @@ const HeaderLogo = (props) => {
   const imageToShow = props.img || undefined;
 
   const img = imageToShow ? (
-    <img src={imageToShow} alt="DOD Logo" className={"pl-3"} />
+    <img src={imageToShow} alt="DOD Logo" className={"pl-3"} width={60}/>
   ) : null;
 
   const title = titleToShow ? (
-    <div className="lg:text-xl sm:text-lg">{titleToShow}</div>
+    <div className="lg:text-lg sm:text-lg">{titleToShow}</div>
   ) : null;
 
   const subtitle = subtitleToShow ? (
-    <div className="lg:text-lg sm:text-base">{subtitleToShow}</div>
+    <div className="lg:text-md sm:text-base">{subtitleToShow}</div>
   ) : null;
 
   return (
     <NavLink
-      className="py-2 flex flex-row items-center text-white max-w-md rounded-lg"
+      className="flex flex-row items-center text-white max-w-md rounded-lg"
       to="/"
       data-testid="logo-button">
       {img}
