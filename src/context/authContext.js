@@ -41,12 +41,16 @@ export function AuthProvider({ children }) {
 
   // // Check if user is logged in
   const checkUserLoggedIn = async () => {
-    axiosInstance.get(`${host}api/auth/validate`)
-    .then( () => {
+    axiosInstance
+      .get(`${host}api/auth/validate`)
+      .then((res) => {
+        setSession(res.data);
         console.log("success");
     })
     .catch((err) => {
-        console.log("There was an error verifying if user is logged in successfully");
+        console.log(
+          "There was an error verifying if user is logged in successfully"
+        );
         removeSession();
         logout();
     });
