@@ -8,14 +8,18 @@ import logoImage from "../public/dodLogo.png";
 import Image from 'next/image';
 import DefaultLayout from "../components/layouts/DefaultLayout";
 import { useRouter } from "next/router";
+import { useConfig } from '@/hooks/useConfig';
 
 
 export default function Login(){
     const { user, login } = useAuth();
+    const config = useConfig();
     const [credentials, setCredentials] = useState({username:"", password:""});
     const router = useRouter();
 
     const [errorMsg, setErrorMsg] = useState();
+
+    console.log (config.data);
 
     useEffect(()=>{
         if(user){
@@ -93,6 +97,26 @@ export default function Login(){
                             className='mt-4 mx-auto max-w-max items-center inline-flex gap-2 bg-blue-200 rounded-md hover:shadow-md hover:bg-blue hover:text-white px-4 py-2 transform transition-all duration-75 ease-in-out border-bg-blue border-2 outline-none focus:ring-2 ring-blue-400'
                             type="submit" >Login</button>
                     </div>
+
+                    <p className={'my-8 relative border-b-2 w-full'}>
+                        <span className='absolute top-1/2 left-1/2 transform text-center -translate-x-1/2 -translate-y-1/2 bg-white px-2 w-max'>
+                        or continue with
+                        </span>
+                    </p>
+                    {config.isSuccess &&
+                        config.data.single_sign_on_options?.map(({ name, path }) => {
+                        return (
+                            <div className='flex flex-col mx-auto content-center'>
+                                <a
+                                href={path}
+                                className='mx-auto max-w-max items-center inline-flex gap-2 bg-blue-200 rounded-md hover:shadow-md hover:bg-blue hover:text-white px-4 py-2 transform transition-all duration-75 ease-in-out border-bg-blue border-2 outline-none focus:ring-2 ring-blue-400'
+                                key={name}
+                                >
+                                {name}
+                                </a>
+                            </div>
+                        );
+                        })}
                 </form>
             </div>
         </DefaultLayout>
