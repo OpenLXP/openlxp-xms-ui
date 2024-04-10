@@ -19,8 +19,6 @@ export default function Login(){
 
     const [errorMsg, setErrorMsg] = useState();
 
-    console.log (config.data);
-
     useEffect(()=>{
         if(user){
             router.push("/dashboard");
