@@ -15,5 +15,5 @@ export const register_url = `${host}${api}auth/register`
 //configs
 export const configUrl = `${host}${api}config/catalogs/`
 
-//sso configs
+//sso config
 export const ssoURL = `${host}${api}config/sso/`
