@@ -13,4 +13,8 @@ export const login_url = `${host}${api}auth/login`
 export const register_url = `${host}${api}auth/register`
 
 //configs
+
 export const configUrl = `${host}${api}config/catalogs/`
+
+//sso configs
+export const ssoURL = `${host}${api}config/sso/`
