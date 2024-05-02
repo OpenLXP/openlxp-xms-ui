@@ -11,9 +11,11 @@ import { useRouter } from "next/router";
 import { useConfig } from '@/hooks/useConfig';
 
 
+
 export default function Login(){
     const { user, login } = useAuth();
     const config = useConfig();
+
     const [credentials, setCredentials] = useState({username:"", password:""});
     const router = useRouter();
 
@@ -115,6 +117,7 @@ export default function Login(){
                             </div>
                         );
                         })}
+
                 </form>
             </div>
         </DefaultLayout>
