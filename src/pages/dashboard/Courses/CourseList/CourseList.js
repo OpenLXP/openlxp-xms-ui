@@ -16,10 +16,10 @@ const CourseList = (props) => {
        onClick={() => router.push(`/dashboard/${data.provider_name}/${data.metadata_key_hash}`)} >
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
-             {data.metadata?.Course?.CourseTitle}
+             {data.metadata['p2881-core'].Title}
            </div>
            <div className="font-light">
-             {data.metadata?.Course?.CourseCode}
+             {data.metadata?.p2881_course_profile?.Course_ID}
            </div>
          </td>
 

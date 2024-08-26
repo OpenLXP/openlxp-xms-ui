@@ -123,7 +123,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
 
   // title and basic info
   function courseHeader() {
-    const title = course.data?.metadata?.Metadata_Ledger.Course.CourseTitle;
+    const title = course.data?.metadata?.Metadata_Ledger['p2881-core'].Title;
     return (
       <div
         title={title}
