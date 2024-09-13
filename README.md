@@ -1,4 +1,8 @@
-# Open LXP
+# OpenLXP - Experience Management Service UI (XMS UI)
+
+The Experience Management Service is the human-facing application enabling an Experience Owner or Experience Manager to modify or augment a learning metadata record ingested by the Experience Index Service (XIS). XMS is a user interface facilitating modification and augmentation of records by learning experience owners and managers. This web application enables experience owners/managers to modify/augment experience metadata (i.e., the admin portal).
+
+**Note: For this service to work properly you will need the XMS Backend component to accompany it.**
 
 [![Version](https://img.shields.io/badge/version-prototype-yellow)](https://github.com/OpenLXP/openlxp-xms-ui)
 [![yarn](https://img.shields.io/badge/yarn-1.22.1-blue)](https://yarnpkg.com/)
@@ -8,204 +12,152 @@
 [![router](https://img.shields.io/badge/router-5.2.0-red)](https://reactrouter.com/web/guides/quick-start)
 [![tailwind](https://img.shields.io/badge/tailwind-2.2.2-22d3ee)](https://redux-toolkit.js.org/)
 
-## Table of content
+## Prerequisites
+### Install Docker & docker-compose
+#### Windows & MacOS
+- Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) (docker compose included)
 
-- [**Installation**](#installation)
-  - [Clone Project](#clone-project)
-- [**Getting started**](#getting-started)
-  - [Installation](#installation)
-    - [_Install Project Dependencies_](#install-project-dependencies)
-  - [Environment Variables](#environment-variables)
-    - [_REACT_APP_XIS_CATALOGS_API_](#react-app-xis-catalogs-api)
-    - [_REACT_APP_XIS_COMPOSITELEDGER_API_](#react-app-xis-compositeledger-api)
-  - [Creating a local env](#creating-a-local-environment-file)
-    - [_Walk through_](#walk-through)
-    - [_Template_](#env-template)
-  - [Important Notes](#important-notes)
-- [**Available Scripts**](#available-scripts)
-  - [yarn start](#yarn-start)
-  - [yarn test](#yarn-test)
-  - [yarn build](#yarn-build)
-  - [yarn coverage](#yarn-coverage)
 
----
+#### Linux
+You can download Docker Compose binaries from the
+[release page](https://github.com/docker/compose/releases) on this repository.
 
-## Installation
+Rename the relevant binary for your OS to `docker-compose` and copy it to `$HOME/.docker/cli-plugins`
 
-### Clone Project
+Or copy it into one of these folders to install it system-wide:
 
-```bash
+* `/usr/local/lib/docker/cli-plugins` OR `/usr/local/libexec/docker/cli-plugins`
+* `/usr/lib/docker/cli-plugins` OR `/usr/libexec/docker/cli-plugins`
+
+(might require making the downloaded file executable with `chmod +x`)
+
+## 1. Clone the repository
+Clone the Github repository
+```terminal
 git clone git@github.com:OpenLXP/openlxp-xms-ui.git
 ```
 
-### Install Project Dependencies
+## 2. Set up your environment variables
+- Create a `.env` file in the root directory
+- The following environment variables are required:
 
-Start off by verifying that you have `yarn` installed.
+| Environment Variable            | Description                                                                      |
+| ------------------------------- | -------------------------------------------------------------------------------- |
+| NEXT_PUBLIC_XMS_BACKEND         | The endpoint for your XMS backend                                                |
+| NEXT_PUBLIC_XIS_CATALOGS_API    | This is the root API endpoint used by the application to access XIS catalogs     |
+| NEXT_PUBLIC_XIS_EXPERIENCES_API | This is the root API endpoint used by the application to access XIS experiences. |
 
-```ps1
-yarn -version
-```
+**Note: These environment variables need to be set up at build time**
 
-If `yarn` is not installed use the following command to install it. This will install the `yarn` package manager globally on your system.
+## 3. Deployment
+1. Create the OpenLXP docker network. Open a terminal and run the following command in the root directory of the project.
 
-_**global install**_
+    ```terminal
+    docker network create openlxp
+    ```
 
-```ps1
-npm install yarn -g
-```
+2. Run the command below to build your image for XMS UI
 
-_**local install**_
+    ```terminal
+    docker build -t xmsui .
+    ```
+  
+3. Run the command below to deploy the image built in step 2
 
-```ps1
-npm install yarn
-```
+    ```terminal
+    docker run -p 3000:3000 xmsui -d
+    ```
 
-Once yarn has been installed you will need to install the project dependencies. Using the following command we will manually set your yarn version for this project.
+  **Note: If deploying this at the same time as XMS UI, port mappings will need be changed to 3001:3000"
 
-```ps1
-yarn set version 1.22.1
-```
+## Local development/testing
+### 1. Install yarn
 
-After the version has been installed and set we will install the dependencies. Using the following command we will install all the project dependencies.
+This project uses yarn as the package manager. If you already have yarn installed or are using a different package manager feel free to skip this step.
 
-```bash
-yarn install package.json
-```
+ - Start by installing yarn globally
 
----
+    ```terminal
+    npm install -g yarn
+    ```
+ 
+ - Verify yarn was installed
 
-## Getting started
+    ```terminal
+    yarn -version
+    ```
 
-### Environment Variables
+### 2: Install project dependencies
 
-This project makes use of globally available environment variables. Below are the required environment variables required for this project.
+   - Installs all requirements for development
+      
+      ```terminal
+      yarn install
+      ```
 
-#### **REACT_APP_XIS_CATALOGS_API**
+### 3. Build the project
 
-This is the root API endpoint used by the application to access XIS catalogs.
+  - bundle your app into static files
 
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/api/catalogs/
-```
+      ```terminal
+      yarn build
+      ``` 
 
-#### **REACT_APP_XIS_COMPOSITELEDGER_API**
+### 4. Run your project
+  
+  - Run the project in development mode
 
-This is the endpoint for accessing the XIS compositeledger.
+    ```terminal
+    yarn start
+    ```
 
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/es-api/
-```
+## Testing
 
-#### **REACT_APP_XIS_EXPERIENCES_API**
+All of the components in the project are unit tested and are covered by the [Jest](https://jestjs.io/) testing framework. When testing components there are three key files to utilize:
 
-This is the root API endpoint used by the application to access XIS experiences. 
+1. `jest.setup.js`: This file is used to configure the testing environment including any mocks and setup functions for the code to work.
+2. `mockSetUp.js`: This file is used to mock any functions that are reliant on external APIs or services.
+3. `.test.js`: This file is used to test the components. Any file in the **tests** directory will be run by the testing framework as long as the child components are appended with `.test.js` or `.spec.js`.
 
-```yaml
-http://<YOUR_BACKEND_ENDPOINT>/api/experiences/
-```
+### Our current threshold for testing coverage is:
 
-### Creating a local environment file
+- **Statement Coverage**: 80%
+- **Branch Coverage**: 80%
+- **Function Coverage**: 80%
+- **Line Coverage**: 80%
 
-#### **Walk through**
+### Command to run tests
 
-Let's create a local `.env.local` file. If you are in a code editor you can right click and create new file.
+ - Runs all the tests in the project with cached results
 
-![vscode create new file](./readme-assets/vscode-create-new-file.png)
+    ```terminal
+    yarn test
+    ```
 
-If you are using the terminal use the following command to create a new file.
+- Run all the tests in the project without cached results. This produces a coverage report which can be viewed in the terminal or in the browser by opening the `/coverage/Icov-report/index.html` file in the project directory.
 
-_**bash command**_
+    ```terminal
+    yarn coverage
+    ```
 
-```bash
-touch <PATH_TO_YOUR_PROJECT_ROOT>/.env.local
-```
+## Documentation
 
-_**powershell**_
+### Frontend Stack Documentation
 
-```ps1
-New-Item -Path <PATH_TO_YOUR_PROJECT_ROOT>\.env.local -ItemType File
-```
+[Next.js Documentation can be found here](https://nextjs.org/docs)
 
-Navigate to the newly created file and paste the template (_below_) into the file. Replace `<YOUR_BACKEND_ENDPOINT>` with your localhost setup **or** your live endpoint.
+[React-Query Documentation can be found here](https://react-query.tanstack.com/overview)
 
-#### **.env Template**
+[TailwindCSS Documentation can be found here](https://tailwindcss.com/docs/installation)
 
-```text
-REACT_APP_XIS_CATALOGS_API=<YOUR_BACKEND_ENDPOINT>/api/catalogs/
-REACT_APP_XIS_COMPOSITELEDGER_API=<YOUR_BACKEND_ENDPOINT>/api/metadata/
-REACT_APP_XIS_EXPERIENCES_API=<YOUR_BACKEND_ENDPOINT>/api/experiences/
-```
+[Axios Documentation can be found here](https://axios-http.com/docs/intro)
 
-### Important Notes
+[HeadlessUi Documentation can be found here](https://headlessui.dev/)
 
-To use this piece of code without any issues you will need the XMS component to accompany it.
+### Dev Tools Documentation
 
-[OpenLXP XMS](https://github.com/OpenLXP/openlxp-xms)
+[Eslint Documentation can be found here](https://eslint.org/docs/user-guide/configuring)
 
-### **You're all set! Explore the commands below to run, build, or test the app.**
+[Prettier Documentation can be found here](https://prettier.io/docs/en/install.html)
 
----
-
-## Available Scripts
-
-In the project directory, you can run the following.
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn coverage`
-
-Launches the test runner with coverage mode enabled.
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
----
+[Jest Documentation can be found here](https://jestjs.io/docs/en/getting-started)
