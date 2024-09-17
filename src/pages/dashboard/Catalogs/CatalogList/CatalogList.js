@@ -31,7 +31,7 @@ const CatalogsList = ({catalogs}) => {
 
   return (
     <div>
-      <h1 className="font-sans text-3xl font-semibold mb-5 pb-4 pt-8 border-b-2">Course Catalogs</h1>
+      <h1 className="font-sans text-3xl font-semibold mb-5 pb-4 pt-8 border-b-2">Content Catalogs</h1>
       <div
         className="flex flex-wrap justify-left gap-8"
         data-testid="catalog-list">

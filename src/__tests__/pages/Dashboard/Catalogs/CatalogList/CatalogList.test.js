@@ -51,7 +51,7 @@ describe("Catalog List", () => {
         container
       );
     });
-    screen.getByText("Course Catalogs");
+    screen.getByText("Content Catalogs");
   });
 
   test("does not render when empty data is passed", () => {
