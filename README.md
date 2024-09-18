@@ -32,9 +32,9 @@ Or copy it into one of these folders to install it system-wide:
 (might require making the downloaded file executable with `chmod +x`)
 
 ## 1. Clone the repository
-Clone the Github repository
+Clone the Ironbank repository
 ```terminal
-git clone git@github.com:OpenLXP/openlxp-xms-ui.git
+git clone registry1.dso.mil/ironbank/adl-ousd/ecc-openlxp/openlxp-xms-ui
 ```
 
 ## 2. Set up your environment variables
