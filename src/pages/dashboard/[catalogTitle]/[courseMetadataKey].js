@@ -1,13 +1,15 @@
 'use strict';
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateDeeplyNestedJson } from "../../../utils/utils";
 import { catalog_courses_url } from "../../../config/endpoints";
 import { axiosInstance } from "../../../config/axiosInstance";
 import { TrashIcon } from '@heroicons/react/outline';
 import DefaultLayout from "@/components/layouts/DefaultLayout";
+import { getDeeplyNestedData } from "@/utils/getDeeplyNestedData";
+import { useInfoMappings } from "@/hooks/useInfoMappings";
 
 export function getServerSideProps(context) {
   const { catalogTitle, courseMetadataKey } = context.query;
@@ -121,17 +123,19 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
       });
   }
 
+  
+
   // title and basic info
-  function courseHeader() {
-    const title = course.data?.metadata?.Metadata_Ledger.Course.CourseTitle;
+  function courseHeader() { 
+
     return (
       <div
-        title={title}
+        title={getDeeplyNestedData(config.data?.course_title.replace("metadata.", "metadata.Metadata_Ledger."), course.data)}
         className={
           "w-full flex flex-row my-2 py-2 px-2 space-x-1 justify-start "
         }
       >
-        <div className={"text-xl font-bold w-full"}>{title}</div>
+        <div className={"text-xl font-bold w-full"}>{getDeeplyNestedData(config.data?.course_title.replace("metadata.", "metadata.Metadata_Ledger."), course.data)}</div>
         <div
           className={
             "px-2 mt-1 text-xs leading-5 self-center font-semibold rounded-full bg-green-100 text-green-800"
@@ -375,6 +379,8 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
       isSubscribed = false;
     };
   }, [id]);
+
+  const config = useInfoMappings();
 
   return (
     <DefaultLayout>

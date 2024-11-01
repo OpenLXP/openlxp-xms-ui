@@ -2,9 +2,13 @@
 
 import CourseListHeader from "../CourseHeader/CourseListHeader";
 import { useRouter } from "next/router";
+import { useInfoMappings } from "@/hooks/useInfoMappings";
+import { getDeeplyNestedData } from "@/utils/getDeeplyNestedData";
+import { data } from "browserslist";
 
 const CourseList = (props) => {
   const router = useRouter();
+  const config = useInfoMappings();
 
   const courses = props.data?.experiences.results || [];
   // Creates the individual rows of the table.
@@ -16,10 +20,10 @@ const CourseList = (props) => {
        onClick={() => router.push(`/dashboard/${data.provider_name}/${data.metadata_key_hash}`)} >
         <td className="px-6 py-4 text-sm text-gray-900">
            <div className="font-medium">
-             {data.metadata?.Course?.CourseTitle}
+            {getDeeplyNestedData(config.data?.course_title, data)}
            </div>
            <div className="font-light">
-             {data.metadata?.Course?.CourseCode}
+            {getDeeplyNestedData(config.data?.course_code, data)}
            </div>
          </td>
 
