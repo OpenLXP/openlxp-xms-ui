@@ -13,6 +13,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^12.1.10",
+    "@next/swc-linux-x64-gnu": "15.4.1",
     "ajv": "6.12.3",
     "ansi-html": "0.0.8",
     "axios": "^1.8.2",
