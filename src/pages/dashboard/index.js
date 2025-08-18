@@ -1,11 +1,11 @@
 'use strict';
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import CatalogList from "./Catalogs/CatalogList/CatalogList";
-import { catalogs_url } from "../../config/endpoints";
 import { axiosInstance } from "../../config/axiosInstance";
+import { catalogs_url } from "../../config/endpoints";
+import CatalogList from "./Catalogs/CatalogList/CatalogList";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 
 const Catalogs = (props) => {
@@ -53,10 +53,12 @@ const Catalogs = (props) => {
   if (catalogs.isLoading) {
     content = <div> Loading...</div>;
   }
+
   // Show the content if there is any
   else if (catalogs.providers && !catalogs.isLoading) {
     content = <CatalogList catalogs={catalogs.providers} />;
   }
+
   // Show the error message if there is an error
   else if (catalogs.error){
     content = (

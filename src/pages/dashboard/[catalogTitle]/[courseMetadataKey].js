@@ -1,15 +1,18 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 'use strict';
 
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { updateDeeplyNestedJson } from "../../../utils/utils";
-import { catalog_courses_url } from "../../../config/endpoints";
-import { axiosInstance } from "../../../config/axiosInstance";
 import { TrashIcon } from '@heroicons/react/outline';
-import DefaultLayout from "@/components/layouts/DefaultLayout";
+import { axiosInstance } from "../../../config/axiosInstance";
+import { catalog_courses_url } from "../../../config/endpoints";
 import { getDeeplyNestedData } from "@/utils/getDeeplyNestedData";
+import { updateDeeplyNestedJson } from "../../../utils/utils";
 import { useInfoMappings } from "@/hooks/useInfoMappings";
+import { useParams } from "react-router-dom";
+import DefaultLayout from "@/components/layouts/DefaultLayout";
 
 export function getServerSideProps(context) {
   const { catalogTitle, courseMetadataKey } = context.query;
@@ -22,7 +25,6 @@ export function getServerSideProps(context) {
 }
 
 export default function CourseDataContainerV2({catalogTitle, courseMetadataKey}) {
-  // const { catalog, id } = useParams();
   const catalog = catalogTitle;
   const id = courseMetadataKey;
 
@@ -54,8 +56,10 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
   function handleAddNewData() {
     let key = document.querySelector("#new-key").value;
     let value = document.querySelector("#new-value").value;
+
     // prepare the data for loading
     key = key.split(" ").join("_");
+
     // remove white space at start and end
     key.trim();
     value.trim();
@@ -146,6 +150,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
 
         <div className={"flex flex-row-reverse align-top top-0 pt-1 px-2"}>
           {isEditing && (
+            // eslint-disable-next-line react/jsx-no-comment-textnodes
             <>
               <div
                 className="mx-1 px-2 rounded-md bg-gray-200 text-gray-700 cursor-pointer"
@@ -181,6 +186,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
       </div>
     );
   }
+
   // editing rows
   // function editControls() {
   //   return (
@@ -197,6 +203,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
   // creates the components for rendering
   function dataFields(data, pathToField = []) {
     let path = [...pathToField];
+
     // if no data is passed
     if (!data) return null;
 
@@ -206,6 +213,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
           // if the data[key] is an obj go deeper
           if (typeof data[key] === "object" && data[key] !== null) {
             path.push(key);
+
             // group area
             const groupArea = (
               <div className={"ml-4 mt-2 mb-8"} key={path}>
@@ -290,6 +298,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
       </div>
     );
   }
+
   //to add supplemental data values
   function addToSupplemental() {
     return (
@@ -340,6 +349,7 @@ export default function CourseDataContainerV2({catalogTitle, courseMetadataKey})
   // api call to get the course data
   function getCourseData() {
     const url = catalog_courses_url + catalog + "/" + id;
+
     // init the state to loading
     setCourse({
       data: null,

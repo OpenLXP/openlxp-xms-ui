@@ -1,8 +1,8 @@
 'use strict';
 
-import { render, act, screen } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
+import { act, render, screen } from "@testing-library/react";
 
+import { unmountComponentAtNode } from "react-dom";
 import CourseListHeader from "../../../../../pages/dashboard/Courses/CourseHeader/CourseListHeader";
 
 let container = null;
@@ -48,6 +48,5 @@ describe("CourseHeader", () => {
 
     screen.getByText("Title");
     screen.getByText("Course Code");
-    // screen.getByText("Course Status");
   });
 });

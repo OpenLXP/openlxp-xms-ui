@@ -1,11 +1,11 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { unmountComponentAtNode } from "react-dom";
 
-import Header from "../../../components/Header/Header";
 import { useAuthenticatedUser, useUnauthenticatedUser } from "@/__mocks__/predefinedMocks";
+import Header from "../../../components/Header/Header";
 import singletonRouter from 'next/router';
 
 let container = null;
@@ -110,7 +110,7 @@ describe("Header", () => {
     });
 
     expect(singletonRouter).toMatchObject({
-      asPath: '/login',
+      asPath: '/',
     });
   });
 

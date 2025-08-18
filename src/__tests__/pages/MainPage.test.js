@@ -1,13 +1,13 @@
 'use strict';
 
-import { unmountComponentAtNode } from "react-dom";
-import { render, act, screen, fireEvent } from "@testing-library/react";
 import {
   BrowserRouter,
   MemoryRouter,
-  StaticRouter,
   Route,
+  StaticRouter,
 } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { unmountComponentAtNode } from "react-dom";
 import { useAuthenticatedUser, useUnauthenticatedUser } from "@/__mocks__/predefinedMocks";
 import MainPage from "../../pages/index";
 

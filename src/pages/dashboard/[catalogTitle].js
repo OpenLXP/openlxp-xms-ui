@@ -1,9 +1,5 @@
 'use strict';
 
-import React, { useState, useEffect, useMemo } from "react";
-import CourseList from "./Courses/CourseList/CourseList";
-import { catalog_courses_url } from "../../config/endpoints";
-import { axiosInstance } from "../../config/axiosInstance";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
@@ -11,7 +7,11 @@ import {
   ChevronRightIcon,
   SearchIcon
 } from '@heroicons/react/solid';
+import { axiosInstance } from "../../config/axiosInstance";
+import { catalog_courses_url } from "../../config/endpoints";
+import CourseList from "./Courses/CourseList/CourseList";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
+import React, { useEffect, useMemo, useState } from "react";
 
 export function getServerSideProps(context) {
   const { catalogTitle } = context.query;
@@ -150,6 +150,7 @@ const Courses = (catalogTitle) => {
           <button
             key={page}
             disabled
+
             // onClick={() => setPage(page)}
             className={`${
               page === page

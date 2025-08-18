@@ -1,8 +1,10 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { createRoot } from 'react-dom/client'
+
+import { unmountComponentAtNode } from "react-dom";
 
 import Footer from "../../../components/Footer/Footer";
 

@@ -1,12 +1,12 @@
 'use strict';
 
-import { fireEvent, act, screen, render } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
-import axios from "axios";
-import Courses from "../../../pages/dashboard/[catalogTitle]";
 import { MemoryRouter } from "react-router-dom";
-import MockAxios from 'jest-mock-axios';
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { unmountComponentAtNode } from "react-dom";
 import { useAuth } from "../../../context/authContext"
+import Courses from "../../../pages/dashboard/[catalogTitle]";
+import MockAxios from 'jest-mock-axios';
+import axios from "axios";
 
 jest.mock('../../../context/authContext', () => ({
   useAuth: jest.fn(),

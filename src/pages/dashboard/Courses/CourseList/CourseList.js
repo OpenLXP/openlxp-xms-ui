@@ -1,16 +1,17 @@
 'use strict';
 
-import CourseListHeader from "../CourseHeader/CourseListHeader";
-import { useRouter } from "next/router";
-import { useInfoMappings } from "@/hooks/useInfoMappings";
-import { getDeeplyNestedData } from "@/utils/getDeeplyNestedData";
 import { data } from "browserslist";
+import { getDeeplyNestedData } from "@/utils/getDeeplyNestedData";
+import { useInfoMappings } from "@/hooks/useInfoMappings";
+import { useRouter } from "next/router";
+import CourseListHeader from "../CourseHeader/CourseListHeader";
 
 const CourseList = (props) => {
   const router = useRouter();
   const config = useInfoMappings();
 
   const courses = props.data?.experiences.results || [];
+
   // Creates the individual rows of the table.
   const rows = courses?.map((data, index) => {
     if (Object.keys(data).length > 0)

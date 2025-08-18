@@ -1,10 +1,10 @@
 'use strict';
 
+import { axiosInstance } from "../../../../config/axiosInstance";
+import { configUrl, host } from "../../../../config/endpoints";
+import { useEffect, useState } from "react";
 import CatalogCard from "../CatalogCard/CatalogCard";
 import icon from "../../../../public/catalog.png";
-import { configUrl, host } from "../../../../config/endpoints";
-import { useState, useEffect } from "react";
-import { axiosInstance } from "../../../../config/axiosInstance";
 
 const CatalogsList = ({catalogs}) => {
 
@@ -24,7 +24,7 @@ const CatalogsList = ({catalogs}) => {
   const content = catalogs?.map((catalog) => {
     let configData = config?.config?.find(data => data.name === catalog);
     if(configData){
-      return <CatalogCard title={catalog} img={`${host}${configData.image}`} key={catalog} />;
+      return <CatalogCard title={catalog} img={`/${configData.image}`} key={catalog} />;
     }
     return <CatalogCard title={catalog} img={icon} key={catalog} />;
   });

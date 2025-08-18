@@ -1,6 +1,6 @@
 import { axiosInstance } from '../config/axiosInstance';
-import { uiConfigUrl } from '../config/endpoints';
 import { twentyFourHours } from '../config/timeConstants';
+import { uiConfigUrl } from '../config/endpoints';
 import { useQuery } from 'react-query';
 
 /**

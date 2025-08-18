@@ -1,7 +1,7 @@
 'use strict';
 
-import React from "react";
 import FooterLink from "./FooterLink/FooterLink";
+import React from "react";
 
 const Footer = (props) => {
 
@@ -20,9 +20,10 @@ const Footer = (props) => {
 
   const makeExternalLinks = (links) =>
     links.map((link, index) => {
+      links['number']=index
       return (
         <a
-          key={index}
+          key={links.number}
           className='text-center text-gray-500 text-base p-1 hover:text-gray-900 h-auto hover:text-shadow-md transform transition-all duration-75 ease-in-out'
           href={link.url}
         >

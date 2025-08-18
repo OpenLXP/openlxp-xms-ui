@@ -1,16 +1,24 @@
 'use strict';
 
-import { fireEvent, act, screen, render } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
-import axios from "axios";
-import CourseDataContainerV2 from "../../../../../pages/dashboard/[catalogTitle]/[courseMetadataKey]";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+
 import { MemoryRouter } from "react-router-dom";
-import MockAxios from 'jest-mock-axios';
+import { unmountComponentAtNode } from "react-dom";
 import { useAuth } from "../../../../../context/authContext"
+import CourseDataContainerV2 from "../../../../../pages/dashboard/[catalogTitle]/[courseMetadataKey]";
+import MockAxios from 'jest-mock-axios';
+import axios from "axios";
 
 jest.mock('../../../../../context/authContext', () => ({
   useAuth: jest.fn(),
 }));
+
+
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
 
 let container = null;
 beforeEach(() => {
@@ -63,7 +71,7 @@ describe("CourseDataContainerV2", () => {
         container
       );
     });
-
+    screen.getByText(/Edit/i);
     act(() => {
         const button = screen.getByText(/Edit/i);
         fireEvent(button, new MouseEvent("click", { bubbles: true }));

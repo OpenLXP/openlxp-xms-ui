@@ -1,14 +1,14 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import axios from "axios";
-import { unmountComponentAtNode } from "react-dom";
-import { BrowserRouter, MemoryRouter, Route, NavLink } from "react-router-dom";
-import { axiosInstance } from "../../../config/axiosInstance";
-import mockAxios from 'jest-mock-axios';
-import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
+import { BrowserRouter, MemoryRouter, NavLink, Route } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 
+import { axiosInstance } from "../../../config/axiosInstance";
+import { unmountComponentAtNode } from "react-dom";
+import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
 import ContentContainer from "../../../pages/dashboard/index";
+import axios from "axios";
+import mockAxios from 'jest-mock-axios';
 
 jest.mock('axios');
 let container = null;
@@ -112,8 +112,6 @@ describe("ContentContainer", () => {
         </MemoryRouter>
       );
     });
-    // screen.getByText("Test Title");
-    // screen.getByText("CC: TestCode123");
   });
 
   test("does render CourseData", async () => {
@@ -181,6 +179,5 @@ describe("ContentContainer", () => {
         </MemoryRouter>
       );
     });
-    // screen.getByTitle("Test Title");
   });
 });
