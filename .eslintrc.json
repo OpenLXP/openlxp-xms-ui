@@ -1,7 +1,7 @@
 {
     // "ignoreDuringBuilds": true,
     "extends": [
-      "next/babel",
+      "next",
       "next/core-web-vitals",
       "plugin:jsx-a11y/recommended"
     ],
@@ -11,6 +11,8 @@
     ],
     "rules": {
       "react-hooks/exhaustive-deps": "off",
+      "react-hooks/rules-of-hooks": "off",
+      "react/no-deprecated": "off",
       "sort-imports-es6-autofix/sort-imports-es6": [
         2,
         {

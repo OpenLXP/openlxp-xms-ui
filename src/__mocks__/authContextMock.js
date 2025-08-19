@@ -1,7 +1,11 @@
-import { useContext, createContext } from "react";
+import { createContext, useMemo } from "react";
 export const AuthContext = createContext()
 export const AuthContextWrapper = ({children}) => {
     const login = jest.fn()
     const register = jest.fn()
-    return(<AuthContext.Provider value={{login, register}}>{children}</AuthContext.Provider>)
+    const logindetails = useMemo(() => ({ login, register }),[]);
+    return(
+        <AuthContext.Provider value={logindetails}>
+            {children}
+        </AuthContext.Provider>)
 }

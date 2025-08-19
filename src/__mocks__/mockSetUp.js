@@ -6,6 +6,7 @@ jest.mock('next/dist/client/router', () => require('next-router-mock'));
 // mocking useStorage
 jest.mock('@/hooks/useStorage', () => ({
   useStorage: jest.fn(),
+  useSessionStorage: () => ([null, jest.fn(), jest.fn()]),
 }));
 
 
@@ -23,3 +24,13 @@ mockIntersectionObserver.mockReturnValue({
   disconnect: () => null,
 });
 window.IntersectionObserver = mockIntersectionObserver;
+
+// mocking info mapping
+jest.mock("@/hooks/useInfoMappings", () => ({
+  useInfoMappings: () => ({
+    data: {
+      course_title: "metadata.Course.CourseTitle",
+      course_code: "metadata.Course.CourseCode",
+    },
+  }),
+}));

@@ -1,9 +1,9 @@
 'use strict';
 
-import { render, act, screen } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { act, render, screen } from "@testing-library/react";
 
+import { BrowserRouter } from "react-router-dom";
+import { unmountComponentAtNode } from "react-dom";
 import CatalogCard from "../../../../../pages/dashboard/Catalogs/CatalogCard/CatalogCard";
 import icon from "../../../../images/placeholder.jpg";
 
@@ -32,7 +32,7 @@ describe("CatalogCard ", () => {
       );
     });
     expect(container.textContent).toBe("");
-    expect(screen.getByAltText("catalog image").src).toBe("http://localhost/");
+    expect(screen.getByAltText("catalog").src).toBe("http://localhost/");
   });
 
   test("does render passed title", () => {
@@ -59,7 +59,7 @@ describe("CatalogCard ", () => {
       );
     });
 
-    expect(screen.getByAltText("catalog image")).toBeInTheDocument();
-    expect(screen.getByAltText("catalog image")).toBeVisible();
+    expect(screen.getByAltText("catalog")).toBeInTheDocument();
+    expect(screen.getByAltText("catalog")).toBeVisible();
   });
 });

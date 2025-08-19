@@ -1,10 +1,11 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
-import mockRouter from 'next-router-mock';
+import { act, fireEvent, render, screen } from "@testing-library/react";
+
+import { unmountComponentAtNode } from "react-dom";
 import WelcomeScreen from "../../../pages/WelcomeScreen/WelcomeScreen";
+import mockRouter from 'next-router-mock';
 import singletonRouter from 'next/router';
 
 let container = null;
@@ -29,7 +30,7 @@ describe("WelcomeScreen", () => {
       render(<WelcomeScreen />, container);
     });
     screen.getByText("About Experience Management Service");
-    screen.getByText(/The Experience Management Service is the human-facing application*?/);
+    screen.getByText(/The Experience Management Service is the human-facing application*/);
   });
 });
 

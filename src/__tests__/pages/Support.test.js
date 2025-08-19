@@ -1,10 +1,11 @@
 'use strict';
 
-import { unmountComponentAtNode } from "react-dom";
-import { render, act, screen, fireEvent } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+
 import { StaticRouter } from "react-router-dom";
-import Support from "../../pages/support";
+import { unmountComponentAtNode } from "react-dom";
 import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
+import Support from "../../pages/support";
 
 let container = null;
 

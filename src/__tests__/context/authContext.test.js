@@ -2,9 +2,9 @@
 
 import { AuthContext, AuthProvider } from '../../context/authContext';
 import { render } from '@testing-library/react';
+import { useAuthenticatedUser } from '@/__mocks__/predefinedMocks';
 import MockAxios from 'jest-mock-axios';
 import mockRouter from 'next-router-mock';
-import { useAuthenticatedUser } from '@/__mocks__/predefinedMocks';
 
 jest.unmock('../../context/authContext');
 

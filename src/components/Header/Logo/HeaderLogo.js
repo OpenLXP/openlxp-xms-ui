@@ -7,12 +7,14 @@ import { NavLink } from "react-router-dom";
  * `logo = { title:string, subtitle:string, logo:url}`
  * @param logo
  */
+
 const HeaderLogo = (props) => {
   const titleToShow = props.title || undefined;
   const subtitleToShow = props.subtitle || undefined;
   const imageToShow = props.img || undefined;
 
   const img = imageToShow ? (
+    // eslint-disable-next-line @next/next/no-img-element
     <img src={imageToShow} alt="DOD Logo" className={"pl-3"} width={60}/>
   ) : null;
 

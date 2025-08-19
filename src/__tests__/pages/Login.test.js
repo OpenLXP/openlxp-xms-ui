@@ -1,15 +1,15 @@
 'use strict';
 
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import Login from '../../pages/login';
-import mockAxios from 'jest-mock-axios';
-import React from 'react';
-import { unmountComponentAtNode } from "react-dom";
 import { MemoryRouter, Route } from "react-router-dom";
-import mockRouter from 'next-router-mock';
-import { useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
-import singletonRouter from 'next/router';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
+import { unmountComponentAtNode } from "react-dom";
+import { useUnauthenticatedUser } from '@/__mocks__/predefinedMocks';
+import Login from '../../pages/login';
+import React from 'react';
+import mockAxios from 'jest-mock-axios';
+import mockRouter from 'next-router-mock';
+import singletonRouter from 'next/router';
 
 let container = null;
 

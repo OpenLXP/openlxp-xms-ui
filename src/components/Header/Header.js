@@ -1,13 +1,13 @@
 'use strict';
 
-import React from "react";
 import { useAuth } from "../../context/authContext";
 import Image from 'next/image';
+import React from "react";
 
 // Local imports
-import logoImage from '@/public/dodLogo.png';
-import NavBar from "./NavBar/NavBar";
 import Link from "next/link";
+import NavBar from "./NavBar/NavBar";
+import logoImage from '@/public/dodLogo.png';
 
 const Header = () => {
   const navButtons = [
@@ -36,11 +36,13 @@ const Header = () => {
 
   const {user, logout} = useAuth();
 
+  const imagePath = '/_next/static/media/dodLogo.ed71202b.png'
+
   return (
     <header className="bg-gradient-to-t from-blue-medium to-blue text-white">
       <div className="w-10/12 flex flex-row justify-between mx-auto h-auto rounded-lg items-center pt-2">
         <div className="flex flex-row items-center">
-        <Image src={logoImage} alt={'home'} height={'50'} width={'50'} priority={true} data-testid="home-btn"/>
+        <Image src={imagePath} alt={'home'} height={'50'} width={'50'} priority={true} data-testid="home-btn2"/>
         <NavBar navButtons={navButtons} />
         </div>
         <div className="flex flex-row justify-end">

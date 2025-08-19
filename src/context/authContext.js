@@ -1,10 +1,10 @@
 'use strict';
 
 import { axiosInstance } from '../config/axiosInstance';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { host } from '../config/endpoints';
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useSessionStorage } from '../hooks/useStorage';
 import { useRouter } from 'next/router';
+import { useSessionStorage } from '../hooks/useStorage';
 
 export const AuthContext = createContext({});
 
@@ -16,7 +16,9 @@ export function AuthProvider({ children }) {
   const [user, setSession, removeSession] = useSessionStorage('user', null);
   const router = useRouter();
 
-  useEffect(() => checkUserLoggedIn(), []);
+  useEffect(() => {
+    checkUserLoggedIn()
+  }, []);
 
   // Register user
   const register = (userData) => {
@@ -55,9 +57,9 @@ export function AuthProvider({ children }) {
         logout();
     });
   };
-
+  const logindetails = useMemo(() => ({ user, error, register, login, logout }),[]);
   return (
-    <AuthContext.Provider value={{ user, error, register, login, logout }}>
+    <AuthContext.Provider value={logindetails}>
       {children}
     </AuthContext.Provider>
   );

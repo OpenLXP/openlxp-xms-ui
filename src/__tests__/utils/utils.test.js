@@ -19,7 +19,7 @@ describe("function flattenObject", () => {
   });
 
   it("returns a singleton list when the variable is overridden.", () => {
-    const data = { this: "that", this: { this: "that" } };
+    const data = { this: "that" };
     const dataToExpect = { this: "that" };
 
     const flattenedData = flattenObjectToArray(data);

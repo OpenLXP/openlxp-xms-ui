@@ -1,11 +1,11 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { unmountComponentAtNode } from "react-dom";
 
-import NavBar from "../../../../components/Header/NavBar/NavBar";
 import { useAuthenticatedUser } from "@/__mocks__/predefinedMocks";
+import NavBar from "../../../../components/Header/NavBar/NavBar";
 
 let container = null;
 

@@ -1,15 +1,17 @@
 'use strict';
 
 //register page
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useAuth } from '../context/authContext';
-import logoImage from "../public/dodLogo.png";
-import Image from 'next/image';
-import DefaultLayout from '../components/layouts/DefaultLayout';
-import { useRouter } from 'next/router';
+
+import React, { useEffect, useState } from 'react';
+
 import { axiosInstance } from '../config/axiosInstance';
 import { register_url } from '../config/endpoints';
+import { useAuth } from '../context/authContext';
+import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import DefaultLayout from '../components/layouts/DefaultLayout';
+import Image from 'next/image';
+import logoImage from "../public/dodLogo.png";
 
 export default function Register() {
     const {user, register} = useAuth();
@@ -35,7 +37,6 @@ export default function Register() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (credentials.first_name === '' || credentials.last_name === ''|| credentials.email === ''|| credentials.password === '') {
-            // setErrorMsg('All fields required');
             console.log('All fields required');
 
         }
@@ -69,11 +70,13 @@ export default function Register() {
         }
     };
 
+    const imagePath = '/_next/static/media/dodLogo.ed71202b.png'
+
     return(
         <DefaultLayout>
             <div className='w-1/3 mx-auto p-8 rounded flex flex-col justify-center m-10'> 
                 <div className="flex flex-col items-center justify-between">
-                    <Image src={logoImage} alt={'home'} height={"200"} width={"200"} priority={true}/>
+                    <Image src={imagePath} alt={'home'} height={"200"} width={"200"} priority={true}/>
                 </div>
                 <h1 className="my-2 mx-auto text-2xl font-bold"> Create your account </h1>
 

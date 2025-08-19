@@ -1,6 +1,7 @@
 'use strict';
 
 import { Disclosure, Transition } from '@headlessui/react'
+
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import DefaultLayout from '../components/layouts/DefaultLayout';
 
@@ -38,7 +39,8 @@ const Support = () => {
     const panelCode = (content) =>
         content.map((question, index) => {
             return(
-                <Disclosure key={index}>
+                question['number']=index,
+                <Disclosure key={question.number}>
                 {({ open }) => (
                 <div className='p-2 hover:bg-gray-200 hover:rounded-lg'>
                     <Disclosure.Button className="flex items-center rounded-lg justify-between text-left w-full p-5 font-medium border bg-blue text-white border-gray-300 dark:focus:ring-gray-800 hover:opacity-90 hover:shadow ">
@@ -64,6 +66,7 @@ const Support = () => {
         });
 
     return (
+
         // <main className="font-sans">
         <DefaultLayout>
             <div className='pb-20'>
@@ -74,6 +77,7 @@ const Support = () => {
                 {panelCode(navigateContent)}
             </div>
         </DefaultLayout>
+
         // </main>
     );
 };

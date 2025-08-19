@@ -1,9 +1,9 @@
 'use strict';
 
-import { render, act, screen, fireEvent } from "@testing-library/react";
-import { unmountComponentAtNode } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 
+import { BrowserRouter } from "react-router-dom";
+import { unmountComponentAtNode } from "react-dom";
 import Logo from "../../../../components/Header/Logo/HeaderLogo";
 import img from "../../../resources/internal/dodLogo.png";
 
@@ -53,7 +53,7 @@ describe("Logo", () => {
         </BrowserRouter>
       );
     });
-    screen.getByAltText(/DOD*?/);
+    screen.getByAltText(/DOD*/);
   });
 
   test("does not render title when the title is not defined", () => {
