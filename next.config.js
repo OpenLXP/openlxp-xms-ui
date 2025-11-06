@@ -2,7 +2,7 @@ const { createSecureHeaders } = require("next-secure-headers");
 
 const nextConfig = {
     reactStrictMode: true,
-    swcMinify: true,
+    // swcMinify: true,
     basePath: '/xms-ui',
     trailingSlash: true,
     
