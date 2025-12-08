@@ -1,6 +1,5 @@
 const nextConfig = {
     reactStrictMode: true,
-    swcMinify: true,
     // Adding policies:
     async headers() {
         return [
